@@ -6,6 +6,7 @@ import javax.ws.rs.core.Application;
 import org.eclipse.microprofile.auth.LoginConfig;
 import org.eclipse.microprofile.openapi.annotations.enums.SecuritySchemeType;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
+import bkm.entity.UserRoles;
 
 /**
  * Configures a JAX-RS endpoint. Delete this class, if you are not exposing
@@ -18,7 +19,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 
 @SecurityScheme(securitySchemeName = "jwt", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "jwt")
 @LoginConfig(authMethod = "MP-JWT", realmName = "MP-JWT")
-@DeclareRoles({"ADMIN", "users"})
+@DeclareRoles({"Admin", "User"})
 @ApplicationPath("resources")
 public class JAXRSConfiguration extends Application {
 

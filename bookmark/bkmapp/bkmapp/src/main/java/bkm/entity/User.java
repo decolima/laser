@@ -16,6 +16,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import javax.ws.rs.core.UriBuilder;
 import bkm.boundary.UsersResources;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 
@@ -46,14 +48,10 @@ public class User extends  BaseEntity {
     @Size(min = 4)
     @Column(nullable = false)    
     private String pwd;
+    
+    @Enumerated(EnumType.STRING)     
+    UserRoles role;
 
-    
-    /*
-    associazione inversa
-    @OneToMany(mappedBy = "author")
-    private List<Post> posts = new ArrayList<>();
-     */
-    
     
     public String getFirstName() {
         return firstName;
@@ -87,6 +85,17 @@ public class User extends  BaseEntity {
         this.pwd = pwd;
     }
 
+    public UserRoles getRole() {
+        return role;
+    }
+
+    public void setRole(UserRoles role) {
+        this.role = role;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
         return "User{" + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", pwd=" + pwd + '}';
