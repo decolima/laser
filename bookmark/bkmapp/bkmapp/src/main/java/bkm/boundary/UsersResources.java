@@ -7,9 +7,8 @@ package bkm.boundary;
 import bkm.security.JWTManager;
 import bkm.control.UserStore;
 import bkm.control.BookStore;
-import bkm.entity.Book;
 import bkm.entity.User;
-import java.time.LocalDate;
+import bkm.entity.UserRoles;
 import java.util.List;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -50,7 +49,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * @author tss
  */
 @Path("/users")
-@Tag(name = "Gestione Users", description = "Permette di gestire gli utenti di blogapp")
+@Tag(name = "Gestione Users", description = "Permette di gestire gli utenti di bkmapp")
 @DenyAll
 public class UsersResources {
     
@@ -81,7 +80,7 @@ public class UsersResources {
     @APIResponses({
         @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
     })
-    @RolesAllowed("users")
+    @RolesAllowed({"Admin","User"})
     public List<User> all(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
         System.out.println(token);
         return storeuser.allPaginated(page,size);
@@ -108,7 +107,7 @@ public class UsersResources {
         @APIResponse(responseCode = "200", description = "Utente ritornato con successo"),
         @APIResponse(responseCode = "404", description = "Utente non trovato")
     })
-    @RolesAllowed("users")
+    @RolesAllowed({"Admin","User"})
     public User find(@PathParam("id") Long id) {
         return storeuser.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + id));
     }
@@ -139,7 +138,6 @@ public class UsersResources {
         
         User u = storeuser.login(credential).orElseThrow(() -> new NotAuthorizedException("User non Authorized",  
                                                                        Response.status(Response.Status.UNAUTHORIZED).build()));
-               
         String jwt = jwtManager.generate(u);
         
         return  Json.createObjectBuilder()
@@ -158,9 +156,13 @@ public class UsersResources {
         @APIResponse(responseCode = "404", description = "Utente non trovato")
 
     })
-    public void delete(@PathParam("id") Long id) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("Admin")
+    public Response delete(@PathParam("id") Long id) {
         User found = storeuser.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + id));
         storeuser.delete(found.getId());
+        return Response.status(Response.Status.OK)
+                .build();
     }
     
     @PUT
@@ -169,36 +171,15 @@ public class UsersResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Aggiorna i dati dell'utente")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Nuovo utente creato con successo")
+        @APIResponse(responseCode = "200", description = "Utente aggirnato con successo")
     })
+    @RolesAllowed("Admin")
     public User update(@PathParam("id") Long id, @Valid User entity) {
         User found = storeuser.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + id));
         entity.setId(id);
         return storeuser.update(entity);
     }
-    
-/*------------------------------ bookmarks ---------*/
-    
-    @POST
-    @Path("{id}/bkms")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)   
-    @Operation(description = "Permette la registrazione di un nuovo BookMark")
-    @APIResponses({
-        @APIResponse(responseCode = "201", description = "Nuovo BookMark creato con successo")
-    })
-    @RolesAllowed("users")
-    public Response create(@PathParam("id") Long id, @Valid Book entity) {
-        //System.out.println("id: " + token.getName());
-        System.out.println(entity.toString());
-        User usr = storeuser.find(id).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
-        entity.setUsr(usr);
-        entity.setCreazione(LocalDate.now());
-        Book saved = storebook.save(entity);
-        return Response.status(Response.Status.CREATED)
-                .entity(saved)
-                .build();
-    }
+   
     
     
 }

@@ -15,9 +15,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <h1>BookMark App Create User</h1>
                 <input id="name" required name="Nome" placeholder="Tuo Nome"/>  <br>
                 <input id="lastname" required name="Cognome" placeholder="Tuo Congnome"/> <br> 
+                <input id="roleuser" required name="roleuser" placeholder="Ruolo del Utente - Admin o User"/> <br>                 
                 <input id="usr" required name="mail" placeholder="ins indirizzo mail"/>  <br>
                 <input id="pwd" required type="password" name="pwd" placeholder="inserisci la tua password..."/> <br> 
                 <input type="submit" id="btnNewUser" value="Crea User"> 
+                
+                <br>
+                <input id="usrc" required name="usrc" placeholder="Id Utente a cancellare"/>  
+                <input type="submit" id="btnCancellaUser" value="Cancella User"> 
+                
             </form>         
             <ul id = "users"> </ul>
         </div>

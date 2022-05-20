@@ -25,6 +25,8 @@ public abstract class BaseEntity implements Serializable {
         
     @Version
     protected Long version;
+    
+    protected boolean cancellato;
 
     public Long getId() {
         return id;
@@ -42,6 +44,15 @@ public abstract class BaseEntity implements Serializable {
         this.version = version;
     }
 
+    public boolean isCancellato() {
+        return cancellato;
+    }
+
+    public void setCancellato(boolean cancellato) {
+        this.cancellato = cancellato;
+    }
+
+    
     
     @Override
     public int hashCode() {

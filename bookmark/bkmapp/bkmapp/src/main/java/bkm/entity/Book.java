@@ -4,16 +4,12 @@
  */
 package bkm.entity;
 
-import bkm.adapter.UserTypeAdapter;
-import bkm.boundary.UsersResources;
-import bkm.boundary.BooksResources;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.bind.annotation.JsonbTransient;
-import javax.json.bind.annotation.JsonbTypeAdapter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

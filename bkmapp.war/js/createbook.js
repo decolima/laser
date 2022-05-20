@@ -125,7 +125,7 @@ btnAddTag.addEventListener("click", f => {
                 console.log(response);
             } else {
                 console.log("Risposta OK per Get Books");
-                return response.json();
+                console.log(response);
             }
             
         });

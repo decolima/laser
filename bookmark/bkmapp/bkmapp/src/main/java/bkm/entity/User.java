@@ -18,6 +18,7 @@ import javax.ws.rs.core.UriBuilder;
 import bkm.boundary.UsersResources;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
 
 
 
@@ -48,10 +49,9 @@ public class User extends  BaseEntity {
     @Size(min = 4)
     @Column(nullable = false)    
     private String pwd;
-    
-    @Enumerated(EnumType.STRING)     
-    UserRoles role;
-
+        
+    @Enumerated(EnumType.STRING)
+    UserRoles roleuser;
     
     public String getFirstName() {
         return firstName;
@@ -85,22 +85,16 @@ public class User extends  BaseEntity {
         this.pwd = pwd;
     }
 
-    public UserRoles getRole() {
-        return role;
+
+    public UserRoles getRoleuser() {
+        return roleuser;
     }
 
-    public void setRole(UserRoles role) {
-        this.role = role;
+    public void setRoleuser(UserRoles roleuser) {
+        this.roleuser = roleuser;
     }
 
     
-    
-    
-    @Override
-    public String toString() {
-        return "User{" + "firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", pwd=" + pwd + '}';
-        
-    }
 
     UnsupportedOperationException getError() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

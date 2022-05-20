@@ -7,9 +7,7 @@ package bkm.control;
 import bkm.entity.Tag;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -30,7 +28,7 @@ public class TagStore {
 
     public List<Tag> all() {
 
-        return em.createQuery("select e from Tag e").getResultList();
+        return em.createQuery("select e from Tag e where e.cancellato = false").getResultList();
 
     }
 
@@ -49,20 +47,20 @@ public class TagStore {
     }
 
     public void delete(Long id) {       
-
-        em.remove(em.getReference(Tag.class, id));
-
+        Tag found = em.getReference(Tag.class, id);
+        found.setCancellato(true);
+        this.save(found);
     }
-
-    public Tag update(Tag entity) {       
-
-        return em.merge(entity);
-    }
-
    
      public Tag saveIfNotExists(String tag) {
         Optional<Tag> found = byName(tag);
         if (found.isPresent()) {
+            
+            if(found.get().isCancellato() == true){
+                found.get().setCancellato(false);
+                this.save(found.get());
+            }
+            
             return found.get();
         }
         return this.save(new Tag(tag));

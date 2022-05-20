@@ -6,6 +6,7 @@ package bkm.boundary;
 
 import bkm.control.BookStore;
 import bkm.entity.User;
+import bkm.entity.UserRoles;
 import bkm.control.UserStore;
 import bkm.entity.Book;
 import bkm.security.JWTManager;
@@ -78,12 +79,12 @@ public class BooksResources {
     @APIResponses({
         @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
     })
-    @RolesAllowed("users")
-    public List<JsonObject> all() {
+    @RolesAllowed({"Admin","User"})
+    public List<JsonObject> all(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
         System.out.println(token);
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
         System.out.println(usr.toString());
-        return storebook.findAllByUserJson(usr.getId());
+        return storebook.findAllByUserJson(usr.getId(), page,size);
     }
         
     @POST
@@ -93,7 +94,7 @@ public class BooksResources {
     @APIResponses({
         @APIResponse(responseCode = "201", description = "Nuovo BookMark creato con successo")
     })
-    @RolesAllowed("users")
+    @RolesAllowed({"Admin","User"})
     public Response create(@Valid Book entity) {
         System.out.println("id: " + token.getName());
         System.out.println(entity.toString());
@@ -113,7 +114,7 @@ public class BooksResources {
     //@Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)   
-    @RolesAllowed("users")
+    @RolesAllowed({"Admin","User"})
     public Response addTag(JsonObject jbook){
         
         System.out.println(jbook);
@@ -133,7 +134,7 @@ public class BooksResources {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)   
-    @RolesAllowed("users")
+    @RolesAllowed({"Admin","User"})
     public Response cancellaBook(JsonObject jbook){
         
         System.out.println(jbook);

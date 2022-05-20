@@ -8,7 +8,6 @@ import bkm.entity.User;
 import java.util.List;
 import java.util.Optional;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -31,7 +30,7 @@ public class UserStore {
     
     public List<User> all(){
         
-        return em.createQuery("select e from User e order by e.lastName").getResultList();
+        return em.createQuery("select e from User e where e.cancellato = false order by e.lastName").getResultList();
         
     }
     
@@ -52,8 +51,9 @@ public class UserStore {
     }
 
     public void delete(Long id) {
-        //storepost.deleteByUser(id);
-        em.remove(em.getReference(User.class, id));
+        User found = em.find(User.class, id);
+        found.setCancellato(true);
+        update(found);
     }
 
     public User update(User entity) {
@@ -67,7 +67,7 @@ public class UserStore {
     
     
     public List<User> allPaginated(int page, int size) {
-    return em.createQuery("select e from User e order by e.lastName", User.class)
+    return em.createQuery("select e from User e order by e.lastName wherer e.cancellato = false", User.class)
             .setFirstResult((page - 1) * size)
             .setMaxResults(size)
             .getResultList();
@@ -77,10 +77,9 @@ public class UserStore {
         try{
             
             return Optional.of(
-                    em.createQuery("select e from User e where e.email = :usr and e.pwd = :pwd", User.class)
+                    em.createQuery("select e from User e where e.email = :usr and e.pwd = :pwd and e.cancellato = false", User.class)
                     .setParameter("usr", credential.usr)
                     .setParameter("pwd", SecurityEncoding.shaHash(credential.pwd))
-//                    .setParameter("pwd", credential.pwd)
                     .getSingleResult()
                     );
             
@@ -96,7 +95,7 @@ public class UserStore {
         try{
             
             return Optional.of(
-                    em.createQuery("select e from User e where e.email = :login", User.class)
+                    em.createQuery("select e from User e where e.email = :login and e.cancellato = false", User.class)
                     .setParameter("login", login)
                     .getSingleResult()
                     );

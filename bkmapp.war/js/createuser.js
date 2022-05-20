@@ -10,6 +10,8 @@ let txtCognome = document.getElementById("lastname");
 let txtUsr = document.getElementById("usr");
 let txtPwd = document.getElementById("pwd");
 let btnNew = document.getElementById("btnNewUser");
+let txtRoleuser = document.getElementById("roleuser");
+let txtUrsc = document.getElementById("usrc");
 
 console.log(btnNew);
 
@@ -25,7 +27,8 @@ btnNewUser.addEventListener("click", v => {
         first_name:txtNome.value,
         last_name:txtCognome.value,
         email:txtUsr.value,
-        pwd:txtPwd.value
+        pwd:txtPwd.value,
+        roleuser:txtRoleuser.value
     };
     
     console.log(JSON.stringify(User)); /*stampare una string Json*/
@@ -74,4 +77,15 @@ const renderUser = (v) => {
     return liElement;
 }
 
+btnCancellaUser.addEventListener("click", v => {
+    v.preventDefault();
+    console.log("Click OK");
+    
+    fetch('http://localhost:8080/bkmapp/resources/users/' + txtUrsc.value, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => console.log(response));  
+});
 

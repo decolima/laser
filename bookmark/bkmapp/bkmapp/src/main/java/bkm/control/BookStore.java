@@ -36,7 +36,7 @@ public class BookStore {
         System.out.println("bookstore");
         System.out.println(id);
 
-        return em.createQuery("select e from Book e where e.usr.id = :id", Book.class)
+        return em.createQuery("select e from Book e where e.usr.id = :id and e.cancellato = false", Book.class)
                 .setParameter("id", id)
                 .getResultList();
 
@@ -48,19 +48,22 @@ public class BookStore {
         System.out.println("bookstore");
         System.out.println(id);
 
-        return em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1)")
+        return em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) "
+                + "and e.cancellato = false and e.usr.cancellato = false", Book.class)
                 .setParameter("id", id)
                 .getResultList();
 
     }
 
-    public List<JsonObject> findAllByUserJson(Long id) {
+    public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
 
         System.out.println("bookstore");
         System.out.println(id);
 
-        List<Book> books = em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1)")
+        List<Book> books = em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Book.class)
                 .setParameter("id", id)
+                .setFirstResult((page - 1) * size)
+                .setMaxResults(size)
                 .getResultList();
 
         List<JsonObject> jbook = new ArrayList<>();
@@ -101,8 +104,11 @@ public class BookStore {
     }
 
     public void delete(Long id) {
-
-        em.remove(em.getReference(Book.class, id));
+        
+        Book found = em.find(Book.class, id);
+        found.setCancellato(true);
+        save(found);
+        
     }
     
     public void addTag(Book found, String[] tags) {
