@@ -9,6 +9,7 @@ import bkm.control.UserStore;
 import bkm.control.BookStore;
 import bkm.entity.User;
 import bkm.entity.UserRoles;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -141,8 +142,11 @@ public class UsersResources {
         String jwt = jwtManager.generate(u);
         
         return  Json.createObjectBuilder()
-                .add("user", u.getEmail())
+                .add("mail", u.getEmail())
                 .add("token",jwt)
+                .add("userid", u.getId())
+                .add("first_name", u.getFirstName())
+                .add("last_name", u.getLastName())
                 .build();
     }
     

@@ -33,7 +33,7 @@ btnNewUser.addEventListener("click", v => {
     
     console.log(JSON.stringify(User)); /*stampare una string Json*/
     
-    fetch('http://localhost:8080/bkmapp/resources/users', {
+    fetch('http://192.168.0.125:8080/bkmapp/resources/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -46,7 +46,7 @@ btnNewUser.addEventListener("click", v => {
 });
 
 const visualizzaUsers = () => {
-    fetch('http://localhost:8080/bkmapp/resources/users/allslice', {
+    fetch('http://192.168.0.125:8080/bkmapp/resources/users/allslice', {
         method: 'GET',
         headers: {
            'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ btnCancellaUser.addEventListener("click", v => {
     v.preventDefault();
     console.log("Click OK");
     
-    fetch('http://localhost:8080/bkmapp/resources/users/' + txtUrsc.value, {
+    fetch('http://192.168.0.125:8080/bkmapp/resources/users/' + txtUrsc.value, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
