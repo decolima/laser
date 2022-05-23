@@ -19,6 +19,10 @@ function logout() {
 }
 
 function login() {
+
+   
+    console.log("Script Login ...")
+
     let url = "http://192.168.0.125:8080/bkmapp/resources/users/login";
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;
@@ -47,10 +51,10 @@ function login() {
         .then(jsobj => {
             if (jsobj != undefined || true) {
                 sessionStorage.setItem("globaljwt", jsobj.token);
-                sessionStorage.setItem("mail", jsobj.user);
+                sessionStorage.setItem("mail", jsobj.mail);
                 sessionStorage.setItem("id", jsobj.userid);
-                sessionStorage.setItem("first_name", jsobj.fname);
-                sessionStorage.setItem("last_name", jsobj.lname);
+                sessionStorage.setItem("first_name", jsobj.first_name);
+                sessionStorage.setItem("last_name", jsobj.last_name);
                 document.querySelector("#loggeduser").innerHTML = sessionStorage.getItem("mail");
             }
         })
