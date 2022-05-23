@@ -27,6 +27,10 @@ function logout() {
 }
 
 function login() {
+
+   
+    console.log("Script Login ...")
+
     let url = "http://192.168.0.125:8080/bkmapp/resources/users/login";
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;
