@@ -30,6 +30,7 @@ function login() {
     let url = "http://192.168.0.125:8080/bkmapp/resources/users/login";
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;
+    let string = "Ciao, "
     let postdata = {
         "usr": usr,
         "pwd": pwd
