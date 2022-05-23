@@ -67,7 +67,7 @@ public class UserStore {
     
     
     public List<User> allPaginated(int page, int size) {
-    return em.createQuery("select e from User e order by e.lastName wherer e.cancellato = false", User.class)
+    return em.createQuery("select e from User e order by e.lastName where e.cancellato = false", User.class)
             .setFirstResult((page - 1) * size)
             .setMaxResults(size)
             .getResultList();

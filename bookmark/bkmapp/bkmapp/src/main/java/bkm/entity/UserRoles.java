@@ -9,5 +9,5 @@ package bkm.entity;
  * @author andrelima
  */
 public enum UserRoles {
-    Admin, User, Guest
+    Admin, User
 }

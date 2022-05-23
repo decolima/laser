@@ -77,7 +77,8 @@ public class BooksResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce tutti BookMark di uno uttenti")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
+        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non ritornato trovato")
     })
     @RolesAllowed({"Admin","User"})
     public List<JsonObject> all(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
@@ -92,7 +93,8 @@ public class BooksResources {
     @Produces(MediaType.APPLICATION_JSON)   
     @Operation(description = "Permette la registrazione di un nuovo BookMark")
     @APIResponses({
-        @APIResponse(responseCode = "201", description = "Nuovo BookMark creato con successo")
+        @APIResponse(responseCode = "201", description = "Nuovo BookMark creato con successo"),
+        @APIResponse(responseCode = "404", description = "Non è stato possibile creare nuovo BookMark")
     })
     @RolesAllowed({"Admin","User"})
     public Response create(@Valid Book entity) {
@@ -112,6 +114,11 @@ public class BooksResources {
     
     @PATCH
     //@Path("{id}")
+    @Operation(description = "Permette aggiungere una lista di Tag a un BookMark")
+    @APIResponses({
+        @APIResponse(responseCode = "201", description = "BookMark aggiornato con successo"),
+        @APIResponse(responseCode = "404", description = "Non è stato possibile aggiornare il BookMark")
+    })
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)   
     @RolesAllowed({"Admin","User"})
@@ -132,6 +139,11 @@ public class BooksResources {
     }
     
     @DELETE
+    @Operation(description = "Permette cancellare un BookMark")
+    @APIResponses({
+        @APIResponse(responseCode = "201", description = "BookMark cancellato con successo"),
+        @APIResponse(responseCode = "404", description = "Non è stato possibile cancellare il BookMark")
+    })
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)   
     @RolesAllowed({"Admin","User"})

@@ -79,7 +79,8 @@ public class UsersResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce l'elenco di tutti gli utenti")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
+        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
     })
     @RolesAllowed({"Admin","User"})
     public List<User> all(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
@@ -92,7 +93,8 @@ public class UsersResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce l'elenco con informazioni ridotte di tutti gli utenti")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo")
+        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
     })
     @PermitAll
     public JsonArray allSlice() {
@@ -119,7 +121,8 @@ public class UsersResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Permette la registrazione di un nuovo utente")
     @APIResponses({
-        @APIResponse(responseCode = "201", description = "Nuovo utente creato con successo")
+        @APIResponse(responseCode = "201", description = "Nuovo utente creato con successo"),
+        @APIResponse(responseCode = "404", description = "Creazione di utente falito")
     })
     @PermitAll
     public Response create(@Valid User entity) {
@@ -132,6 +135,12 @@ public class UsersResources {
     
     @POST
     @Path("login")
+    @Operation(description = "Permette fare loggin e ristitui il token valido")
+    @APIResponses({
+        @APIResponse(responseCode = "200", description = "Loggin fatto con successo"),
+        @APIResponse(responseCode = "404", description = "Loggin falito")
+
+    })
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @PermitAll
@@ -175,7 +184,9 @@ public class UsersResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Aggiorna i dati dell'utente")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Utente aggirnato con successo")
+        @APIResponse(responseCode = "200", description = "Utente aggirnato con successo"),
+        @APIResponse(responseCode = "404", description = "Aggiornamento falito")
+            
     })
     @RolesAllowed("Admin")
     public User update(@PathParam("id") Long id, @Valid User entity) {
