@@ -14,35 +14,22 @@
     <link rel="stylesheet" href="../css/login.css">
     <script src="../js/navbar.js"></script>
     <script src="../js/login.js"></script> 
-    <script src="../js/jwt-decode.js"></script> 
 </head>
 
 <body onload="init()">
     <!-- da includere via anjs-->
     <div class="topnav" id="myTopnav">
         <a href="index.html" class="active">Home</a>
-        <a href="portfolio.html">Portfolio</a>
-        <div class="dropdown">
-            <button class="dropbtn">Servizi
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="index.html#webapp">Web-App</a>
-                <a href="index.html#network">Network</a>
-                <a href="index.html#solution">Solution&nbsp;Consulting</a>
-                <!-- nbsp non permette a Solution e Consulting di andare a capo separati-->
-            </div>
-        </div>
-        <a href="login.html">Area Privata <h2 style="float: right"  style="text-align:center">utente collegato:&nbsp;<span style="float: right"  class="titolo1" id="loggeduser"> nessun utente</span>
-            <a href="#" id="blogout" onclick="logout();">Logout</a>
-        </h2></a> 
+        <a href="login.html" class="inout" id="blogin">Login</a>
+        <a href="#" class="inout" id="blogout" onclick="logout();">Logout</a>
+        <a class="a-right" href="portfolio.html">Portfolio</a> 
+        <a href="login.html">Area Privata&nbsp;<span style="float: right"  class="titolo1" id="loggeduser"></span></a>
         <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveHamburger()">&#9776;</a>
     </div>
     <div id="page">
         <div id="presentazione" class="container">
             <h2 class="titolo1" style="text-transform: capitalize;">WebCore Web solution on the Net</h2>
             <h2 class="titolo1">AREA PRIVATA</h2>
-            
             <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
         </div>
         <div id="logreg">
