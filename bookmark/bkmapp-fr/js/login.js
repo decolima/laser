@@ -1,15 +1,23 @@
 function init() {
+    //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
+    let login = document.querySelector("#blogin");
+    let logout = document.querySelector("#blogout");
     if (usr) // loggato
     {
         document.getElementById("loggeduser").innerHTML = usr;
+        login.style.display = "none";
+        logout.style.display = "inline";
     }
 
     else //non loggato
     {
-        document.getElementById("loggeduser").innerHTML = " nessun utente";
+        document.getElementById("loggeduser").innerHTML = "";
+        logout.style.display = "none";
+        login.style.display = "block";
     }
 }
+
 function logout() {
     sessionStorage.removeItem("globaljwt");
     sessionStorage.clear();
@@ -56,11 +64,12 @@ function login() {
                 sessionStorage.setItem("first_name", jsobj.first_name);
                 sessionStorage.setItem("last_name", jsobj.last_name);
                 document.querySelector("#loggeduser").innerHTML = sessionStorage.getItem("mail");
+                init();
             }
         })
         .catch(error => {
             console.log(error);
-            document.querySelector("#loggeduser").innerHTML = " nessun utente";
+            document.querySelector("#loggeduser").innerHTML = "";
 
         }
 

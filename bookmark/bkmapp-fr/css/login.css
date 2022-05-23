@@ -21,3 +21,7 @@ input[type="button"] {
 #logreg>div:nth-child(2) {
     background-color: rgb(205, 255, 238);
 }
+
+.topnav a:not(:first-child){
+    float: right;
+}

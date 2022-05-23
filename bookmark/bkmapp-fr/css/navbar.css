@@ -73,7 +73,7 @@ body {margin:5px;font-family:Arial}
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child), .dropdown .dropbtn {
+  .topnav a:not(:first-child), .dropdown, #blogin, #blogout{
     display: none;
   }
   .topnav a.icon {
@@ -81,6 +81,7 @@ body {margin:5px;font-family:Arial}
     display: block;
   }
 }
+
 
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
