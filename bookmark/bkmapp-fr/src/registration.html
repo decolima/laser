@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCore WEB Solution</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <script src="../js/navbar.js"></script>
+    <script src="../js/login.js"></script> 
+    <script src="../js/jwt-decode.js"></script> 
+</head>
+
+<body onload="init()">
+    <!-- da includere via anjs-->
+    <div class="topnav" id="myTopnav">
+        <a href="index.html" class="active">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <div class="dropdown">
+            <button class="dropbtn">Servizi
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="index.html#webapp">Web-App</a>
+                <a href="index.html#network">Network</a>
+                <a href="index.html#solution">Solution&nbsp;Consulting</a>
+                <!-- nbsp non permette a Solution e Consulting di andare a capo separati-->
+            </div>
+        </div>
+        <a href="login.html">Area Privata <h2 style="float: right"  style="text-align:center">utente collegato: <span style="float: right"  class="titolo1" id="loggeduser"> nessun utente</span>
+            <a href="#" id="blogout" onclick="logout();">Logout</a>
+        </h2></a> 
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveHamburger()">&#9776;</a>
+    </div>
+    <div id="page">
+        <div id="presentazione" class="container">
+            <h2 class="titolo1" style="text-transform: capitalize;">WebCore Web solution on the Net</h2>
+            <h2 class="titolo1">AREA PRIVATA</h2>        
+            <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
+        </div>
+        <div id="logreg">
+            <div id="divreg" class="container">
+                <h3 style="margin-left: 5%;">Registrazione utente</h3>
+                <form name="freg">
+                    <input type="text" id="rusr" name="email" placeholder="ins username o mail">
+                    <input type="password" id="rpwd" name="pwd" placeholder="ins password">
+                    <input type="text" id="rfirst_name" name="first_name" placeholder="ins nome">
+                    <input type="text" id="rlast_name" name="last_name" placeholder="ins cognome">
+                    <input type="button" onclick="registration()" value="Crea Account">
+                </form>
+            </div>
+        </div>
+    </div>
+        <div class="footer-dark">
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>Services</h3>
+                            <ul>
+                                <li><a href="#">Web design</a></li>
+                                <li><a href="#">Development</a></li>
+                                <li><a href="#">Hosting</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6 col-md-3 item">
+                            <h3>About</h3>
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 item text">
+                            <h3>TSS</h3>
+                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut
+                                vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit
+                                pulvinar dictum vel in justo.</p>
+                        </div>
+                        <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a
+                                href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i
+                                    class="icon ion-social-snapchat"></i></a><a href="#"><i
+                                    class="icon ion-social-instagram"></i></a></div>
+                    </div>
+                    <p class="copyright">TSS © 2022</p>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
