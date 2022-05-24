@@ -20,7 +20,7 @@ function registration() {
     let pwd = document.querySelector("#rpwd").value;
     let fname = document.querySelector("#rfirst_name").value;
     let lname = document.querySelector("#rlast_name").value;
-    let roule = "Admin";
+    let roule = "User";
     let admincheck = document.querySelector("#admin");
 
     console.log(admincheck.checked);
