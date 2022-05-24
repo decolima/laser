@@ -5,20 +5,26 @@ import { storeToken, removeToken } from "../js/service/tokenmanager.js";
 function init() {
     //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
-    let login = document.querySelector("#blogin");
-    let logout = document.querySelector("#blogout");
+    let login = document.querySelector("#login");
+    let logout = document.querySelector("#logout");
+    let logged = document.querySelector("#loggeduser");
+    let signin = document.querySelector("#signin");
     if (usr) // loggato
     {
-        document.getElementById("loggeduser").innerHTML = usr;
         login.style.display = "none";
-        logout.style.display = "inline";
+        signin.style.display = "none";
+        logout.style.display= "block";
+        logged.style.display = "block";
+        document.getElementById("usr-a").innerHTML = usr;
+        
     }
 
     else //non loggato
     {
-        document.getElementById("loggeduser").innerHTML = "";
-        logout.style.display = "none";
         login.style.display = "block";
+        signin.style.display = "block";
+        logout.style.display= "none";
+        logged.style.display = "none";
     }
 }
 

@@ -1,8 +1,13 @@
-function responsiveHamburger() {
-    let x = document.getElementById("myTopnav");
-    if (x.className === "topnav") {
-      x.className += " responsive";
-    } else {
-      x.className = "topnav";
-    }
-  }
+$(function () {
+    $(".toggle").on("click", function () {
+
+        if ($(".item").hasClass("active")) {
+            $(".item").removeClass("active");
+        }
+        else {
+            $(".item").addClass("active");
+        }
+    })
+
+});
+
