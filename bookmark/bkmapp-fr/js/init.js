@@ -1,13 +1,11 @@
 console.log("script iniziale Init.....");
 
-function init() {
+export function init() {
     
     console.log("Script Init .....")
-
-    /*
     //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
-    let btnLogin = document.querySelector("#login");
+    let login = document.querySelector("#login");
     let logout = document.querySelector("#logout");
     let logged = document.querySelector("#loggeduser");
     let signin = document.querySelector("#signin");
@@ -28,8 +26,9 @@ function init() {
         signin.style.display = "block";
         logout.style.display= "none";
         logged.style.display = "none";
+        label.style.display = "none";
     }
-    */
+
 }
 
-export default init;
+export default {init};

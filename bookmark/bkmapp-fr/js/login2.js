@@ -3,17 +3,19 @@ import {init} from "./init.js"
 
 let btnLogin = document.querySelector("#btnLogin");
 let ahref_logout = document.querySelector("#logout");
+let body = document.getElementsByTagName("body")[0];
+
+body.addEventListener("load", init(), false);
 
 btnLogin.addEventListener("click", v => {
     console.log("Event Login Click");
     login();
-})
-
+});
 
 ahref_logout.addEventListener("click", v => {
     console.log("Event LogOut Click");
     logout();
-})
+});
 
 
 function logout() {
@@ -21,7 +23,7 @@ function logout() {
     sessionStorage.clear();
     window.location.href = "login.html";
 
-}
+};
 
 
 function login() {
@@ -47,6 +49,6 @@ function login() {
      catch (e) {
         console.log(e);
      }
-}
+};
 
 
