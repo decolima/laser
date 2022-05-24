@@ -5,44 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebCore WEB Solution</title>
-    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/login.css">
-    <script src="../js/navbar.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/navbar2.js"></script>
     <script src="../js/login.js"></script> 
 </head>
 
 <body onload="init()">
     <!-- da includere via anjs-->
-    <div class="topnav" id="myTopnav">
-        <a href="index.html" class="active">Home</a>
-<<<<<<< HEAD
-        <a href="portfolio.html">Portfolio</a>
-        <div class="dropdown">
-            <button class="dropbtn">Servizi
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="index.html#webapp">Web-App</a>
-                <a href="index.html#network">Network</a>
-                <a href="index.html#solution">Solution&nbsp;Consulting</a>
-                <!-- nbsp non permette a Solution e Consulting di andare a capo separati-->
-            </div>
-        </div>
-        <a href="login.html">Area Privata <h2 style="float: right"  style="text-align:center"></h2></a> 
-        <a href"" id="loggeduser" name="loggeduser"><span < a href="#" id="blogout" onclick="logout()">Logout</a></span></a>
-=======
-        <a href="login.html" class="inout" id="blogin">Login</a>
-        <a href="#" class="inout" id="blogout" onclick="logout();">Logout</a>
-        <a class="a-right" href="portfolio.html">Portfolio</a> 
-        <a href="login.html">Area Privata&nbsp;<span style="float: right"  class="titolo1" id="loggeduser"></span></a>
->>>>>>> f6c31bc84066c94c8736cc20914b370fc5f154dd
-        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveHamburger()">&#9776;</a>
-    </div>
+    <nav>
+        <ul class="menu" id="myTopnav">
+            <li class="logo"><a href="index.html">Bkmapp</a></li>
+            <li class="item"><a href="index.html">Home</a></li>
+            <li class="item"><a href="#">Informazioni</a></li>
+            <li class="item"><a href="#">Contatti</a></li>
+            <li class="item button" id="login"><a href="login.html">Login</a></li>
+            <li class="item button" id="logout" onclick="logout();"><a href="#">Logout</a></li>
+            <li class="item button secondary" id="signin"><a href="#">Sign up</a></li>
+            <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
+            <li class="toggle"><a href="#"><span class="bars"></span></a></li>
+        </ul>
+    </nav>
     <div id="page">
         <div id="presentazione" class="container">
             <h2 class="titolo1" style="text-transform: capitalize;">Bkmapp on the Net</h2>
