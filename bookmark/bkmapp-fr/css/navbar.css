@@ -92,11 +92,12 @@ cursor: pointer;
 }
 
 /* questione dinamicita login e signup */
+
 #logout{
     display: none;
 }
 
-#loggeduser{
+#loggeduser, #usr-a{
     display: none;
 }
 

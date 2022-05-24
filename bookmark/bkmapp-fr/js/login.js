@@ -5,14 +5,15 @@ function init() {
     let logout = document.querySelector("#logout");
     let logged = document.querySelector("#loggeduser");
     let signin = document.querySelector("#signin");
+    let label = document.querySelector("#usr-a");
     if (usr) // loggato
     {
         login.style.display = "none";
         signin.style.display = "none";
         logout.style.display= "block";
         logged.style.display = "block";
-        document.getElementById("usr-a").innerHTML = usr;
-        
+        label.style.display = "block";
+        document.querySelector("#usr-a").innerHTML = usr;
     }
 
     else //non loggato
