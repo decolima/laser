@@ -16,7 +16,7 @@
     <script src="../js/navbar.js"></script>
 </head>
 
-<body onload="init()">
+<body>
     <nav>
         <ul class="menu" id="myTopnav">
             <li class="logo"><a href="index.html">Bkmapp</a></li>
@@ -24,7 +24,7 @@
             <li class="item"><a href="#">Informazioni</a></li>
             <li class="item"><a href="#">Contatti</a></li>
             <li class="item button" id="login"><a href="login.html">Login</a></li>
-            <li class="item button" id="logout" onclick="logout();"><a href="#">Logout</a></li>
+            <li class="item button" id="logout"><a href="#">Logout</a></li>
             <li class="item button secondary" id="signin"><a href="#">Sign up</a></li>
             <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
             <li class="toggle"><a href="#"><span class="bars"></span></a></li>
@@ -42,7 +42,7 @@
                     <form name="flogin">
                         <input type="text" id="lusr" name="usr" placeholder="ins username o mail">
                         <input type="password" id="lpwd" name="pwd" placeholder="ins password">
-                        <input type="button" onclick="login()" value="LOGIN">
+                        <input type="button" id="btnLogin" value="LOGIN">
                     </form>
                 </div>
             </div>
