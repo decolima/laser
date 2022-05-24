@@ -1,5 +1,5 @@
 const configData = {
-    baseurl : 'http://localhost:8080/bkmapp/resources'
+    baseurl : 'http://192.168.0.125:8080/bkmapp/resources'
 } 
 
 export default configData;

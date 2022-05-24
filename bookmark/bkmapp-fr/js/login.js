@@ -8,7 +8,6 @@ let body = document.getElementsByTagName("body")[0];
 body.addEventListener("load", init(), false);
 
 btnLogin.addEventListener("click", v => {
-    console.log("Event Login Click");
     login();
 });
 
@@ -27,8 +26,6 @@ function logout() {
 
 
 function login() {
-
-    console.log("Login ...")
 
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;

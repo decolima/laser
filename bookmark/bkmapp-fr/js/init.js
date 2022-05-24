@@ -6,6 +6,7 @@ export function init() {
     let logged = document.querySelector("#loggeduser");
     let signin = document.querySelector("#signin");
     let label = document.querySelector("#usr-a");
+    let divcheck = document.querySelector("#divcheck");
     if (usr) // loggato
     {
         login.style.display = "none";
@@ -14,6 +15,19 @@ export function init() {
         logged.style.display = "block";
         label.style.display = "block";
         document.querySelector("#usr-a").innerHTML = usr;
+
+        let loggedroule = sessionStorage.getItem("roule");
+
+        if(loggedroule === "Admin"){
+            //document.querySelector("#divcheck").style.display = "block";
+            console.log("logado admin");
+            
+        }
+        else{
+            //document.querySelector("#divcheck").style.display = "none";
+            console.log("logado user");
+        }
+
     }
 
     else //non loggato
@@ -23,6 +37,10 @@ export function init() {
         logout.style.display= "none";
         logged.style.display = "none";
         label.style.display = "none";
+
+        console.log("nao logado");
+
+       
     }
 
 }
