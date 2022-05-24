@@ -156,6 +156,7 @@ public class UsersResources {
                 .add("userid", u.getId())
                 .add("first_name", u.getFirstName())
                 .add("last_name", u.getLastName())
+                .add("roule", u.getRoleuser().toString())
                 .build();
     }
     

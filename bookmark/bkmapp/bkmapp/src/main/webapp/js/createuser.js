@@ -40,7 +40,7 @@ btnNewUser.addEventListener("click", v => {
         },
         body: JSON.stringify(User)
     }).then(response => {
-            console.log(response.json());
+            response.json();
             visualizzaUsers();
         })
       .catch(error => console.log(error));
