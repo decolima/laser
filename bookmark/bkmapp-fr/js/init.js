@@ -1,9 +1,5 @@
-console.log("script iniziale Init.....");
-
 export function init() {
     
-    console.log("Script Init .....")
-    //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
     let login = document.querySelector("#login");
     let logout = document.querySelector("#logout");
