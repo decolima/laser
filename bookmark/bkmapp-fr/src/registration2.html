@@ -5,34 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebCore WEB Solution</title>
-    <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../js/login.js"></script> 
+    <script src="../js/navbar.js"></script> 
+    <script src="../js/registrazione.js" type="module"></script> 
 </head>
 
-<body>
-    <!-- da includere via anjs-->
-    <div class="topnav" id="myTopnav">
-        <a href="index.html" class="active">Home</a>
-        <a href="portfolio.html">Portfolio</a>
-        <div class="dropdown">
-            <button class="dropbtn">Servizi
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="index.html#webapp">Web-App</a>
-                <a href="index.html#network">Network</a>
-                <a href="index.html#solution">Solution&nbsp;Consulting</a>
-                <!-- nbsp non permette a Solution e Consulting di andare a capo separati-->
-            </div>
-        </div>
-        <a href="login.html">Area Privata <h2 style="float: right"  style="text-align:center"></h2></a> 
-        <p>utente collegato: <span style="float: right"  class="titolo1" id="loggeduser"> <a href="#" id="blogout" onclick="logout();">Logout</a></span></p>
-        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="responsiveHamburger()">&#9776;</a>
-    </div>
+<body onload="init()">
+    <nav>
+        <ul class="menu" id="myTopnav">
+            <li class="logo"><a href="index.html">Bkmapp</a></li>
+            <li class="item"><a href="index.html">Home</a></li>
+            <li class="item"><a href="#">Informazioni</a></li>
+            <li class="item"><a href="#">Contatti</a></li>
+            <li class="item button" id="login"><a href="login.html">Login</a></li>
+            <li class="item button" id="logout" onclick="logout();"><a href="#">Logout</a></li>
+            <li class="item button secondary" id="signin"><a href="#">Sign up</a></li>
+            <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
+            <li class="toggle"><a href="#"><span class="bars"></span></a></li>
+        </ul>
+    </nav>
     <div id="page">
         <div id="presentazione" class="container">
             <h2 class="titolo1" style="text-transform: capitalize;">WebCore Web solution on the Net</h2>
@@ -56,43 +54,33 @@
             </div>
         </div>
     </div>
-        <div class="footer-dark">
-            <footer>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-3 item">
-                            <h3>Services</h3>
-                            <ul>
-                                <li><a href="#">Web design</a></li>
-                                <li><a href="#">Development</a></li>
-                                <li><a href="#">Hosting</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-sm-6 col-md-3 item">
-                            <h3>About</h3>
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">Careers</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6 item text">
-                            <h3>TSS</h3>
-                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut
-                                vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit
-                                pulvinar dictum vel in justo.</p>
-                        </div>
-                        <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a
-                                href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i
-                                    class="icon ion-social-snapchat"></i></a><a href="#"><i
-                                    class="icon ion-social-instagram"></i></a></div>
-                    </div>
-                    <p class="copyright">TSS © 2022</p>
-                </div>
-            </footer>
+    <footer>
+        <div class="footer-container">
+            <h3>Footer Bkmapp</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Adipisci reiciendis neque enim architecto cum, odio earum porro ipsum, veniam in voluptates
+                recusandae fugit.
+                Labore dolorem accusantium, doloremque itaque vero quas..</p>
+            <ul class="socials">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+            </ul>
         </div>
-    </div>
-    <script src="../js/registrazione.js" type="module"></script> 
+        <div class="footer-bottom">
+            <p>copyright &copy;2021 <a href="#">bkmappdeveloper</a> </p>
+        </div>
+        <div class="footer-menu">
+            <ul class="f-menu">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Help</a></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -22,6 +22,7 @@ function init() {
         signin.style.display = "block";
         logout.style.display= "none";
         logged.style.display = "none";
+        label.style.display = "none";
     }
 }
 
@@ -30,14 +31,11 @@ function logout() {
     sessionStorage.clear();
     let jwt = sessionStorage.getItem("globaljwt");
     window.location.href = "login.html";
+    init()
 
 }
 
 function login() {
-
-   
-    console.log("Script Login ...")
-
     let url = "http://192.168.0.125:8080/bkmapp/resources/users/login";
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;
@@ -58,6 +56,7 @@ function login() {
         })
         .then(response => {
             if (response.status == 401) {
+                console.log(postdata)
                 //alert("username errata");
             }
             else
@@ -70,7 +69,6 @@ function login() {
                 sessionStorage.setItem("id", jsobj.userid);
                 sessionStorage.setItem("first_name", jsobj.first_name);
                 sessionStorage.setItem("last_name", jsobj.last_name);
-                document.querySelector("#loggeduser").innerHTML = sessionStorage.getItem("mail");
                 init();
             }
         })

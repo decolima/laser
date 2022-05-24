@@ -25,3 +25,17 @@ input[type="button"] {
 .topnav a:not(:first-child){
     float: right;
 }
+
+
+#presentazione .titolo1 {
+    color: darkred;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+#presentazione .parag {
+    max-width: 1200px;
+    margin: 10px;
+    padding: 10px;
+}
