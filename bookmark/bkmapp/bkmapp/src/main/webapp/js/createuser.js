@@ -39,12 +39,13 @@ btnNewUser.addEventListener("click", v => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(User)
-    }).then(response => response.json())
-      .then(data => {
-          console.log(data);
-          visualizzaUsers()});  
-});
-
+    }).then(response => {
+            console.log(response.json());
+            visualizzaUsers();
+        })
+      .catch(error => console.log(error));
+ });
+ 
 const visualizzaUsers = () => {
     fetch('http://192.168.0.125:8080/bkmapp/resources/users/allslice', {
         method: 'GET',
@@ -87,5 +88,4 @@ btnCancellaUser.addEventListener("click", v => {
             'Content-Type': 'application/json'
         }
     }).then(response => console.log(response));  
-});
-
+})

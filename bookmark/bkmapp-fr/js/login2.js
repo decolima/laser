@@ -1,3 +1,7 @@
+
+import { doLogin } from "../js/boundary/userstore.js"
+import { storeToken, removeToken } from "../js/service/tokenmanager.js";
+
 function init() {
     //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
@@ -26,9 +30,8 @@ function init() {
 }
 
 function logout() {
-    sessionStorage.removeItem("globaljwt");
+    removeToken();
     sessionStorage.clear();
-    let jwt = sessionStorage.getItem("globaljwt");
     window.location.href = "login.html";
 
 }
@@ -66,7 +69,8 @@ function login() {
         })
         .then(jsobj => {
             if (jsobj != undefined || true) {
-                sessionStorage.setItem("globaljwt", jsobj.token);
+                storeToken(jsobj.token);
+                //sessionStorage.setItem("token", jsobj.token);
                 sessionStorage.setItem("mail", jsobj.mail);
                 sessionStorage.setItem("id", jsobj.userid);
                 sessionStorage.setItem("first_name", jsobj.first_name);
