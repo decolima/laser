@@ -18,6 +18,7 @@ import javax.ws.rs.core.UriBuilder;
 import bkm.boundary.UsersResources;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 
@@ -42,7 +43,7 @@ public class User extends  BaseEntity {
     
     @NotBlank
     @Email
-    @Column(nullable = false)    
+    @Column(nullable = false, unique = true)    
     private String email;
     
     @NotBlank
