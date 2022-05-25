@@ -18,14 +18,12 @@ function registration() {
     let roule = "User";
     let admincheck = document.querySelector("#admin");
 
-    console.log(admincheck.checked);
+    //console.log(admincheck.checked);
     if(admincheck.checked){
         roule = "Admin";
     }
-    else{
-        roule = "User";
-    }
-    console.log(roule);
+ 
+    //console.log(roule);
     try {
         let response = doRegistration(usr, pwd, fname, lname, roule)
             .then(data => {

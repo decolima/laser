@@ -7,4 +7,14 @@ const searchBkm = () => {
     return getJsonData(url)
 }
 
-export {searchBkm };
+const doBkms = async (desc, link, shared) => {
+    //console.log("doRegistration ....");
+    const BkmData = {
+        descrizione:desc,
+        link:link,
+        condiviso:shared
+    };
+    return postJsonData(url,BkmData,true);
+}
+
+export {searchBkm, doBkms };
