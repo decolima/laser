@@ -1,8 +1,21 @@
+import {logout} from "../js/service/control.js";
+
+//regione di diclarazione di variabile per listener
 let body = document.getElementsByTagName("body")[0];
+let ahref_logout = document.querySelector("#logout");
+
+
+//regione di diclarazione di listener
 body.addEventListener("load", init(), false);
 
+ahref_logout.addEventListener("click", v => {
+    console.log("Event LogOut Click");
+    logout();
+});
+
+//regione di funcione generale e controllo di navbar
 export function init() {
-    console.log("prova init");
+    
     let usr = sessionStorage.getItem("mail");
     let login = document.querySelector("#login");
     let logout = document.querySelector("#logout");
@@ -26,9 +39,6 @@ export function init() {
                 divcheck.style.display = "flex";
             }
         }
-        else{
-            console.log("logado user");
-        }
 
     }
 
@@ -39,8 +49,6 @@ export function init() {
         logout.style.display= "none";
         logged.style.display = "none";
         label.style.display = "none";
-
-        console.log("nao logado");
 
        
     }

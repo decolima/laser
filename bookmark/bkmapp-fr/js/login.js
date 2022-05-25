@@ -1,28 +1,12 @@
 import { doLogin } from "../js/boundary/userstore.js"
-import {init} from "./init.js" 
+import { init } from "../js/init.js"
+
 
 let btnLogin = document.querySelector("#btnLogin");
-let ahref_logout = document.querySelector("#logout");
-/* let body = document.getElementsByTagName("body")[0];
-
-body.addEventListener("load", init(), false); */
 
 btnLogin.addEventListener("click", v => {
     login();
 });
-
-ahref_logout.addEventListener("click", v => {
-    console.log("Event LogOut Click");
-    logout();
-});
-
-
-function logout() {
-    sessionStorage.removeItem("token");
-    sessionStorage.clear();
-    window.location.href = "login.html";
-
-};
 
 
 function login() {
@@ -33,7 +17,7 @@ function login() {
     try {
         let response = doLogin(usr,pwd)
             .then(data => {
-                console.log(data);
+                //console.log(data);
                 sessionStorage.setItem("token",data.token);
                 sessionStorage.setItem("mail", data.mail);
                 sessionStorage.setItem("id", data.userid);

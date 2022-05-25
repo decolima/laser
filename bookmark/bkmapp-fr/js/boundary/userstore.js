@@ -4,16 +4,12 @@ import configData from "../service/config.js";
 const url = `${configData.baseurl}/users`
 
 const doLogin = async (usr, pwd) => {
-
-    console.log("doLogin ....");
-
+    //console.log("doLogin ....");
     return postJsonData(`${url}/login`,{usr,pwd},false);
 }
 
 const doRegistration = async (usr, pwd, fname, lname, ruole) => {
-
-    console.log("doRegistration ....");
-
+    //console.log("doRegistration ....");
     const UserData = {
         first_name:fname,
         last_name:lname,
@@ -21,8 +17,6 @@ const doRegistration = async (usr, pwd, fname, lname, ruole) => {
         pwd:pwd,
         roleuser:ruole
     };
-    
-
     return postJsonData(url,UserData,false);
 }
 
