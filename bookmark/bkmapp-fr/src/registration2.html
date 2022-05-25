@@ -27,7 +27,6 @@
             <li class="item button secondary" id="signin"><a href="#">Sign up</a></li>
             <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
             <li class="item button secondary" id="creausr"><a href="">Crea User</a></li>
-
             <li class="toggle"><a href="#"><span class="bars"></span></a></li>
         </ul>
     </nav>
@@ -45,9 +44,10 @@
                     <input type="password" id="rpwd" name="pwd" placeholder="ins password">
                     <input type="text" id="rfirst_name" name="first_name" placeholder="ins nome">
                     <input type="text" id="rlast_name" name="last_name" placeholder="ins cognome">
-                    <div class="divcheck" id="divcheck" style="display:none ;">
+                    <!-- spunta per il flag admin -->
+                    <div class="divcheck" id="divcheck">
                         <input type="checkbox" class="check" id="admin" name="admin" unchecked>
-                        <label for="admin" class="labelcheck">Admin</label>
+                        <label for="admin" class="labelcheck" style="padding: 0.5rem;">Admin</label>
                       </div>
                     <input type="button" id="btnCrea" value="Crea Account">
                 </form>
