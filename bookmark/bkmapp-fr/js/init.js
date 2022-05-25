@@ -23,8 +23,8 @@ export function init() {
     let signin = document.querySelector("#signin");
     let label = document.querySelector("#usr-a");
     let creausr= document.querySelector("#creausr");
+    let bkm= document.querySelector("#bkm");
     let divcheck = document.querySelector("#divcheck");
-    let bkms =  document.querySelector("#bkms");
 
     if (usr) // loggato
     {
@@ -33,7 +33,7 @@ export function init() {
         logout.style.display= "block";
         logged.style.display = "block";
         label.style.display = "block";
-        bkms.style.display = "block"
+        bkm.style.display= "block";
         document.querySelector("#usr-a").innerHTML = usr;
         let loggedroule = sessionStorage.getItem("roule");
         if(loggedroule === "Admin"){
@@ -52,9 +52,8 @@ export function init() {
         logout.style.display= "none";
         logged.style.display = "none";
         label.style.display = "none";
-        bkms.style.display = "none"
-
-       
+        bkm.style.display= "none";
+  
     }
 
 }
