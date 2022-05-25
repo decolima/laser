@@ -24,7 +24,7 @@ btnLogin.addEventListener("click", v => {
     
     console.log(JSON.stringify(credential)); /*stampare una string Json*/
     
-    fetch('http://192.168.0.125:8080/bkmapp/resources/users/login', {
+    fetch('http://localhost:8080/bkmapp/resources/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -36,6 +36,7 @@ btnLogin.addEventListener("click", v => {
           window.localStorage.setItem("token", data.token);
           window.localStorage.setItem("user", data.user);
           console.log("Token armazenado")
+          console.log(data);
         //visualizzaUsers();
         //  visualizzaBooks();
         users.appendChild(renderInfo(data));
@@ -44,7 +45,7 @@ btnLogin.addEventListener("click", v => {
 
 
 const visualizzaUsers = () => {
-    fetch('http://192.168.0.125:8080/bkmapp/resources/users', {
+    fetch('http://localhost:8080/bkmapp/resources/users', {
         method: 'GET',
         headers: {
            /* 'Content-Type': 'application/json'*/

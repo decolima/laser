@@ -9,6 +9,7 @@ import bkm.control.UserStore;
 import bkm.control.BookStore;
 import bkm.entity.User;
 import bkm.entity.UserRoles;
+import bkm.entity.UserRoles;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.security.DenyAll;
@@ -149,7 +150,7 @@ public class UsersResources {
         User u = storeuser.login(credential).orElseThrow(() -> new NotAuthorizedException("User non Authorized",  
                                                                        Response.status(Response.Status.UNAUTHORIZED).build()));
         String jwt = jwtManager.generate(u);
-        
+         
         return  Json.createObjectBuilder()
                 .add("mail", u.getEmail())
                 .add("token",jwt)

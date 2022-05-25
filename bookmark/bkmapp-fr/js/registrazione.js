@@ -1,13 +1,16 @@
 import {doRegistration } from "../js/boundary/userstore.js"
+import {init} from "./init.js" 
 
 
 let btnCrea = document.querySelector("#btnCrea");
+let body = document.getElementsByTagName("body")[0];
+
+body.addEventListener("load", init(), false);
 
 btnCrea.addEventListener("click", v => {
     console.log("Event Crea Utente Click");
     registration();
 })
-
 
 function registration() {
     
@@ -17,15 +20,17 @@ function registration() {
     let pwd = document.querySelector("#rpwd").value;
     let fname = document.querySelector("#rfirst_name").value;
     let lname = document.querySelector("#rlast_name").value;
-    let roule = "Admin";
-    let admincheck = document.querySelector("admin");
+    let roule = "User";
+    let admincheck = document.querySelector("#admin");
 
-/*    if(admincheck.checked) {
+    console.log(admincheck.checked);
+    if(admincheck.checked){
         roule = "Admin";
-    } else {
+    }
+    else{
         roule = "User";
     }
-  */
+  
     try {
         let response = doRegistration(usr, pwd, fname, lname, roule)
             .then(data => {

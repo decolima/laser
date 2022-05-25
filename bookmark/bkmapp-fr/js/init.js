@@ -1,17 +1,12 @@
-console.log("script iniziale Init.....");
-
-function init() {
+export function init() {
     
-    console.log("Script Init .....")
-
-    /*
-    //sessionStorage.setItem("mail","vuoto" )
     let usr = sessionStorage.getItem("mail");
-    let btnLogin = document.querySelector("#login");
+    let login = document.querySelector("#login");
     let logout = document.querySelector("#logout");
     let logged = document.querySelector("#loggeduser");
     let signin = document.querySelector("#signin");
     let label = document.querySelector("#usr-a");
+    let divcheck = document.querySelector("#divcheck");
     if (usr) // loggato
     {
         login.style.display = "none";
@@ -20,6 +15,19 @@ function init() {
         logged.style.display = "block";
         label.style.display = "block";
         document.querySelector("#usr-a").innerHTML = usr;
+
+        let loggedroule = sessionStorage.getItem("roule");
+
+        if(loggedroule === "Admin"){
+            //document.querySelector("#divcheck").style.display = "block";
+            console.log("logado admin");
+            
+        }
+        else{
+            //document.querySelector("#divcheck").style.display = "none";
+            console.log("logado user");
+        }
+
     }
 
     else //non loggato
@@ -28,8 +36,13 @@ function init() {
         signin.style.display = "block";
         logout.style.display= "none";
         logged.style.display = "none";
+        label.style.display = "none";
+
+        console.log("nao logado");
+
+       
     }
-    */
+
 }
 
-export default init;
+export default {init};

@@ -1,125 +1,51 @@
-function init() {
-    //sessionStorage.setItem("mail","vuoto" )
-    let usr = sessionStorage.getItem("mail");
-    let login = document.querySelector("#login");
-    let logout = document.querySelector("#logout");
-    let logged = document.querySelector("#loggeduser");
-    let signin = document.querySelector("#signin");
-    let label = document.querySelector("#usr-a");
-    if (usr) // loggato
-    {
-        login.style.display = "none";
-        signin.style.display = "none";
-        logout.style.display= "block";
-        logged.style.display = "block";
-        label.style.display = "block";
-        document.querySelector("#usr-a").innerHTML = usr;
-    }
+import { doLogin } from "../js/boundary/userstore.js"
+import {init} from "./init.js" 
 
-    else //non loggato
-    {
-        login.style.display = "block";
-        signin.style.display = "block";
-        logout.style.display= "none";
-        logged.style.display = "none";
-        label.style.display = "none";
-    }
-}
+let btnLogin = document.querySelector("#btnLogin");
+let ahref_logout = document.querySelector("#logout");
+let body = document.getElementsByTagName("body")[0];
+
+body.addEventListener("load", init(), false);
+
+btnLogin.addEventListener("click", v => {
+    login();
+});
+
+ahref_logout.addEventListener("click", v => {
+    console.log("Event LogOut Click");
+    logout();
+});
+
 
 function logout() {
-    sessionStorage.removeItem("globaljwt");
+    sessionStorage.removeItem("token");
     sessionStorage.clear();
-    let jwt = sessionStorage.getItem("globaljwt");
     window.location.href = "login.html";
-    init()
 
-}
+};
+
 
 function login() {
-    let url = "http://192.168.0.125:8080/bkmapp/resources/users/login";
+
     let usr = document.querySelector("#lusr").value;
     let pwd = document.querySelector("#lpwd").value;
-    let postdata = {
-        "usr": usr,
-        "pwd": pwd
-    };
 
-    postdata = JSON.stringify(postdata);
-    fetch(url,
-        {
-            method: "post",
-            body: postdata,
-            headers: {
-                "Accept": 'application/json',
-                "Content-type": 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.status == 401) {
-                console.log(postdata)
-                //alert("username errata");
-            }
-            else
-                return response.json();
-        })
-        .then(jsobj => {
-            if (jsobj != undefined || true) {
-                sessionStorage.setItem("token", jsobj.token);
-                sessionStorage.setItem("mail", jsobj.mail);
-                sessionStorage.setItem("id", jsobj.userid);
-                sessionStorage.setItem("first_name", jsobj.first_name);
-                sessionStorage.setItem("last_name", jsobj.last_name);
+    try {
+        let response = doLogin(usr,pwd)
+            .then(data => {
+                console.log(data);
+                sessionStorage.setItem("token",data.token);
+                sessionStorage.setItem("mail", data.mail);
+                sessionStorage.setItem("id", data.userid);
+                sessionStorage.setItem("first_name", data.first_name);
+                sessionStorage.setItem("last_name", data.last_name);
+                sessionStorage.setItem("roule", data.roule);
                 init();
-            }
-        })
-        .catch(error => {
-            console.log(error);
-            document.querySelector("#loggeduser").innerHTML = "";
+            })
+     }
+     catch (e) {
+        console.log(e);
+     }
+};
 
-        }
-
-        );
-
-
-
-}
-
-function registration() {
-    let url = "http://192.168.0.125:8080/bkmapp/resources/users";
-    let usr = document.querySelector("#rusr").value;
-    let pwd = document.querySelector("#rpwd").value;
-    let fname = document.querySelector("#rfirst_name").value;
-    let lname = document.querySelector("#rlast_name").value;
-    let postdata = {
-        "email": usr,
-        "pwd": pwd,
-        "first_name": fname,
-        "last_name": lname
-    };
-    postdata = JSON.stringify(postdata);
-    fetch(url,
-        {
-            method: "post",
-            body: postdata,
-            headers: {
-                "Accept": 'application/json',
-                "Content-type": 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.status == 401) {
-                //alert("username errata");
-            }
-            else
-                return response.json();
-        })
-        .catch(error => {
-            console.log(error);
-        }
-
-        );
-
-
-
-}
 

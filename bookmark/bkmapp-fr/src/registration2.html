@@ -10,13 +10,12 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/login.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
     <script src="../js/navbar.js"></script> 
     <script src="../js/registrazione.js" type="module"></script> 
 </head>
 
-<body onload="init()">
+<body >
     <nav>
         <ul class="menu" id="myTopnav">
             <li class="logo"><a href="index.html">Bkmapp</a></li>
@@ -24,9 +23,11 @@
             <li class="item"><a href="#">Informazioni</a></li>
             <li class="item"><a href="#">Contatti</a></li>
             <li class="item button" id="login"><a href="login.html">Login</a></li>
-            <li class="item button" id="logout" onclick="logout();"><a href="#">Logout</a></li>
+            <li class="item button" id="logout"><a href="#">Logout</a></li>
             <li class="item button secondary" id="signin"><a href="#">Sign up</a></li>
             <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
+            <li class="item button secondary" id="creausr"><a href="">Crea User</a></li>
+
             <li class="toggle"><a href="#"><span class="bars"></span></a></li>
         </ul>
     </nav>
@@ -44,7 +45,7 @@
                     <input type="password" id="rpwd" name="pwd" placeholder="ins password">
                     <input type="text" id="rfirst_name" name="first_name" placeholder="ins nome">
                     <input type="text" id="rlast_name" name="last_name" placeholder="ins cognome">
-                    <div class="divcheck">
+                    <div class="divcheck" id="divcheck" style="display:none ;">
                         <input type="checkbox" class="check" id="admin" name="admin" unchecked>
                         <label for="admin" class="labelcheck">Admin</label>
                       </div>

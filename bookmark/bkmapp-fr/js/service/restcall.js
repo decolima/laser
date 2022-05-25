@@ -2,7 +2,6 @@ import RestException from "./exceptioncall.js";
 import { readToken } from "./tokenmanager.js";
 
 const postJsonData = async (url, data, reqAuth = true) => {
-    console.log("PostJsonData ....");
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
