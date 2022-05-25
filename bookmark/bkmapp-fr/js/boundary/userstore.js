@@ -19,7 +19,7 @@ const doRegistration = async (usr, pwd, fname, lname, ruole) => {
         last_name:lname,
         email:usr,
         pwd:pwd,
-        roleuser:"User"
+        roleuser:ruole
     };
     
 
