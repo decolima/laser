@@ -1,5 +1,8 @@
+let body = document.getElementsByTagName("body")[0];
+body.addEventListener("load", init(), false);
+
 export function init() {
-    
+    console.log("prova init");
     let usr = sessionStorage.getItem("mail");
     let login = document.querySelector("#login");
     let logout = document.querySelector("#logout");
@@ -19,7 +22,7 @@ export function init() {
         let loggedroule = sessionStorage.getItem("roule");
         if(loggedroule === "Admin"){
             creausr.style.display = "block";
-            if(document.URL.includes("registration2.html")){
+            if(document.URL.includes("registration.html")){
                 divcheck.style.display = "flex";
             }
         }

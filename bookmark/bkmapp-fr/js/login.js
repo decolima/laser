@@ -3,9 +3,9 @@ import {init} from "./init.js"
 
 let btnLogin = document.querySelector("#btnLogin");
 let ahref_logout = document.querySelector("#logout");
-let body = document.getElementsByTagName("body")[0];
+/* let body = document.getElementsByTagName("body")[0];
 
-body.addEventListener("load", init(), false);
+body.addEventListener("load", init(), false); */
 
 btnLogin.addEventListener("click", v => {
     login();

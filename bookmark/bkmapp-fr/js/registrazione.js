@@ -3,9 +3,9 @@ import {init} from "./init.js"
 
 let ahref_logout = document.querySelector("#logout");
 let btnCrea = document.querySelector("#btnCrea");
-let body = document.getElementsByTagName("body")[0];
+/* let body = document.getElementsByTagName("body")[0];
 
-body.addEventListener("load", init(), false);
+body.addEventListener("load", init(), false); */
 
 btnCrea.addEventListener("click", v => {
     console.log("Event Crea Utente Click");
