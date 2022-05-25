@@ -47,13 +47,14 @@ export function init() {
 
     else //non loggato
     {
+        
+        
         login.style.display = "block";
         signin.style.display = "block";
         logout.style.display= "none";
-        logged.style.display = "none";
-        label.style.display = "none";
+        logged.style.display= "none";
+        label.style.display= "none";
         bkm.style.display= "none";
-  
     }
 
 }
