@@ -1,56 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
+    <title>Document</title>
     <link rel="stylesheet" href="../css/form.css">
 </head>
-<body>
-    <div class="container">
-        <div class="title">Login</div>
-        <form action="#">
-            <div class="user-details">
-                <div class="input-box">
-                    <span class="details">Nome</span>
-                    <input type="text" placeholder="Inserisci il tuo nome" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Cognome</span>
-                    <input type="text" placeholder="Inserisci il tuo cognome" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Email</span>
-                    <input type="text" placeholder="Inserisci la tua mail" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Password</span>
-                    <input type="password" placeholder="Inserisci la password" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Conferma Password</span>
-                    <input type="password" placeholder="Conferma la password" required>
-                </div>
-            </div>
-            <div class="role-details">
-                <span class="role-title">Ruolo</span>
-                <div class="category">
-                    <label for="">
-                        <span class="dot-one"></span> 
-                        <span class="role">Admin</span>
-                    </label>
-                    <label for="">
-                        <span class="dot-one"></span> 
-                        <span class="role">User</span>
-                    </label>
-                </div>
-            </div>
-            <div class="button">
-                <input type="button" value="Registrati">
-            </div>
-        </form>
 
+<body>
+    <div class="wrapper">
+        <div class="form-container">
+            <div class="form">
+                <!-- Heading -->
+                <div class="heading">
+                    <h2>Registration form</h2>
+                </div>
+                <!-- Form Input -->
+                <div class="form-wrapper fullname">
+                    <div class="form-item">
+                        <label>Nome</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-item">
+                        <label>Cognome</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <!-- Email Input -->
+                <div class="form-wrap">
+                    <div class="form-item">
+                        <label>Email</label>
+                        <input type="text">
+                    </div>
+                </div>
+                <!-- Password Input -->
+                <div class="form-wrap">
+                    <div class="form-item">
+                        <label>Password</label>
+                        <input type="password">
+                    </div>
+                </div>
+                <!-- check box -->
+                <div class="form-wrap check-box">
+                    <div class="form-check">
+                        <label>Admin</label>
+                        <input type="checkbox"id="">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>

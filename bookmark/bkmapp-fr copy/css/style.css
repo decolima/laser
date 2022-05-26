@@ -1,8 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-*{
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+.divcheck {
+    display: flex;
+}
+
+.check{
+    width: 10%;
+    margin: 10px 10px;
+}
+
+.labelcheck{
+    padding-top:0.5%;
 }
 
 body {
@@ -17,7 +24,7 @@ body {
 }
 
 .fullcontainer {
-    background-image: url("../img/img4.jpg");
+    background-image: url("/bookmark/bkmapp-fr/img/img4.jpg");
     background-size: cover;
     position: relative;
     text-align: center;
@@ -30,16 +37,13 @@ body {
 
 
 .fullcontainer .text-box {
-    color: black;
-    background-color: rgb(196, 190, 190);
+    color: white;
+    background-color: rgba(255, 4, 4, 0.685);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 0.5%;
-    border: 1px black solid;
-    font-weight: 400;
-    border-radius: 1rem;
 }
 
 .fullcontainer .text-box .titolo {
@@ -65,7 +69,6 @@ body {
 .img img {
     width: 95%;
     padding: 5px;
-    border-radius: 2rem;
 }
 
 .img h2 {

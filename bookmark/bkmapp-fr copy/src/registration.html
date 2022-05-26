@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,14 +10,13 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/form.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="../js/navbar.js"></script>
-    <script src="../js/init.js" type="module"></script>
-    <script src="../js/registrazione.js" type="module"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script src="../js/navbar.js"></script> 
+    <script src="../js/init.js" type="module"></script> 
+    <script src="../js/registrazione.js" type="module"></script> 
 </head>
 
-<body>
+<body >
     <nav>
         <ul class="menu" id="myTopnav">
             <li class="logo"><a href="index.html">Bkmapp</a></li>
@@ -35,53 +33,25 @@
     </nav>
     <div id="page">
         <div id="presentazione" class="container">
-            <h2 class="titolo1" style="text-transform: capitalize;">Bkmapp on the Net</h2>
-            <h2 class="titolo1">Uniscti a noi</h2>
+            <h2 class="titolo1" style="text-transform: capitalize;">WebCore Web solution on the Net</h2>
+            <h2 class="titolo1">AREA PRIVATA</h2>        
             <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
         </div>
-        <div class="wrapper">
-            <div class="form-container">
-                <div class="form">
-                    <!-- Heading -->
-                    <div class="heading">
-                        <h2>Registrati</h2>
-                    </div>
-                    <!-- Form Input -->
-                    <div class="form-wrapper fullname">
-                        <div class="form-item">
-                            <label>Nome</label>
-                            <input type="text" id="rfirst_name" name="first_name" placeholder="inserisci nome" required>
-                        </div>
-                        <div class="form-item">
-                            <label>Cognome</label>
-                            <input type="text" id="rlast_name" name="last_name" placeholder="inserisci cognome" required>
-                        </div>
-                    </div>
-                    <!-- Email Input -->
-                    <div class="form-wrap">
-                        <div class="form-item">
-                            <label>Email</label>
-                            <input type="text" id="rusr" name="email" placeholder="inserisci mail" required>
-                        </div>
-                    </div>
-                    <!-- Password Input -->
-                    <div class="form-wrap">
-                        <div class="form-item">
-                            <label>Password</label>
-                            <input type="password" id="rpwd" name="pwd" placeholder="inserisci password" required>
-                        </div>
-                    </div>
-                    <!-- check box -->
-                    <div class="form-wrap check-box">
-                        <div class="form-check">
-                            <label>Admin</label>
-                            <input type="checkbox" id="divcheck">
-                        </div>
-                    </div>
-                    <div class="btn">
-                        <input type="button" value="Conferma Dati">
-                    </div>
-                </div>
+        <div id="logreg">
+            <div id="divreg" class="container">
+                <h3 style="margin-left: 5%;">Registrazione utente</h3>
+                <form name="freg">
+                    <input type="text" id="rusr" name="email" placeholder="ins username o mail">
+                    <input type="password" id="rpwd" name="pwd" placeholder="ins password">
+                    <input type="text" id="rfirst_name" name="first_name" placeholder="ins nome">
+                    <input type="text" id="rlast_name" name="last_name" placeholder="ins cognome">
+                    <!-- spunta per il flag admin -->
+                    <div class="divcheck" id="divcheck">
+                        <input type="checkbox" class="check" id="admin" name="admin" unchecked>
+                        <label for="admin" class="labelcheck" style="padding: 0.5rem;">Admin</label>
+                      </div>
+                    <input type="button" id="btnCrea" value="Crea Account">
+                </form>
             </div>
         </div>
     </div>

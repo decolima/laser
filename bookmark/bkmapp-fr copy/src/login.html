@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/login.js" type="module"></script>
     <script src="../js/init.js" type="module"></script>
@@ -23,13 +22,12 @@
         <ul class="menu" id="myTopnav">
             <li class="logo"><a href="index.html">Bkmapp</a></li>
             <li class="item"><a href="index.html">Home</a></li>
-            <li class="item"><a href="#">Contatti</a></li>
-            <li class="item" id="bkm"><a href="#">Bookmarks</a></li>
-            <li class="item button" id="login"><a href="login.html">Login</a></li>
-            <li class="item button" id="logout"><a href="#">Logout</a></li>
-            <li class="item button secondary" id="signin"><a href="registration.html">Sign up</a></li>
+            <li class="item"><a href="#">Informazioni</a></li>
+            <li class="item" id="bkm"><a href="bookmarks.html">Bookmarks</a></li>
+            <li class="item button" id="login"><a id="in_out" href="login.html">Login</a></li>
+            <li class="item button secondary signup" id="signin"><a id="signup" href="registration.html">Sign up</a></li>
             <li class="item button secondary" id="loggeduser"><a href="#" id="usr-a"></a></li>
-            <li class="item button secondary" id="creausr"><a href="registration.html">Crea User</a></li>
+            <!-- <li class="item button secondary" id="creausr"><a href="registration.html">Crea User</a></li> -->
             <li class="toggle"><a href="#"><span class="bars"></span></a></li>
         </ul>
     </nav>
@@ -39,34 +37,7 @@
                 <h2 class="titolo1">Autenticazione</h2>
                 <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
             </div>
-            <div class="wrapper">
-                <div class="form-container">
-                    <div class="form">
-                        <!-- Heading -->
-                        <div class="heading">
-                            <h2>Login</h2>
-                        </div>
-                        <!-- Email Input -->
-                        <div class="form-wrap">
-                            <div class="form-item">
-                                <label>Email</label>
-                                <input type="text" id="lusr" name="email" placeholder="inserisci mail" required>
-                            </div>
-                        </div>
-                        <!-- Password Input -->
-                        <div class="form-wrap">
-                            <div class="form-item">
-                                <label>Password</label>
-                                <input type="password" id="lpwd" name="pwd" placeholder="inserisci password" required>
-                            </div>
-                        </div>
-                        <div class="btn">
-                            <input type="button" value="Conferma">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div id="logreg">
+            <div id="logreg">
                 <div id="divlogin" class="container">
                     <h3 style="margin-left: 5%;">Login utente</h3>
                     <form name="flogin">
@@ -75,7 +46,7 @@
                         <input type="button" id="btnLogin" value="LOGIN">
                     </form>
                 </div>
-            </div> -->
+            </div>
         <footer>
             <div class="footer-container">
                 <h3>Footer Bkmapp</h3>
