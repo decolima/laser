@@ -10,7 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import bkm.entity.Book;
+import bkm.entity.Bookmarks;
 import bkm.entity.Tag;
 import java.util.ArrayList;
 import javax.inject.Inject;
@@ -31,37 +31,35 @@ public class BookStore {
     @Inject
     TagStore storetag;
 
-    public List<Book> findAllByUserCreated(Long id) {
+    public List<Bookmarks> findAllByUserCreated(Long id) {
 
         System.out.println("bookstore");
         System.out.println(id);
 
-        return em.createQuery("select e from Book e where e.usr.id = :id and e.cancellato = false", Book.class)
+        return em.createQuery("select e from Book e where e.usr.id = :id and e.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .getResultList();
 
     }
-
     
-    public List<Book> findAllByUser(Long id) {
+    public List<Bookmarks> findAllByUser(Long id) {
 
         System.out.println("bookstore");
         System.out.println(id);
 
         return em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) "
-                + "and e.cancellato = false and e.usr.cancellato = false", Book.class)
+                + "and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .getResultList();
 
     }
+ 
+    public List<JsonObject> findAllForValidating(int page, int size) {
 
-    public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
-
-        System.out.println("bookstore");
-        System.out.println(id);
-
-        List<Book> books = em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Book.class)
-                .setParameter("id", id)
+        List<Bookmarks> books = em.createQuery("select e from Book e where e.condiviso = 1 "
+                                            + "and e.cancellato = false "
+                                            + "and e.usr.cancellato = false "
+                                            + "and e.status = 'Nuovo'", Bookmarks.class)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
                 .getResultList();
@@ -69,7 +67,7 @@ public class BookStore {
         List<JsonObject> jbook = new ArrayList<>();
         
         
-        for (Book book : books) {
+        for (Bookmarks book : books) {
             
             JsonObject jb = Json.createObjectBuilder()
                 .add("IdBookMk", book.getId().toString())
@@ -87,33 +85,67 @@ public class BookStore {
         return jbook;
         
     }
+     
+    public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
 
-    public Optional<Book> find(Long id) {
-        Book found = em.find(Book.class, id);
+        List<Bookmarks> books = em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
+                .setParameter("id", id)
+                .setFirstResult((page - 1) * size)
+                .setMaxResults(size)
+                .getResultList();
+
+        List<JsonObject> jbook = new ArrayList<>();
+        
+        
+        for (Bookmarks book : books) {
+            
+            JsonObject jb = Json.createObjectBuilder()
+                .add("idbkm", book.getId().toString())
+                .add("descrizione", book.getDescrizione())
+                .add("link", book.getLink())
+                .add("utente", book.getUsr().getFirstName())
+                .add("condiviso", book.getCondiviso())
+                .add("dtcreazione", book.getCreazione().toString())
+                .add("status", book.getStatus().toString())
+                .add("dtaggiornamento", book.getAggiornamento().toString())
+                .add("utenteagg", book.getUsragg().getFirstName())
+                .add("motivorim", book.getUsragg().getFirstName())    
+                .add("Tags", book.tagstostring())
+                .build();
+            
+            jbook.add(jb);
+        }
+        
+        return jbook;
+        
+    }
+
+    public Optional<Bookmarks> find(Long id) {
+        Bookmarks found = em.find(Bookmarks.class, id);
         return found == null ? Optional.empty() : Optional.of(found);
     }
 
-    public Book save(Book entity) {
+    public Bookmarks save(Bookmarks entity) {
 
         return em.merge(entity);
 
     }
 
     public void deleteByUser(Long id) {
-        findAllByUser(id).stream().map(Book::getId).forEach(this::delete);
+        findAllByUser(id).stream().map(Bookmarks::getId).forEach(this::delete);
     }
 
     public void delete(Long id) {
         
-        Book found = em.find(Book.class, id);
+        Bookmarks found = em.find(Bookmarks.class, id);
         found.setCancellato(true);
         save(found);
         
     }
     
-    public void addTag(Book found, String[] tags) {
+    public void addTag(Bookmarks found, String[] tags) {
 
-        Book toupdate = em.find(Book.class, found.getId());
+        Bookmarks toupdate = em.find(Bookmarks.class, found.getId());
     
         if(tags.length > 0){
             for (String tag : tags) {
@@ -127,7 +159,7 @@ public class BookStore {
     
     public void removeTag(Long id, String tag) {
 
-        final Book toupdate = find(id).get();
+        final Bookmarks toupdate = find(id).get();
         Optional<Tag> found = storetag.byName(tag);
         if (found.isPresent()) {
             toupdate.getTags().remove(found.get());

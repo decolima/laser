@@ -6,19 +6,18 @@ package bkm.boundary;
 
 import bkm.control.BookStore;
 import bkm.entity.User;
-import bkm.entity.UserRoles;
 import bkm.control.UserStore;
-import bkm.entity.Book;
+import bkm.entity.Bookmarks;
+import bkm.entity.UserRoles;
+import bkm.entity.StatusBkms;
 import bkm.security.JWTManager;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.security.DenyAll;
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.json.JsonObject;
 import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -28,7 +27,6 @@ import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.ResourceContext;
@@ -78,14 +76,29 @@ public class BooksResources {
     @Operation(description = "Restituisce tutti BookMark di uno uttenti")
     @APIResponses({
         @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
-        @APIResponse(responseCode = "404", description = "Elenco non ritornato trovato")
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
     })
     @RolesAllowed({"Admin","User"})
     public List<JsonObject> all(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
         System.out.println(token);
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
-        System.out.println(usr.toString());
+        System.out.println("Cerca bkms per " + usr.toString());
         return storebook.findAllByUserJson(usr.getId(), page,size);
+    }
+    
+    @GET
+    @Path("/analizare")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(description = "Restituisce tutti BookMark di uno uttenti")
+    @APIResponses({
+        @APIResponse(responseCode = "200", description = "Elenco di Bkms a fare valutazione con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
+    })
+    @RolesAllowed("Admin")
+    public List<JsonObject> forValidation(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
+        User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
+        System.out.println("Cerca bkms per valutazione " + usr.toString());
+        return storebook.findAllForValidating(page,size);
     }
         
     @POST
@@ -97,15 +110,58 @@ public class BooksResources {
         @APIResponse(responseCode = "404", description = "Non è stato possibile creare nuovo BookMark")
     })
     @RolesAllowed({"Admin","User"})
-    public Response create(@Valid Book entity) {
+    public Response create(@Valid Bookmarks entity) {
         System.out.println("id: " + token.getName());
         System.out.println(entity.toString());
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
         entity.setUsr(usr);
-        entity.setCreazione(LocalDate.now());
-        Book saved = storebook.save(entity);
+        entity.setCreazione(LocalDateTime.now());
+        Bookmarks saved = storebook.save(entity);
+        System.out.println("Bkms creato " + saved.toString());
         return Response.status(Response.Status.CREATED)
                 .entity(saved)
+                .build();
+    }
+    
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)   
+    @Operation(description = "Permette aggiornare un BookMark")
+    @APIResponses({
+        @APIResponse(responseCode = "201", description = "Nuovo BookMark creato con successo"),
+        @APIResponse(responseCode = "404", description = "Non è stato possibile aggiornare il BookMark")
+    })
+    @RolesAllowed({"Admin","User"})
+    public Response update(@Valid Bookmarks entity) {
+
+        User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("User non trovato. id=" + token.getName()));
+        Bookmarks bkms = storebook.find(entity.getId()).orElseThrow(() -> new NotFoundException("Bookmark non trovato. id=" + entity.getDescrizione()));
+
+        if((!entity.getStatus().equals(bkms.getStatus())) && usr.getRoleuser() != UserRoles.Admin){    
+            new NotFoundException("Bookmark non trovato. id=" + entity.getDescrizione());
+        }
+ 
+        if((!entity.getStatus().equals(bkms.getStatus())) && usr.getRoleuser().equals(UserRoles.Admin) && entity.getStatus().equals(StatusBkms.Vietato)){    
+    
+            entity.setCondiviso(false);
+            
+        }
+        
+        if(!usr.equals(bkms.getUsr()) && usr.getRoleuser() != UserRoles.Admin){
+            new NotFoundException("Bookmark non trovato. id=" + entity.getDescrizione());
+        }
+        
+        entity.setUsr(bkms.getUsr());
+        entity.setUsragg(usr);
+        entity.setCreazione(bkms.getCreazione());
+        entity.setAggiornamento(LocalDateTime.now());
+        
+        bkms = storebook.save(entity);
+        System.out.println("Bkms creato " + bkms.toString());
+        
+        return Response.status(Response.Status.CREATED)
+                .entity(bkms)
                 .build();
     }
     
@@ -129,7 +185,7 @@ public class BooksResources {
         String tg = jbook.getString("Tags");
         String[] tgs = tg.split("#");
         
-        Book found = storebook.find(Long.parseLong(jbook.getString("idBook"))).orElseThrow(() -> new NotFoundException());
+        Bookmarks found = storebook.find(Long.parseLong(jbook.getString("idBook"))).orElseThrow(() -> new NotFoundException());
         
         storebook.addTag(found,tgs);
         
@@ -151,7 +207,7 @@ public class BooksResources {
         
         System.out.println(jbook);
         
-        Book found = storebook.find(Long.parseLong(jbook.getString("idBook"))).orElseThrow(() -> new NotFoundException());
+        Bookmarks found = storebook.find(Long.parseLong(jbook.getString("idBook"))).orElseThrow(() -> new NotFoundException());
         
         storebook.delete(found.getId());
         
