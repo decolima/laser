@@ -99,7 +99,7 @@ cursor: pointer;
     display: none;
 }
 
-#loggeduser, #usr-a, #creausr{
+#loggeduser, #usr-a, #creausr, #bkm{
     display: none;
 }
 

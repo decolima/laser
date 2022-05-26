@@ -4,7 +4,7 @@ import configData from "../service/config.js";
 const url = `${configData.baseurl}/books`
 
 const searchBkm = () => {
-    return getJsonData(url)
+    return getJsonData(url, true)
 }
 
 const doBkms = async (desc, link, shared) => {
