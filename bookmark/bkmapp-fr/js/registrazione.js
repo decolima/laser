@@ -16,7 +16,7 @@ function registration() {
     let fname = document.querySelector("#rfirst_name").value;
     let lname = document.querySelector("#rlast_name").value;
     let roule = "User";
-    let admincheck = document.querySelector("#admin");
+    let admincheck = document.querySelector("#divcheck");
 
     //console.log(admincheck.checked);
     if(admincheck.checked){
