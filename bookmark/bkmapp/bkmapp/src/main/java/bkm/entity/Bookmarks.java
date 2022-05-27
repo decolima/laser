@@ -5,6 +5,7 @@
 package bkm.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.json.Json;
@@ -12,6 +13,8 @@ import javax.json.JsonObject;
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -30,14 +33,14 @@ import javax.ws.rs.core.UriBuilder;
  */
 
 @NamedNativeQueries({
-    @NamedNativeQuery(name = Book.BOOK_ALL,
+    @NamedNativeQuery(name = Bookmarks.BOOK_ALL,
             query = "SELECT * FROM book where (usr_id = :id) or (usr_id <> :id and condiviso = 1)")
 })
 
 
 @Entity
 @Table(name = "book")
-public class Book extends BaseEntity {
+public class Bookmarks extends BaseEntity {
     
     public static final String BOOK_ALL = "Book.All";
         
@@ -64,12 +67,64 @@ public class Book extends BaseEntity {
     
     @NotNull
     @Column(nullable = false)
-    private char condiviso;
+    private boolean condiviso;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private StatusBkms status;
+    
+    @NotNull
+    private String motivorim;
+    
+    //@NotBlank
+    @Column(nullable = false)
+    private LocalDateTime creazione;
 
     //@NotBlank
     @Column(nullable = false)
-    private LocalDate creazione;
+    private LocalDateTime aggiornamento;
 
+    @JsonbTransient
+    @ManyToOne(optional = false)
+    private User usragg;
+    
+
+    public LocalDateTime getAggiornamento() {
+        return aggiornamento;
+    }
+
+    public void setAggiornamento(LocalDateTime aggiornamento) {
+        this.aggiornamento = aggiornamento;
+    }
+
+    public User getUsragg() {
+        return usragg;
+    }
+
+    public void setUsragg(User usragg) {
+        this.usragg = usragg;
+    }
+    
+    
+    
+    public String getMotivorim() {
+        return motivorim;
+    }
+
+    public void setMotivorim(String motivorim) {
+        this.motivorim = motivorim;
+    }
+
+    public StatusBkms getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusBkms status) {
+        this.status = status;
+    }
+
+    
+    
     public String getDescrizione() {
         return descrizione;
     }
@@ -103,20 +158,20 @@ public class Book extends BaseEntity {
         this.usr = usr;
     }
 
-    public char getCondiviso() {
+    public boolean getCondiviso() {
         return condiviso;
     }
 
-    public void setCondiviso(char condiviso) {
+    public void setCondiviso(boolean condiviso) {
         this.condiviso = condiviso;
     }
 
-    public LocalDate getCreazione() {
+    public LocalDateTime getCreazione() {
         return creazione;
     }
 
     @JsonbTransient
-    public void setCreazione(LocalDate creazione) {
+    public void setCreazione(LocalDateTime creazione) {
         this.creazione = creazione;
     }
 

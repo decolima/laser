@@ -8,9 +8,6 @@ import bkm.security.JWTManager;
 import bkm.control.UserStore;
 import bkm.control.BookStore;
 import bkm.entity.User;
-import bkm.entity.UserRoles;
-import bkm.entity.UserRoles;
-import java.math.BigDecimal;
 import java.util.List;
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -37,7 +34,6 @@ import javax.ws.rs.container.ResourceContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -157,7 +153,7 @@ public class UsersResources {
                 .add("userid", u.getId())
                 .add("first_name", u.getFirstName())
                 .add("last_name", u.getLastName())
-                .add("roule", u.getRoleuser().toString())
+                .add("role", u.getRoleuser().toString())
                 .build();
     }
     
