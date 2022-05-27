@@ -39,7 +39,7 @@ import javax.ws.rs.core.UriBuilder;
 
 
 @Entity
-@Table(name = "book")
+@Table(name = "bookmark")
 public class Bookmarks extends BaseEntity {
     
     public static final String BOOK_ALL = "Book.All";
