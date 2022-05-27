@@ -24,7 +24,7 @@ export function init() {
     let label = document.querySelector("#usr-a");
     let creausr= document.querySelector("#creausr");
     let bkm= document.querySelector("#bkm");
-    let divcheck = document.querySelector("#divcheck");
+    let formcheck = document.querySelector("#form-check");
 
     if (usr) // loggato
     {
@@ -39,7 +39,7 @@ export function init() {
         if(loggedroule === "Admin"){
             creausr.style.display = "block";
             if(document.URL.includes("registration.html")){
-                divcheck.style.display = "flex";
+                formcheck.style.display = "flex";
             }
         }
 
