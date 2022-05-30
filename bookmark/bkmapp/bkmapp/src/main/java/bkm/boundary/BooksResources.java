@@ -87,9 +87,9 @@ public class BooksResources {
     }
     
     @GET
-    @Path("/analizare")
+    @Path("/analizzare")
     @Produces(MediaType.APPLICATION_JSON)
-    @Operation(description = "Restituisce tutti BookMark di uno uttenti")
+    @Operation(description = "Restituisce tutti BookMarks di un utente")
     @APIResponses({
         @APIResponse(responseCode = "200", description = "Elenco di Bkms a fare valutazione con successo"),
         @APIResponse(responseCode = "404", description = "Elenco non trovato")
@@ -116,6 +116,9 @@ public class BooksResources {
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
         entity.setUsr(usr);
         entity.setCreazione(LocalDateTime.now());
+        entity.setUsragg(usr);
+        entity.setAggiornamento(LocalDateTime.now());
+        entity.setStatus(StatusBkms.Nuovo);
         Bookmarks saved = storebook.save(entity);
         System.out.println("Bkms creato " + saved.toString());
         return Response.status(Response.Status.CREATED)

@@ -93,6 +93,7 @@ public class Bookmarks extends BaseEntity {
         return aggiornamento;
     }
 
+    @JsonbTransient
     public void setAggiornamento(LocalDateTime aggiornamento) {
         this.aggiornamento = aggiornamento;
     }

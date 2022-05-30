@@ -119,7 +119,7 @@ public class UsersResources {
     @Operation(description = "Permette la registrazione di un nuovo utente")
     @APIResponses({
         @APIResponse(responseCode = "201", description = "Nuovo utente creato con successo"),
-        @APIResponse(responseCode = "404", description = "Creazione di utente falito")
+        @APIResponse(responseCode = "404", description = "Creazione di utente fallito")
     })
     @PermitAll
     public Response create(@Valid User entity) {
@@ -132,10 +132,10 @@ public class UsersResources {
     
     @POST
     @Path("login")
-    @Operation(description = "Permette fare loggin e ristitui il token valido")
+    @Operation(description = "Permette fare login e ristituisce il token valido")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Loggin fatto con successo"),
-        @APIResponse(responseCode = "404", description = "Loggin falito")
+        @APIResponse(responseCode = "200", description = "Login fatto con successo"),
+        @APIResponse(responseCode = "404", description = "Login fallito")
 
     })
     @Consumes(MediaType.APPLICATION_JSON)

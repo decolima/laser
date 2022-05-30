@@ -26,15 +26,28 @@ btnNewBook.addEventListener("click", v => {
     console.log(txtLink.value);
     console.log(txtCondiviso.value);
     
+    let condiviso = false;
+    let status = "Nuovo";
+    let motivorim = "";
+    
+    
+    if(txtCondiviso.value === 1){
+        condiviso = "true";
+    }
+    
+    
+    
     const book = {
         descrizione:txtDescrizione.value,
         link:txtLink.value,
-        condiviso:txtCondiviso.value
+        condiviso:condiviso,
+        status:status,
+        motivorim:motivorim
     };
     
     console.log(JSON.stringify(book)); /*stampare una string Json*/
     
-    fetch('http://192.168.0.125:8080/bkmapp/resources/books', {
+    fetch('http://localhost:8080/bkmapp/resources/books', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -63,7 +76,7 @@ const visualizzaBooks = () => {
     
     console.log("mettodo LeggeBook"); 
      
-    fetch('http://192.168.0.125:8080/bkmapp/resources/books', {
+    fetch('http://localhost:8080/bkmapp/resources/books', {
         method: 'GET',
         headers: {
            'Content-Type': 'application/json',
@@ -92,7 +105,7 @@ const visualizzaBooks = () => {
 const renderBook = (v) => {
     console.log("render Books ok");
     const liElement = document.createElement("li");
-    liElement.innerHTML = v.IdBookMk +" " + v.descrizione + " - " + v.Utente + " " + v.DtCreazione + " " + v.Tags;
+    liElement.innerHTML = v.idbkm +" " + v.descrizione + " - " + v.link + " " + v.utente + " " + v.condiviso  + " " + v.dtcreazione + " " + v.status + " " + v.dtaggiornamento + " " + v.utenteagg + " " + v.motivorim+ " " + v.Tags;
     return liElement;
 }
 
@@ -110,7 +123,7 @@ btnAddTag.addEventListener("click", f => {
     console.log(JSON.stringify(tgs)); /*stampare una string Json*/
     
     
-    fetch('http://192.168.0.125:8080/bkmapp/resources/books', {
+    fetch('http://localhost:8080/bkmapp/resources/books', {
         method: 'PATCH',
         headers: {
            'Accept': 'application/json',
@@ -148,7 +161,7 @@ btncancellaBook.addEventListener("click", a => {
     console.log(JSON.stringify(bk)); /*stampare una string Json*/
     
     
-    fetch('http://192.168.0.125:8080/bkmapp/resources/books', {
+    fetch('http://localhost:8080/bkmapp/resources/books', {
         method: 'DELETE',
         headers: {
            'Accept': 'application/json',

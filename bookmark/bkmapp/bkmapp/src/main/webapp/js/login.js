@@ -34,7 +34,7 @@ btnLogin.addEventListener("click", v => {
       /*.then(data => console.log(data))*/
       .then(data => {
           window.localStorage.setItem("token", data.token);
-          window.localStorage.setItem("user", data.user);
+          window.localStorage.setItem("mail", data.mail);
           console.log("Token armazenado")
           console.log(data);
         //visualizzaUsers();
@@ -76,7 +76,7 @@ const renderUser = (v) => {
 
 const renderInfo = (v) => {
     const liElement = document.createElement("li");
-    liElement.innerHTML = v.user;
+    liElement.innerHTML = v.mail;
     return liElement;
 }
 

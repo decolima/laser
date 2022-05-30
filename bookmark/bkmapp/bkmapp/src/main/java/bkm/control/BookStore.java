@@ -36,7 +36,7 @@ public class BookStore {
         System.out.println("bookstore");
         System.out.println(id);
 
-        return em.createQuery("select e from Book e where e.usr.id = :id and e.cancellato = false", Bookmarks.class)
+        return em.createQuery("select e from Bookmarks e where e.usr.id = :id and e.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .getResultList();
 
@@ -47,7 +47,7 @@ public class BookStore {
         System.out.println("bookstore");
         System.out.println(id);
 
-        return em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) "
+        return em.createQuery("select e from Bookmarks e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) "
                 + "and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .getResultList();
@@ -56,7 +56,7 @@ public class BookStore {
  
     public List<JsonObject> findAllForValidating(int page, int size) {
 
-        List<Bookmarks> books = em.createQuery("select e from Book e where e.condiviso = 1 "
+        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where e.condiviso = 1 "
                                             + "and e.cancellato = false "
                                             + "and e.usr.cancellato = false "
                                             + "and e.status = 'Nuovo'", Bookmarks.class)
@@ -88,7 +88,7 @@ public class BookStore {
      
     public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
 
-        List<Bookmarks> books = em.createQuery("select e from Book e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
+        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
