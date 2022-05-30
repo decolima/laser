@@ -15,12 +15,6 @@
     <script src="../js/navbar.js"></script> 
     <script src="../js/init.js" type="module"></script> 
     <script src="../js/bookmarks.js" type="module"></script> 
-    <style>
-        * {
-            box-sizing: border-box;
-            border: 1px black solid;
-        }
-    </style>
 </head>
 
 <body >
@@ -41,40 +35,40 @@
     <div id="page">
         <div id="presentazione" class="container">
             <h2 class="titolo1" style="text-transform: capitalize;">Area per dire qualcosa su bookmarks</h2>
-            <h2 class="titolo1">AREA PRIVATA</h2>        
+            <h2 class="titolo1">AREA PRIVATA</h2>
             <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
         </div>
-        <div class="bkm-container">
+
+
+        <div class="wrapper">
             <div>
-                <form name="fbkms">
-                    <h2>bookmarks detagli</h2>
-                    <input id="descrizione" placeholder="Inserisci la descrizione del bookmark..."/>  <br>
-                    <input id="link" placeholder="Inserisci il link." /> <br> 
-                    <div class="divcheck-shared" id="divcheck-shared">
-                        <input type="checkbox" class="check" id="condiviso" name="condiviso" unchecked>
+                <form class="form-container">
+                    <h2 class="heading">Dettagli Bookmarks</h2>
+                    <input type="text" id="descrizione" placeholder="Inserisci la descrizione del bookmark..." /> <br>
+                    <input type="text" id="link" placeholder="Inserisci il link." /> <br>
+                    <div class="form-check" id="divcheck-shared">
                         <label for="condiviso" class="labelcheck">Visibile per tutti ?</label>
+                        <input type="checkbox" class="check" id="condiviso" name="condiviso" unchecked>
                     </div>
                     <div class="btn-bkms" style="display: flex;">
                         <input type="button" id="btnCreaBkms" value="Crea Bookmark">
-                        <input type="button" id="btnNewBkms" value="New Bookmark">    
+                        <input type="button" id="btnNewBkms" value="New Bookmark">
                     </div>
-                    
+
                 </form>
             </div>
-
+        </div>
+        <div class="table-container">
             <div>
-                <div>
-                    <h2>Lista Bookmarks</h2>
-                    <div id="divbkms"></div>
+                <h2>Lista Bookmarks</h2>
+                <div id="divbkms">
                 </div>
             </div>
-
         </div>
+
     </div>
 
-
-
-
+    
     <footer>
         <div class="footer-container">
             <h3>Footer Bkmapp</h3>

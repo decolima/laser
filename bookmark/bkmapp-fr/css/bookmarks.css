@@ -1,24 +1,132 @@
-.item-a {
-    grid-area: header;
-  }
-  .item-b {
-    grid-area: main;
-  }
-  .item-c {
-    grid-area: sidebar;
-  }
-  .item-d {
-    grid-area: footer;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: #e1edf9;
+}
 
 .wrapper {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    grid-template-rows: auto;
-    grid-template-areas: 
-            "header header header header header header"
-            "main main main main main sidebar"
-            "footer footer footer footer footer footer";
-  }
+  max-width: 450px;
+  width: 100%;
+  margin: auto auto 1rem auto;
+  padding: 10px;
+}
 
-  
+.form-container {
+  background: #fff;
+  padding: 30px;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0, 15);
+  border-radius: 2rem;
+}
+
+.heading {
+  background: #222222;
+  margin: -30px;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  margin-bottom: 35px;
+  border-radius: 2rem 2rem 0 0;
+}
+
+.form-item {
+  margin-bottom: 25px;
+}
+
+.fullname {
+  display: flex;
+}
+
+.fullname .form-item {
+  width: 50%;
+}
+
+.fullname .form-item:first-child {
+  margin-right: 4%;
+}
+
+.form-container input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 3px;
+}
+
+.form-container input[type="text"]:focus {
+  border-color: #640c0c;
+}
+
+.form-check {
+  display: flex;
+  align-items: baseline;
+}
+
+.form-check input[type="checkbox"] {
+  width: auto;
+  margin-left: 2rem;
+  padding-top: 1rem;
+}
+
+.btn-bkms input[type="button"] {
+  background: #222222;
+  color: white;
+  border: 1px solid #222222;
+  padding: 0.75rem;
+  border-radius: 5rem;
+  width: 100%;
+}
+
+.table-container h2{
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.table-container{
+  margin: 0 auto;
+}
+
+.bkm-table-head {
+  background-color: #222222;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.bkm-table-head td {
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.bkm-table-body td {
+  padding: 0 10px;
+  border: 1px solid black;
+}
+
+.table-container{
+  margin: 1rem auto;
+  align-content: center;
+}
+
+.bkm-table{
+  border: 1px solid black;
+}
+
+
+#divbkms{
+  overflow-x: scroll;
+  text-align: center;
+}
+
+.bkm-table{
+  margin-left: auto;
+  margin-right: auto;
+}
+

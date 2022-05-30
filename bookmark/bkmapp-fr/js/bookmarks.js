@@ -42,29 +42,32 @@ function loadBkms() {
         let response = searchBkm()
                         .then(bkmsdata => {
                             console.log(bkmsdata);
-                            let table = "<table>";
+                            let table = "<table class='bkm-table'>";
                            
-                            let row = "<tr>";
-                                row += "<td>IdBookMk</td>";
+                            let row = "<tr class='bkm-table-head'>";
+                                row += "<td>Id Bkm</td>";
                                 row += "<td>Descrizione</td>"; 
                                 row += "<td>Link</td>"; 
-                                row += "<td>DtCreazione</td>";  
+                                row += "<td>Creazione</td>";  
                                 row += "<td>Autore</td>";  
                                 row += "<td>Condiviso</td>";  
+                                row += "<td>Status</td>";  
+                                row += "<td>Motivo</td>"; 
                                 row +="</tr>";
                            
                             table += row;
                            
                             for (let i = 0; i < bkmsdata.length; i++) {
-                                row = "<tr>";
-                                row += "<td>" + bkmsdata[i].IdBookMk + "</td>";
+                                row = "<tr class = 'bkm-table-body'>";
+                                row += "<td>" + bkmsdata[i].idbkm + "</td>";
                                 row += "<td>" + bkmsdata[i].descrizione + "</td>"; 
                                 row += "<td>" + bkmsdata[i].link + "</td>"; 
-                                row += "<td>" + bkmsdata[i].DtCreazione + "</td>";  
-                                row += "<td>" + bkmsdata[i].Utente + "</td>";  
+                                row += "<td>" + bkmsdata[i].dtcreazione + "</td>";  
+                                row += "<td>" + bkmsdata[i].utente + "</td>";  
                                 row += "<td>" + bkmsdata[i].condiviso + "</td>";  
+                                row += "<td>" + bkmsdata[i].status + "</td>";  
+                                row += "<td>" + bkmsdata[i].motivorim + "</td>";  
                                 row +="</tr>";
-                        
                                 table += row;
                             }
                             
