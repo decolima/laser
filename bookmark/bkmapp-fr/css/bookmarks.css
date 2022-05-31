@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -103,11 +103,19 @@ body {
 .bkm-table-head td {
   padding: 10px;
   border: 1px solid black;
+  width: 150px;
+  min-width: 170px;
 }
 
 .bkm-table-body td {
   padding: 0 10px;
   border: 1px solid black;
+  width: 150px;
+  min-width: 170px;
+  max-width: 170px;
+  height: 70px;
+  background-color: teal;
+  color: white;
 }
 
 .table-container{
@@ -130,3 +138,28 @@ body {
   margin-right: auto;
 }
 
+.detail-container-approved{
+  background-color: rgb(25, 117, 5);
+  border: 1px black solid;
+  margin: 0 auto;
+  width: 862px;
+  color: white;
+}
+
+.detail-container-denied{
+  background-color: rgb(138, 7, 7);
+  border: 1px black solid;
+  margin: 0 auto;
+  width: 862px;
+  color: white;
+}
+
+.bkm-detail{
+  display: block;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-bottom: 90px;
+  text-align: left;
+  width: 763px;
+  height: 74px;
+}

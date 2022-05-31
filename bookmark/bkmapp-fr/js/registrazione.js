@@ -15,17 +15,17 @@ function registration() {
     let pwd = document.querySelector("#rpwd").value;
     let fname = document.querySelector("#rfirst_name").value;
     let lname = document.querySelector("#rlast_name").value;
-    let roule = "User";
+    let role = "User";
     let admincheck = document.querySelector("#divcheck");
 
     //console.log(admincheck.checked);
     if(admincheck.checked){
-        roule = "Admin";
+        role = "Admin";
     }
  
-    //console.log(roule);
+    //console.log(role);
     try {
-        let response = doRegistration(usr, pwd, fname, lname, roule)
+        let response = doRegistration(usr, pwd, fname, lname, role)
             .then(data => {
                 console.log(data);
             })

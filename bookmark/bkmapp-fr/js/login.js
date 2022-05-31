@@ -23,7 +23,7 @@ function login() {
                 sessionStorage.setItem("id", data.userid);
                 sessionStorage.setItem("first_name", data.first_name);
                 sessionStorage.setItem("last_name", data.last_name);
-                sessionStorage.setItem("roule", data.roule);
+                sessionStorage.setItem("role", data.role);
                 init();
             })
      }
