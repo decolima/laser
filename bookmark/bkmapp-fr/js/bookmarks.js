@@ -60,7 +60,11 @@ function loadBkms() {
 
                 for (let i = 0; i < bkmsdata.length; i++) {
                     row = "<tr class = 'bkm-table-body'>";
-                    row += "<td><input type='button' value='Dettagli' class='btnDetails'></td>";
+                    row += "<td><input type='button' value='Dettagli' class='btnDetails' name = '" 
+                            + bkmsdata[i].idbkm + "/"
+                            + bkmsdata[i].status + "/"
+                            + bkmsdata[i].motivorim + "/"
+                            + "' ></td>";
                     row += "<td>" + bkmsdata[i].idbkm + "</td>";
                     row += "<td>" + bkmsdata[i].descrizione + "</td>";
                     row += "<td>" + bkmsdata[i].link + "</td>";
@@ -86,9 +90,18 @@ function loadBkms() {
 
 body.addEventListener( 'click', function ( event ) {
     if( event.target.className == 'btnDetails' ) {
-      console.log("il button worka"); 
-    };
-  } );
+      console.log("il button worka");
+      
+      let test = event.target.name;
+
+      console.log(test);
+
+      const myArray = test.split("/");
+
+      console.log(myArray);
+    }
+})
+
 
 
 
