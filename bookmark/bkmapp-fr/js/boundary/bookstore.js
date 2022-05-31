@@ -7,12 +7,14 @@ const searchBkm = () => {
     return getJsonData(url, true)
 }
 
-const doBkms = async (desc, link, shared) => {
+const doBkms = async (desc, link, shared, status, motivorim) => {
     //console.log("doRegistration ....");
     const BkmData = {
         descrizione:desc,
         link:link,
-        condiviso:shared
+        condiviso:shared,
+        status:status,
+        motivorim:motivorim
     };
     return postJsonData(url,BkmData,true);
 }
