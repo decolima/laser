@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/pages/login_page.dart';
 import 'package:dio/dio.dart';
+import 'package:untitled/pages/Bookmarks.dart';
 
 import '../Rest/login.dart';
 
@@ -78,7 +79,6 @@ class _SignInState extends State<SignIn> {
         ),
       );
 
-
   final TextEditingController pwd = TextEditingController(text: '');
   Widget _passwordField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
@@ -125,11 +125,16 @@ class _SignInState extends State<SignIn> {
           'ACCEDI',
           style: TextStyle(fontSize: 20.0),
         ),
-        onPressed: () {
+        onPressed: () => {
           _api.loginBkm(
             user: email.text,
             pwd: pwd.text,
-          );
+          ),
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const Bookmarks(),
+            ),
+          ),
         },
       );
 }

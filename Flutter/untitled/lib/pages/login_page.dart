@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 _logoWidget(),
-                _selectorWidget(),
+                selectorWidget(),
                 _pageViewWidget(),
               ],
             ),
@@ -57,9 +57,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget _logoWidget() => const Padding(
         padding: EdgeInsets.only(top: 50.0),
         child: Image(
-            image: AssetImage('assets/images/login_logo.png'), height: 180.0),
+            image: AssetImage('assets/images/login_logo.png'), height: 105.0),
       );
-  Widget _selectorWidget() => Container(
+  Widget selectorWidget() => Container(
         decoration: const BoxDecoration(
           color: Color(0x552B2B2B),
           borderRadius: BorderRadius.all(
