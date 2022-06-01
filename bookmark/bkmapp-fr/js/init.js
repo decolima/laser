@@ -1,60 +1,46 @@
 import {logout} from "../js/service/control.js";
 
-//regione di diclarazione di variabile per listener
-let body = document.getElementsByTagName("body")[0];
-let ahref_logout = document.querySelector("#logout");
-
+//regione di diclarazione di variabile per listener 
+const body = document.getElementsByTagName("body")[0];
+const ahref_logout = document.querySelector("#logout");
 
 //regione di diclarazione di listener
 body.addEventListener("load", init(), false);
 
 ahref_logout.addEventListener("click", v => {
-    console.log("Event LogOut Click");
     logout();
 });
 
 //regione di funcione generale e controllo di navbar
 export function init() {
     
-    let usr = sessionStorage.getItem("mail");
-    let login = document.querySelector("#login");
-    let logout = document.querySelector("#logout");
-    let logged = document.querySelector("#loggeduser");
-    let signin = document.querySelector("#signin");
-    let label = document.querySelector("#usr-a");
-    let creausr= document.querySelector("#creausr");
-    let bkm= document.querySelector("#bkm");
-    let formcheck = document.querySelector("#form-check");
+    const usr = sessionStorage.getItem("mail");
+    const role = sessionStorage.getItem("role") === "Admin";
+    const login = document.querySelector("#login");
+    const signin = document.querySelector("#signin");
+    const logout = document.querySelector("#logout");
+    const logged = document.querySelector("#loggeduser");
+    const label = document.querySelector("#usr-a");
+    const bkm= document.querySelector("#bkm");
+    const creausr= document.querySelector("#creausr");
+    const admincheck= document.querySelector("#admin-check");
 
     if (usr) // loggato
     {
-        login.style.display = "none";
-        signin.style.display = "none";
-        logout.style.display= "block";
-        logged.style.display = "block";
-        label.style.display = "block";
-        bkm.style.display= "block";
-        document.querySelector("#usr-a").innerHTML = usr;
-        let loggedroule = sessionStorage.getItem("roule");
-        if(loggedroule === "Admin"){
-            creausr.style.display = "block";
+        login.classList.add("off");
+        signin.classList.add("off");
+        logout.classList.remove("off");
+        logged.classList.remove("off");
+        bkm.classList.remove("off")
+        label.classList.remove("off");
+        label.innerHTML = usr;
+        if(role){
+            creausr.classList.remove("off");
             if(document.URL.includes("registration.html")){
-                formcheck.style.display = "flex";
+                admincheck.classList.remove("off");
             }
         }
 
-    }
-
-    else //non loggato
-    {
-        
-        
-        login.style.display = "block";
-        signin.style.display = "block";
-        logout.style.display= "none";
-        logged.style.display= "none";
-        label.style.display= "none";
-        bkm.style.display= "none";
     }
 
 }
