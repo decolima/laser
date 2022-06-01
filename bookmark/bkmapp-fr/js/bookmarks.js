@@ -94,6 +94,8 @@ function loadBkms() {
                         row += "<p> Id: " + bkmsdata[i].idbkm + "</p>";
                         row += "<p> Status: " + bkmsdata[i].status + "</p>";
                         row += "<p> Motivo: " + bkmsdata[i].motivorim + "</p>";
+                        row += "<div class='btns-conf-del'><input type='button' value='Aggiorna'>";
+                        row += "<input type='button' value='Elimina'></div>";
                         row += "</div>"
                         row += "</details> </div>";
 

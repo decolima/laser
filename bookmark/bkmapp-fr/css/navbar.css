@@ -53,9 +53,11 @@ a:hover{
 .toggle{
     order: 1;
 }
+
 .item.button{
     order: 2;
 }
+
 .item{
     width: 100%;
     text-align: center;
@@ -66,8 +68,21 @@ a:hover{
 .toggle{
 cursor: pointer;
 }
+
 .item.active{
     display: block;
+}
+
+.item.button.off{
+    display: none;
+}
+
+.item.off{
+    display: none;
+}
+
+.item.button.secondary.off{
+    display: none;
 }
 
 .bars{
@@ -93,19 +108,9 @@ cursor: pointer;
     top:-5px;
 }
 
-/* questione dinamicita login e signup */
-
-#logout{
-    display: none;
-}
-
-#loggeduser, #usr-a, #creausr, #bkm{
-    display: none;
-}
-
 /* Hamburger menù*/
 
-@media screen and (min-width:468px) {
+@media screen and (min-width:575px) {
     .menu{
         justify-content: center;
     }

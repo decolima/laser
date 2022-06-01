@@ -37,6 +37,10 @@ body {
     border-radius: 2rem 2rem 0 0;
 }
 
+.form-wrap.check-box.off{
+    display: none;
+}
+
 .form-item {
     margin-bottom: 25px;
 }
@@ -83,7 +87,7 @@ body {
     padding: 0.75rem;
     border-radius: 5rem;
     width: 100%;
-    
+    cursor: pointer;
 }
 
 

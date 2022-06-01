@@ -83,14 +83,15 @@ body {
   padding: 0.75rem;
   border-radius: 5rem;
   width: 100%;
+  cursor: pointer;
 }
 
-.table-container h2{
+.table-container h2 {
   text-align: center;
   margin: 2rem auto;
 }
 
-.table-container{
+.table-container {
   margin: 0 auto;
 }
 
@@ -118,48 +119,77 @@ body {
   color: white;
 }
 
-.table-container{
+.table-container {
   margin: 1rem auto;
   align-content: center;
 }
 
-.bkm-table{
+/* .bkm-table {
   border: 1px solid black;
-}
+} */
 
 
-#divbkms{
+#divbkms {
   overflow-x: scroll;
   text-align: center;
 }
 
-.bkm-table{
+.bkm-table {
   margin-left: auto;
   margin-right: auto;
 }
 
-.detail-container-approved{
-  background-color: rgb(25, 117, 5);
-  border: 1px black solid;
+.detail-container-approved {
+  background-color: rgb(33, 142, 8);
+  /* border: 1px black solid; */
   margin: 0 auto;
-  width: 862px;
+  max-width: 858px;
   color: white;
 }
 
-.detail-container-denied{
-  background-color: rgb(138, 7, 7);
-  border: 1px black solid;
+.detail-container-denied {
+  background-color: rgb(138, 8, 8);
+  /* border: 1px black solid; */
   margin: 0 auto;
-  width: 862px;
+  max-width: 858px;
   color: white;
 }
 
-.bkm-detail{
+.bkm-detail {
   display: block;
   margin: 0 auto;
   padding-left: 10px;
-  padding-bottom: 90px;
+  padding-bottom: 20px;
   text-align: left;
   width: 763px;
-  height: 74px;
+}
+
+.btns-conf-del {
+  display: flex;
+  padding-bottom: 0;
+}
+
+.btns-conf-del input[type='button'] {
+  background: #058e9a;
+  color: rgb(255, 255, 255);
+  border: 1px solid #222222;
+  padding: 0.75rem;
+  border-radius: 5rem;
+  width: 15%;
+  margin: 20px 20px 0 0;
+  transition: all 0.3s ease 0s;
+  font-weight: bold;
+}
+
+.btns-conf-del input[type='button']:hover {
+  background: #047777;
+  color: white;
+  border: 1px solid #222222;
+  padding: 0.75rem;
+  border-radius: 5rem;
+  width: 15%;
+  margin: 20px 20px 0 0;
+  transform: translateY(-5px);
+  cursor: pointer;
+  box-shadow: 0.5px 0.2px 4px #021b20;
 }
