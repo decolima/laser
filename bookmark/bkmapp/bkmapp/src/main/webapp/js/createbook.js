@@ -15,6 +15,7 @@ let txtCancellare = document.getElementById("cancellare");
 
 let btnNew = document.getElementById("btnNewBook");
 
+
 console.log(btnNewBook);
 
 btnNewBook.addEventListener("click", v => {
@@ -147,7 +148,6 @@ btnAddTag.addEventListener("click", f => {
         
 });
 
-
 btncancellaBook.addEventListener("click", a => {
     
     a.preventDefault();
@@ -176,6 +176,50 @@ btncancellaBook.addEventListener("click", a => {
                 console.log(response);
             } else {
                 console.log("Risposta OK per cancellare Book");
+                return response.json();
+            }
+            
+        });
+        
+});
+
+btnaggionaBook.addEventListener("click", a => {
+    
+    a.preventDefault();
+    
+    let txtAggionere = document.getElementById("aggionare");
+    
+    
+    console.log("Aggiona BookMark");
+    
+    const bk = {
+        id:txtAggionere.value,
+        descrizione:desc,
+        link:link,
+        condiviso:shared,
+        status:status,
+        motivorim:motivorim
+    
+    };
+    
+    console.log(JSON.stringify(bk)); /*stampare una string Json*/
+    
+    
+    fetch('http://localhost:8080/bkmapp/resources/books', {
+        method: 'PUT',
+        headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json',
+           'Authorization': 'Bearer ' + window.localStorage.getItem("token")
+            },
+           body: JSON.stringify(bk)
+        })
+        .then (response => {
+            if(response.ok === false){
+                console.log("Aggionamento di Book non riuscito");
+                console.log(response);
+            } else {
+                console.log("Aggionamento OK per cancellare Book");
                 return response.json();
             }
             

@@ -27,6 +27,7 @@ import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.container.ResourceContext;
@@ -71,6 +72,7 @@ public class BooksResources {
     @Claim(value = "sub")
     private String sub;
     
+ 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce tutti BookMark di uno uttenti")
@@ -85,20 +87,29 @@ public class BooksResources {
         System.out.println("Cerca bkms per " + usr.toString());
         return storebook.findAllByUserJson(usr.getId(), page,size);
     }
+
     
     @GET
-    @Path("/analizzare")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce tutti BookMarks di un utente")
     @APIResponses({
-        @APIResponse(responseCode = "200", description = "Elenco di Bkms a fare valutazione con successo"),
-        @APIResponse(responseCode = "404", description = "Elenco non trovato")
+        @APIResponse(responseCode = "200", description = "Bkms singolo di un utente"),
+        @APIResponse(responseCode = "404", description = "Bkm non trovato")
     })
-    @RolesAllowed("Admin")
-    public List<JsonObject> forValidation(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
+    @RolesAllowed({"Admin","User"})
+    public List<JsonObject>  findbkm(@PathParam("id") Long id) {
+        
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
+        Bookmarks bkm = storebook.find(id).orElseThrow(() -> new NotFoundException("Bkm non trovato. id=" + id.toString()));
+        
+        if(bkm.getUsr() != usr){    
+            new NotFoundException("Bookmark non trovato. id=" + id.toString());
+        }
+        
         System.out.println("Cerca bkms per valutazione " + usr.toString());
-        return storebook.findAllForValidating(page,size);
+       
+        return storebook.findBkmsJson(bkm);
     }
         
     @POST

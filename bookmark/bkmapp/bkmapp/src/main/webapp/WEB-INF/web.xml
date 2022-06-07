@@ -18,7 +18,8 @@
     <data-source>
         <name>java:global/jdbc/bkmapp</name>
         <class-name>com.mysql.cj.jdbc.MysqlConnectionPoolDataSource</class-name>
-        <url>jdbc:mysql://192.168.0.125:3306/bkmapp</url>
+        <!--url>jdbc:mysql://192.168.0.125:3306/bkmapp</url-->
+        <url>jdbc:mysql://localhost:3306/bkmapp</url>
         <user>bkmapp</user>
         <password>bkmapp</password>
     </data-source>
