@@ -9,7 +9,6 @@ const searchBkm = () => {
 
 const searchBkmById  = (id) => {
     const fullurl = `${url}/${id}`;
-    console.log(fullurl);
     return getJsonData(fullurl, true)
 }
 
@@ -24,11 +23,14 @@ const doBkms = async (desc, link, shared, status, motivorim) => {
     return postJsonData(url,BkmData,true);
 }
 
-const updateBkms = async (desc, link, shared) =>{
+const updateBkms = async (id, desc, link, shared, status, motivorim) =>{
     const bkmData ={
+        id:id,
         descrizione:desc,
         link:link,
-        condiviso:shared
+        condiviso:shared,
+        status:status,
+        motivorim:motivorim
     };
     return putJsonData(url, bkmData, true);
 }

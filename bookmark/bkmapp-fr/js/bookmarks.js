@@ -1,8 +1,16 @@
-import { doBkms, searchBkm, searchBkmById } from "../js/boundary/bookstore.js"
+import { doBkms, searchBkm, searchBkmById, updateBkms } from "../js/boundary/bookstore.js"
 let body = document.getElementsByTagName("body")[0];
 let btnCreaBkms = document.querySelector("#btnCreaBkms");
+let btnDelBkm = document.querySelector(".btnDel");
+let bkmId;
+let bkmStatus;
+let bkmMotiv;
+let bkmDesc = document.querySelector("#descrizione");
+let bkmLink = document.querySelector("#link");
+let bkmShared = document.querySelector("#condiviso");
 /* let btnUpdateBkms = document.querySelector("#btnUpdate"); */
 let role = sessionStorage.getItem("role") === "Admin";
+let user = sessionStorage.getItem("mail");
 console.log(role);
 
 //regione di diclarazione di listener
@@ -11,21 +19,15 @@ body.addEventListener("load", loadBkms(), false);
 
 
 //regione di dichiarazione del listner
-btnCreaBkms.addEventListener("click", v => {
-    console.log("Event creaBkms Click");
-    v.preventDefault;
-    let txtDesc = document.getElementById("descrizione").value;
-    let txtLink = document.getElementById("link").value;
-    let ckCondiviso = document.getElementById("condiviso");
+let CreaBkm = () => {
     let shared = false;
-
-    if (ckCondiviso.checked) {
+    if (bkmShared.checked) {
         shared = true;
     }
 
     try {
 
-        let response = doBkms(txtDesc, txtLink, shared, "Nuovo", "")
+        doBkms(bkmDesc.value, bkmLink.value, shared, "Nuovo", "")
             .then(data => {
                 console.log(data);
             })
@@ -37,7 +39,7 @@ btnCreaBkms.addEventListener("click", v => {
     }
 
 
-});
+};
 
 function loadBkms() {
 
@@ -59,8 +61,8 @@ function loadBkms() {
 
                 for (let i = 0; i < bkmsdata.length; i++) {
                     row = "<table class='bkm-table' id=table><tr class = 'bkm-table-body'>";
-                    row += "<td id= tdesc/"+i+">" + bkmsdata[i].descrizione + "</td>";
-                    row += "<td id= tlink/"+i+">" + bkmsdata[i].link + "</td>";
+                    row += "<td id= tdesc/" + i + ">" + bkmsdata[i].descrizione + "</td>";
+                    row += "<td id= tlink/" + i + ">" + bkmsdata[i].link + "</td>";
                     let date = bkmsdata[i].dtcreazione.substring(2, 10);
                     let time = bkmsdata[i].dtcreazione.substring(12, 19);
                     row += "<td>" + date + " " + time + "</td>";
@@ -69,9 +71,9 @@ function loadBkms() {
 
                     let statusbkm = bkmsdata[i].status;
                     row += "</tr> </table>";
-                    if(statusbkm === "Vietato"){
-                    row += "<div class= 'detail-container-denied'> <details>";
-                    }else{
+                    if (statusbkm === "Vietato") {
+                        row += "<div class= 'detail-container-denied'> <details>";
+                    } else {
                         row += "<div class= 'detail-container-approved'> <details>";
                     }
                     row += "<div class='bkm-detail'>";
@@ -79,7 +81,7 @@ function loadBkms() {
                     row += "<p> Status: " + bkmsdata[i].status + "</p>";
                     row += "<p> Motivo: " + bkmsdata[i].motivorim + "</p>";
                     row += `<div class='btns-conf-del'><input class='btnUpdate' id='${bkmsdata[i].idbkm}' type='button' value='Aggiorna'>`;
-                    row += `<input type='button' id='${i}' value='Elimina'></div>`;
+                    row += `<input type='button' class='btnDel' id='${i}' value='Elimina'></div>`;
                     row += "</div>"
                     row += "</details> </div>";
 
@@ -95,64 +97,92 @@ function loadBkms() {
 
 }
 
-/* let btns = document.querySelectorAll(".btnUpdate");
-for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-        console.log("prova")
-    });
-} */
 
-$(document).on("click", ".btnUpdate", function(){
+
+
+/* 
+
+    Definisco la funzione che caricherà i dati in base all'id del bookmark ottenuto dall'id bottone
+
+*/
+
+$(document).on("click", ".btnUpdate", function () {
     try {
-        let bkm = searchBkmById(this.id)
+        searchBkmById(this.id)
             .then(bkmsdata => {
                 console.log(bkmsdata);
 
                 for (let i = 0; i < bkmsdata.length; i++) {
-                        
-                    document.getElementById("descrizione").innerText = bkm.descrizione;
-                    document.getElementById("link").innerText = bkm.link; 
-                    document.getElementById("condiviso").value = bkm.condiviso; 
-    
-        /*
-                    row = "<table class='bkm-table' id=table><tr class = 'bkm-table-body'>";
-                    row += "<td id= tdesc/"+i+">" + bkmsdata[i].descrizione + "</td>";
-                    row += "<td id= tlink/"+i+">" + bkmsdata[i].link + "</td>";
-                    let date = bkmsdata[i].dtcreazione.substring(2, 10);
-                    let time = bkmsdata[i].dtcreazione.substring(12, 19);
-                    row += "<td>" + date + " " + time + "</td>";
-                    row += "<td>" + bkmsdata[i].utente + "</td>";
-                    row += "<td>" + bkmsdata[i].condiviso + "</td>";
+                    if (user === bkmsdata[i].mail) {
+                        bkmId = this.id;
+                        bkmDesc.value = bkmsdata[i].descrizione;
+                        bkmLink.value = bkmsdata[i].link;
+                        bkmStatus = bkmsdata[i].status;
+                        bkmMotiv = bkmsdata[i].motivorim;
+                        console.log(bkmId);
+                        console.log(bkmStatus);
+                        console.log(bkmMotiv);
 
-                    let statusbkm = bkmsdata[i].status;
-                    row += "</tr> </table>";
-                    if(statusbkm === "Vietato"){
-                    row += "<div class= 'detail-container-denied'> <details>";
-                    }else{
-                        row += "<div class= 'detail-container-approved'> <details>";
+                        if (bkmsdata[i].condiviso === true) {
+                            bkmShared.checked = true;
+                        } if (bkmsdata[i].condiviso === false) {
+                            bkmShared.checked = false;
+                        }
+                        document.querySelector("#btnNewBkms").disabled = false;
+                        btnCreaBkms.value = "Conferma Modifiche";
+                        document.body.scrollIntoView({
+                            behavior: "smooth",
+                        });
+                    } else {
+                        console.log("non sei il proprietario di questo bookmark");
                     }
-                    row += "<div class='bkm-detail'>";
-                    row += "<p> Id: " + bkmsdata[i].idbkm + "</p>";
-                    row += "<p> Status: " + bkmsdata[i].status + "</p>";
-                    row += "<p> Motivo: " + bkmsdata[i].motivorim + "</p>";
-                    row += `<div class='btns-conf-del'><input class='btnUpdate' id='${bkmsdata[i].idbkm}' type='button' value='Aggiorna'>`;
-                    row += `<input type='button' id='${i}' value='Elimina'></div>`;
-                    row += "</div>"
-                    row += "</details> </div>";
-
-                    table += row;
                 }
-
-                document.querySelector("#divbkms").innerHTML = table;
-        */
-
             })
     } catch (e) {
         console.log(e);
     }
+});
 
+$(document).on("click", "#btnNewBkms", function () {
+    prepareBkm();
+    this.disabled = true;
+});
 
+$(document).on("click", "#btnCreaBkms", function () {
+    if (this.value === "Conferma Modifiche") {
+        console.log("sto aggiornando un bookmark")
+        try {
+            updateBkms(
+                bkmId,
+                bkmDesc.value,
+                bkmLink.value,
+                bkmShared.checked,
+                bkmStatus,
+                bkmMotiv
+            ).then(() =>{
+                loadBkms()
+            });
+        } catch (e){
+            console.log(e);
+        }
+    }
+    if (this.value === "Crea Bookmark") {
+        console.log("sto creando un bookmark");
+        CreaBkm();
+    }
+    prepareBkm();
     
+})
+
+const prepareBkm = () => {
+    bkmDesc.value = ""
+    bkmLink.value = ""
+    bkmShared.checked = false;
+    btnCreaBkms.value = "Crea Bookmark";
+}
+
+$(document).on("click", ".btnDel", function () {
+    loadBkms();
 });
 
 
