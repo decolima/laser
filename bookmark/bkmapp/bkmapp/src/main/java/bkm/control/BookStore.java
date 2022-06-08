@@ -112,6 +112,8 @@ public class BookStore {
                 .add("utenteagg", book.getUsragg().getFirstName())
                 .add("motivorim", book.getMotivorim())    
                 .add("Tags", book.tagstostring())
+                .add("mail", book.getUsr().getEmail()) 
+                .add("mail", book.getUsr().getEmail())  
                 .build();
             
             jbook.add(jb);
@@ -145,6 +147,7 @@ public class BookStore {
                 .add("utenteagg", book.getUsragg().getFirstName())
                 .add("motivorim", book.getMotivorim())    
                 .add("Tags", book.tagstostring())
+                .add("mail", book.getUsr().getEmail())  
                 .build();
             
             jbook.add(jb);
