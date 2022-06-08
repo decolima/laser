@@ -6,6 +6,7 @@ class User {
   String token = "";
   String? link = "";
   int userid = 0;
+  String? error = "";
 
   User(
       {required this.firstName,
@@ -13,7 +14,8 @@ class User {
       required this.mail,
       required this.role,
       required this.token,
-      required this.userid});
+      required this.userid,
+      required this.error});
 
   User.fromJson(Map<String, dynamic> json) {
     firstName = json['first_name'];

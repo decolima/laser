@@ -12,7 +12,7 @@ class _DoListUtenti extends State<DoListUtenti> {
 
   _getUsers() {
     try {
-      rest.getRest("/users/slice", false, "").then((response) {
+      rest.getRest("/users/allslice", false, "").then((response) {
         setState(() {
           for (var e in response) {
             users.add(User.fromJsonSlice(e));
@@ -31,20 +31,28 @@ class _DoListUtenti extends State<DoListUtenti> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Lista Utenti"),
-      ),
-      body: getUtenti(),
-    );
+        appBar: AppBar(
+          title: const Text("Lista Utenti"),
+        ),
+        body: getUtenti());
   }
 
+  int _selectedIndex = -1;
   getUtenti() {
     return ListView.builder(
         itemCount: users.length,
         itemBuilder: (context, index) {
           return ListTile(
-              title: Text(users[index].firstName.toString()),
-              subtitle: Text(users[index].link.toString()));
+            selectedColor: Colors.blue,
+            selected: index == _selectedIndex,
+            title: Text(users[index].firstName.toString()),
+            subtitle: Text(users[index].link.toString()),
+            onTap: () {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+          );
         });
   }
 }

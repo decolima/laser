@@ -1,26 +1,16 @@
-import '../entity/bkms.dart';
 import '../entity/user.dart';
 import '../service/rest.dart';
 
 class userStore {
-  String _usr = "";
-  String _password = "";
-  late User _user;
-  var bkm = <Bkms>[];
-
-  userStore(String usr, String pwd) {
-    _usr = usr;
-    _password = pwd;
-  }
-
-  getUser() {
-    dynamic data = {'usr': _usr, 'pwd': _password};
+  static Future getUser(String usr, String pwd) async {
+    dynamic data = {'usr': usr, 'pwd': pwd};
+    late User _user;
     try {
-      rest.postRest("/users/login", false, "", data).then((response) {
-        _user = User.fromJson(response);
+      var resp = await rest.postRest("/users/login", false, "", data);
+      _user = User.fromJson(resp);
+      return (_user);
 
-        print(_user.token);
-
+      /*
         rest.getRest("/books", true, _user.token).then((respbkms) {
           for (var a in respbkms) {
             bkm.add(Bkms.fromJson(a));
@@ -30,11 +20,54 @@ class userStore {
             print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
           }
         });
-
-        return _user;
-      });
+        */
     } catch (e) {
-      return e.toString();
+      return User(
+          error: e.toString(),
+          firstName: "",
+          lastName: "",
+          mail: "",
+          role: "",
+          token: "",
+          userid: 0);
+    }
+  }
+
+  static Future posUser(
+      String firstName, String lastName, String mail, String pwd) async {
+    dynamic data = {
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': mail,
+      'pwd': pwd,
+      'roleuser': 'User'
+    };
+    late User _user;
+    try {
+      var resp = await rest.postRest("/users", false, "", data);
+      _user = User.fromJson(resp);
+      return (_user);
+
+      /*
+        rest.getRest("/books", true, _user.token).then((respbkms) {
+          for (var a in respbkms) {
+            bkm.add(Bkms.fromJson(a));
+          }
+          print(bkm.length);
+          for (var b in bkm) {
+            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+          }
+        });
+        */
+    } catch (e) {
+      return User(
+          error: e.toString(),
+          firstName: "",
+          lastName: "",
+          mail: "",
+          role: "",
+          token: "",
+          userid: 0);
     }
   }
 }
