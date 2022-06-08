@@ -37,10 +37,61 @@ class bkmsStore {
   }
 
   static Future getBkms(User usr) async {
-    late Bkms _bkms;
+    //late Bkms _bkms;
+    var _bkms = <Bkms>[];
+
     try {
       var resp = await rest.getRest("/books", true, usr.token);
+
+      for (var b in resp) {
+        print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+        _bkms.add(Bkms.fromJson(b));
+      }
+
+      return (_bkms);
+
+      /*
+        rest.getRest("/books", true, _user.token).then((respbkms) {
+          for (var a in respbkms) {
+            bkm.add(Bkms.fromJson(a));
+          }
+          print(bkm.length);
+          for (var b in bkm) {
+            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+          }
+        });
+        */
+    } catch (e) {
+      return Bkms(
+          error: e.toString(),
+          descrizione: "",
+          link: "",
+          dtaggiornamento: "",
+          condiviso: false,
+          dtcreazione: "",
+          motivorim: "",
+          status: "",
+          tags: "",
+          utente: "",
+          utenteagg: "",
+          idbkm: 0 as Long);
+    }
+  }
+
+  static Future getSingleBkms(User usr, String id) async {
+    late Bkms _bkms;
+    //var _bkms = <Bkms>[];
+
+    try {
+      var resp = await rest.getRest("/books/$id", true, usr.token);
+
+      /*for (var b in resp) {
+          print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+            _bkms.add(Bkms.fromJson(b));
+         }*/
+
       _bkms = Bkms.fromJson(resp);
+
       return (_bkms);
 
       /*
