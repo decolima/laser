@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 class Bkms {
-  Long idbkm = 0 as Long;
+  int idbkm = 0;
   String descrizione = "";
   String link = "";
   String utente = "";
@@ -12,6 +12,7 @@ class Bkms {
   String utenteagg = "";
   String motivorim = "";
   String? tags = "";
+  String mail = "";
   String? error;
 
   Bkms(
@@ -26,6 +27,7 @@ class Bkms {
       required this.utenteagg,
       required this.motivorim,
       required this.tags,
+      required this.mail,
       required this.error});
 
   Bkms.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class Bkms {
     utenteagg = json['utenteagg'];
     motivorim = json['motivorim'];
     tags = json['tags'];
+    mail = json['mail'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +58,7 @@ class Bkms {
     data['dtaggiornamento'] = dtaggiornamento;
     data['utenteagg'] = utenteagg;
     data['motivorim'] = motivorim;
+    data['mail'] = mail;
     data['tags'] = tags;
 
     return data;

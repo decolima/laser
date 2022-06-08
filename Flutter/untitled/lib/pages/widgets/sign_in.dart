@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:untitled/control/AppControl.dart';
+import 'package:untitled/control/UserStore.dart';
 import 'package:untitled/pages/login_page.dart';
 import 'package:dio/dio.dart';
 import 'package:untitled/pages/Bookmarks.dart';
 
+import '../../entity/user.dart';
 import '../Rest/login.dart';
 
 class SignIn extends StatefulWidget {
@@ -125,16 +128,19 @@ class _SignInState extends State<SignIn> {
           'ACCEDI',
           style: TextStyle(fontSize: 20.0),
         ),
-        onPressed: () => {
-          _api.loginBkm(
-            user: email.text,
-            pwd: pwd.text,
-          ),
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const Bookmarks(),
-            ),
-          ),
-        },
+        onPressed: () async {
+          var usr = await userStore.getUser(email.text, pwd.text);
+
+          if (usr != null) {
+            print(usr!.mail);
+
+            appControl.setUser(usr);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const Bookmarks(),
+              ),
+            );
+          }
+        }
       );
 }
