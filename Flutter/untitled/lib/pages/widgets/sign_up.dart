@@ -11,7 +11,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-
   bool _obscureTextPassword = true;
 
   final regisBkmApp _api = regisBkmApp();
@@ -160,7 +159,7 @@ class _SignUpState extends State<SignUp> {
           },
           textInputAction: TextInputAction.go,
         ),
-  );
+      );
 
   Widget _signUpButton(BuildContext context) => ElevatedButton(
       style: ElevatedButton.styleFrom(

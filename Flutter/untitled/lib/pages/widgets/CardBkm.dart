@@ -8,6 +8,7 @@ class CardBkm extends StatefulWidget {
 }
 
 class _CardBkmState extends State<CardBkm> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,12 +23,59 @@ class _CardBkmState extends State<CardBkm> {
           padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
           width: 500.0,
           child: Column(
-            children: [
-            ],
+            children: [_descriptionField(), _linkField(), _checkCondiviso()],
           ),
         ),
       ),
     );
   }
 
+  Widget _descriptionField() => const Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        child: TextField(
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Inserisci la descrizione',
+            hintStyle: TextStyle(fontSize: 17.0),
+          ),
+        ),
+      );
+
+  Widget _linkField() => const Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
+        child: TextField(
+          style: TextStyle(
+            fontSize: 16.0,
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: 'Inserisci il link',
+            hintStyle: TextStyle(fontSize: 17.0),
+          ),
+        ),
+      );
+
+  Widget _checkCondiviso() => Row(
+    children: [
+      SizedBox(width: 28.0),
+      const Text('Condiviso',
+                  style: TextStyle(
+                                  fontSize: 18.0,
+                ),),
+      Checkbox(
+            checkColor: Colors.white,
+            value: isChecked,
+            onChanged: (bool? value) {
+              setState(() {
+                isChecked = value!;
+              });
+            },
+          ),
+    ],
+  );
 }
