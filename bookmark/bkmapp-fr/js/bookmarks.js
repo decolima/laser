@@ -1,7 +1,9 @@
 import { doBkms, searchBkm, searchBkmById, updateBkms } from "../js/boundary/bookstore.js"
 let body = document.getElementsByTagName("body")[0];
 let btnCreaBkms = document.querySelector("#btnCreaBkms");
-let btnDelBkm = document.querySelector(".btnDel");
+let btnNewBkms = document.querySelector("#btnNewBkms");
+/* let btnDelBkm = document.querySelector(".btnDel"); */
+let y = 80;
 let bkmId;
 let bkmStatus;
 let bkmMotiv;
@@ -130,7 +132,8 @@ $(document).on("click", ".btnUpdate", function () {
                         }
                         document.querySelector("#btnNewBkms").disabled = false;
                         btnCreaBkms.value = "Conferma Modifiche";
-                        document.body.scrollIntoView({
+                        window.scrollTo({
+                            top: y,
                             behavior: "smooth",
                         });
                     } else {
@@ -179,11 +182,12 @@ const prepareBkm = () => {
     bkmLink.value = ""
     bkmShared.checked = false;
     btnCreaBkms.value = "Crea Bookmark";
+    btnNewBkms.disabled = true;
 }
 
-$(document).on("click", ".btnDel", function () {
+/* $(document).on("click", ".btnDel", function () {
     loadBkms();
-});
+}); */
 
 
 
