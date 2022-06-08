@@ -8,7 +8,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
-          padding: EdgeInsets.all(64.0),
+         padding: EdgeInsets.all(58.0),
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [

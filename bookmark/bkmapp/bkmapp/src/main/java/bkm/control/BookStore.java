@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import bkm.entity.Bookmarks;
 import bkm.entity.Tag;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.json.Json;
@@ -109,7 +110,7 @@ public class BookStore {
                 .add("status", book.getStatus().toString())
                 .add("dtaggiornamento", book.getAggiornamento().toString())
                 .add("utenteagg", book.getUsragg().getFirstName())
-                .add("motivorim", book.getUsragg().getFirstName())    
+                .add("motivorim", book.getMotivorim())    
                 .add("Tags", book.tagstostring())
                 .build();
             
@@ -118,6 +119,37 @@ public class BookStore {
         
         return jbook;
         
+    }
+
+    public List<JsonObject> findBkmsJson(Bookmarks entity) {
+
+        List<Bookmarks> books = new ArrayList<Bookmarks> ();
+        
+        books.add(entity);
+
+        List<JsonObject> jbook = new ArrayList<>();
+        
+        
+        for (Bookmarks book : books) {
+            
+            JsonObject jb = Json.createObjectBuilder()
+                .add("idbkm", book.getId().toString())
+                .add("descrizione", book.getDescrizione())
+                .add("link", book.getLink())
+                .add("utente", book.getUsr().getFirstName())
+                .add("condiviso", book.getCondiviso())
+                .add("dtcreazione", book.getCreazione().toString())
+                .add("status", book.getStatus().toString())
+                .add("dtaggiornamento", book.getAggiornamento().toString())
+                .add("utenteagg", book.getUsragg().getFirstName())
+                .add("motivorim", book.getMotivorim())    
+                .add("Tags", book.tagstostring())
+                .build();
+            
+            jbook.add(jb);
+        }
+        
+        return jbook;
     }
 
     public Optional<Bookmarks> find(Long id) {

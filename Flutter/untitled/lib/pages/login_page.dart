@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
   Widget _logoWidget() => const Padding(
-        padding: EdgeInsets.only(top: 50.0),
+        padding: EdgeInsets.only(top: 58.0),
         child: Image(
             image: AssetImage('assets/images/login_logo.png'), height: 105.0),
       );
