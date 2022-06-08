@@ -101,6 +101,7 @@ public class BooksResources {
     public List<JsonObject>  findbkm(@PathParam("id") Long id) {
         
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
+        
         Bookmarks bkm = storebook.find(id).orElseThrow(() -> new NotFoundException("Bkm non trovato. id=" + id.toString()));
         
         if(bkm.getUsr() != usr){    
@@ -109,7 +110,7 @@ public class BooksResources {
         
         System.out.println("Cerca bkms per valutazione " + usr.toString());
        
-        return storebook.findBkmsJson(bkm);
+        return storebook.findBkmsJson(id);
     }
         
     @POST
@@ -166,6 +167,8 @@ public class BooksResources {
             new NotFoundException("Bookmark non trovato. id=" + entity.getDescrizione());
         }
         
+        entity.setId(bkms.getId());
+        entity.setVersion(bkms.getVersion());
         entity.setUsr(bkms.getUsr());
         entity.setUsragg(usr);
         entity.setCreazione(bkms.getCreazione());

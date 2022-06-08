@@ -188,19 +188,27 @@ btnaggionaBook.addEventListener("click", a => {
     a.preventDefault();
     
     let txtAggionere = document.getElementById("aggionare");
+    let condiviso = false;
+   
+    
+    if(txtCondiviso.value === 1){
+        condiviso = "true";
+    }
     
     
     console.log("Aggiona BookMark");
     
     const bk = {
         id:txtAggionere.value,
-        descrizione:desc,
-        link:link,
-        condiviso:shared,
-        status:status,
-        motivorim:motivorim
+        descrizione:txtDescrizione.value,
+        link:txtLink.value,
+        condiviso:condiviso,
+        status:"Nuovo",
+        motivorim:"test Motivo"
     
     };
+    
+    console.log(bk);
     
     console.log(JSON.stringify(bk)); /*stampare una string Json*/
     
@@ -219,7 +227,7 @@ btnaggionaBook.addEventListener("click", a => {
                 console.log("Aggionamento di Book non riuscito");
                 console.log(response);
             } else {
-                console.log("Aggionamento OK per cancellare Book");
+                console.log("Aggionamento OK per Book");
                 return response.json();
             }
             

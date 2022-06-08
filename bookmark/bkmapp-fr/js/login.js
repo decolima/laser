@@ -24,6 +24,7 @@ function login() {
                 sessionStorage.setItem("first_name", data.first_name);
                 sessionStorage.setItem("last_name", data.last_name);
                 sessionStorage.setItem("role", data.role);
+                window.location.replace("bookmarks.html");
                 init();
             })
      }

@@ -112,6 +112,7 @@ public class BookStore {
                 .add("utenteagg", book.getUsragg().getFirstName())
                 .add("motivorim", book.getMotivorim())    
                 .add("Tags", book.tagstostring())
+                .add("mail", book.getUsr().getEmail())  
                 .build();
             
             jbook.add(jb);
@@ -121,12 +122,13 @@ public class BookStore {
         
     }
 
-    public List<JsonObject> findBkmsJson(Bookmarks entity) {
+    public List<JsonObject> findBkmsJson(Long id) {
 
-        List<Bookmarks> books = new ArrayList<Bookmarks> ();
+        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where e.id = :id", Bookmarks.class)
+                .setParameter("id", id)
+                .getResultList();
+
         
-        books.add(entity);
-
         List<JsonObject> jbook = new ArrayList<>();
         
         
@@ -144,6 +146,7 @@ public class BookStore {
                 .add("utenteagg", book.getUsragg().getFirstName())
                 .add("motivorim", book.getMotivorim())    
                 .add("Tags", book.tagstostring())
+                .add("mail", book.getUsr().getEmail())  
                 .build();
             
             jbook.add(jb);
