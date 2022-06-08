@@ -43,17 +43,6 @@ class bkmsStore {
       _bkms = Bkms.fromJson(resp);
       return (_bkms);
 
-      /*
-        rest.getRest("/books", true, _user.token).then((respbkms) {
-          for (var a in respbkms) {
-            bkm.add(Bkms.fromJson(a));
-          }
-          print(bkm.length);
-          for (var b in bkm) {
-            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-          }
-        });
-        */
     } catch (e) {
       return Bkms(
           error: e.toString(),
