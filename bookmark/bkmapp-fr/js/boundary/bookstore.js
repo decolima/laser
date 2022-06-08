@@ -7,10 +7,10 @@ const searchBkm = () => {
     return getJsonData(url, true)
 }
 
-const searchBkmById = (id) => {
+const searchBkmById  = (id) => {
     const fullurl = `${url}/${id}`;
     console.log(fullurl);
-    return getJsonData(fullurl, true);
+    return getJsonData(fullurl, true)
 }
 
 const doBkms = async (desc, link, shared, status, motivorim) => {
