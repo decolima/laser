@@ -44,7 +44,7 @@ const getJsonData = async (url, reqAuth = true) => {
 }
 
 
-const putJsonData = async (url, reqAuth = true) => {
+const putJsonData = async (url, data, reqAuth = true) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
@@ -54,7 +54,8 @@ const putJsonData = async (url, reqAuth = true) => {
         method: 'PUT', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached,
-        headers: headers
+        headers: headers,
+        body: JSON.stringify(data)
     }).catch(error => {
         throw new RestException(undefined,error);
     })
