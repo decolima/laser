@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'package:backendrest/control/appControl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import '../control/UserStore.dart';
-import '../entity/user.dart';
+import '../control/BkmsStore.dart';
+import 'bookmarks.dart';
 
 class WidgetLogin extends StatefulWidget {
   @override
@@ -16,7 +16,10 @@ class _WidgetLoginState extends State<WidgetLogin> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController email = TextEditingController(text: '');
+    final TextEditingController email =
+        TextEditingController(text: 'andre@bkmapp.it');
+    final TextEditingController pass = TextEditingController(text: 'andre');
+
     final emailField = TextField(
       controller: email,
       obscureText: false,
@@ -28,7 +31,6 @@ class _WidgetLoginState extends State<WidgetLogin> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
-    final TextEditingController pass = TextEditingController(text: '');
     final passwordField = TextField(
       controller: pass,
       obscureText: true,
@@ -50,7 +52,12 @@ class _WidgetLoginState extends State<WidgetLogin> {
         ),
         onPressed: () async {
           var user = await userStore.getUser(email.text, pass.text);
-          if (user != null) print(user!.mail);
+          if (user != null) {
+            appControl.setUser(user);
+            bkmsStore.getBkms(appControl.getUser());
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => bookmarks()));
+          }
         },
       ),
     );

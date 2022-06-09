@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'package:backendrest/control/appControl.dart';
 
 import '../entity/bkms.dart';
 import '../entity/user.dart';
@@ -16,117 +16,53 @@ class bkmsStore {
     };
     late Bkms _bkms;
     try {
+      print(usr.mail);
+
       var resp = await rest.postRest("/books", true, usr.token, data);
-      _bkms = Bkms.fromJson(resp);
+      _bkms = Bkms.fromJsonPost(resp);
+      print(resp);
       return (_bkms);
     } catch (e) {
-      return Bkms(
-          error: e.toString(),
-          descrizione: "",
-          link: "",
-          dtaggiornamento: "",
-          condiviso: false,
-          dtcreazione: "",
-          motivorim: "",
-          status: "",
-          tags: "",
-          utente: "",
-          utenteagg: "",
-          mail: "",
-          idbkm: 0 as Long);
+      return Bkms(error: e.toString());
     }
   }
 
   static Future getBkms(User usr) async {
-    //late Bkms _bkms;
     var _bkms = <Bkms>[];
+    var resp = [];
 
     try {
-      var resp = await rest.getRest("/books", true, usr.token);
+      resp = await rest.getRest("/books", true, usr.token);
+      resp.forEach((element) {
+        _bkms.add(Bkms.fromJson(element));
+      });
 
-      for (var b in resp) {
-        print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-        _bkms.add(Bkms.fromJson(b));
-      }
-
-      return (_bkms);
-
-      /*
-        rest.getRest("/books", true, _user.token).then((respbkms) {
-          for (var a in respbkms) {
-            bkm.add(Bkms.fromJson(a));
-          }
-          print(bkm.length);
-          for (var b in bkm) {
-            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-          }
-        });
-        */
+      _bkms.forEach((b) {
+        appControl.addBkms(b);
+      });
+      return (true);
     } catch (e) {
-      return Bkms(
-          error: e.toString(),
-          descrizione: "",
-          link: "",
-          dtaggiornamento: "",
-          condiviso: false,
-          dtcreazione: "",
-          motivorim: "",
-          status: "",
-          tags: "",
-          utente: "",
-          utenteagg: "",
-          mail: "",
-          idbkm: 0 as Long);
+      print(e);
+      return Bkms(error: e.toString());
     }
   }
 
   static Future getSingleBkms(User usr, String id) async {
     late Bkms _bkms;
-    //var _bkms = <Bkms>[];
 
     try {
       var resp = await rest.getRest("/books/$id", true, usr.token);
 
-      /*for (var b in resp) {
-          print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-            _bkms.add(Bkms.fromJson(b));
-         }*/
-
       _bkms = Bkms.fromJson(resp);
 
       return (_bkms);
-
-      /*
-        rest.getRest("/books", true, _user.token).then((respbkms) {
-          for (var a in respbkms) {
-            bkm.add(Bkms.fromJson(a));
-          }
-          print(bkm.length);
-          for (var b in bkm) {
-            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-          }
-        });
-        */
     } catch (e) {
-      return Bkms(
-          error: e.toString(),
-          descrizione: "",
-          link: "",
-          dtaggiornamento: "",
-          condiviso: false,
-          dtcreazione: "",
-          motivorim: "",
-          status: "",
-          tags: "",
-          utente: "",
-          utenteagg: "",
-          mail: "",
-          idbkm: 0 as Long);
+      return Bkms(error: e.toString());
     }
   }
 
   static Future putBkms(
-      User usr, Long id, String desc, String link, bool shared) async {
+      User usr, int id, String desc, String link, bool shared) async {
     dynamic data = {
       'id': id,
       'descrizione': desc,
@@ -141,20 +77,7 @@ class bkmsStore {
       _bkms = Bkms.fromJson(resp);
       return (_bkms);
     } catch (e) {
-      return Bkms(
-          error: e.toString(),
-          descrizione: "",
-          link: "",
-          dtaggiornamento: "",
-          condiviso: false,
-          dtcreazione: "",
-          motivorim: "",
-          status: "",
-          tags: "",
-          utente: "",
-          utenteagg: "",
-          mail: "",
-          idbkm: 0 as Long);
+      return Bkms(error: e.toString());
     }
   }
 }
