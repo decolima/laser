@@ -2,7 +2,6 @@ import '../entity/user.dart';
 import '../service/rest.dart';
 
 class userStore {
-
   static Future getUser(String usr, String pwd) async {
     dynamic data = {'usr': usr, 'pwd': pwd};
     late User _user;
@@ -11,6 +10,17 @@ class userStore {
       _user = User.fromJson(resp);
       return (_user);
 
+      /*
+        rest.getRest("/books", true, _user.token).then((respbkms) {
+          for (var a in respbkms) {
+            bkm.add(Bkms.fromJson(a));
+          }
+          print(bkm.length);
+          for (var b in bkm) {
+            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+          }
+        });
+        */
     } catch (e) {
       return User(
           error: e.toString(),
@@ -38,7 +48,17 @@ class userStore {
       _user = User.fromJson(resp);
       return (_user);
 
-
+      /*
+        rest.getRest("/books", true, _user.token).then((respbkms) {
+          for (var a in respbkms) {
+            bkm.add(Bkms.fromJson(a));
+          }
+          print(bkm.length);
+          for (var b in bkm) {
+            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
+          }
+        });
+        */
     } catch (e) {
       return User(
           error: e.toString(),
