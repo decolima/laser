@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
-
 import 'login_page.dart';
 
-//class WelcomePage extends StatelessWidget {
-//  const WelcomePage({Key? key}) : super(key: key);
 class WelcomePage extends StatefulWidget {
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-
- @override
+  @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
-          padding: EdgeInsets.all(58.0),
-          //decoration: const BoxDecoration(
-          /*gradient: LinearGradient(
+          padding: const EdgeInsets.all(58.0),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
               colors: [
                 CustomTheme.gradientStart,
                 CustomTheme.gradientEnd,
@@ -25,7 +21,7 @@ class _WelcomePageState extends State<WelcomePage> {
               begin: FractionalOffset(0.0, 0.0),
               end: FractionalOffset(1.0, 1.0),
             ),
-          ),*/
+          ),
           child: Column(
             children: [_welcomeWidget(), _signInButton(context)],
           ),
@@ -40,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 image: AssetImage('assets/images/Photo.png'),
                 fit: BoxFit.fitWidth),
             Padding(
-              padding: const EdgeInsets.only(top: 50.0),
+              padding: EdgeInsets.only(top: 50.0),
               child: Text(
                 'Bookmarks App',
                 style: TextStyle(
@@ -64,7 +60,7 @@ class _WelcomePageState extends State<WelcomePage> {
       );
   Widget _signInButton(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(0xFF00C853),
+          primary: const Color(0xFF00C853),
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 48.0),
@@ -81,7 +77,4 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
       );
-
 }
-
-

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../control/AppControl.dart';
 import '../../control/BkmsStore.dart';
-import '../../control/Listbkm.dart';
+import '../Listbkm.dart';
 
 class bookmarks extends StatefulWidget {
   @override
@@ -10,12 +10,14 @@ class bookmarks extends StatefulWidget {
 
 class _bookmarksState extends State<bookmarks> {
   _bookmarksState() {
-    var resp = BkmsStore.getBkms(AppControl.getUser());
-    print(AppControl.getBkms().length);
+    var u = AppControl.getUser();
+    if (u != null || u!.userid != 0) {
+      BkmsStore.getBkms(u);
+      print(AppControl.getBkms().length);
+    }
   }
 
   TextStyle style = const TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
-  int _selectedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +55,10 @@ class _bookmarksState extends State<bookmarks> {
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
-          var bkms = await BkmsStore.postBkms(
-              AppControl.getUser(), desc.text, link.text, false);
+          var u = AppControl.getUser();
+          if (u != null || u!.userid != 0) {
+            await BkmsStore.postBkms(u, desc.text, link.text, false);
+          }
         },
       ),
     );

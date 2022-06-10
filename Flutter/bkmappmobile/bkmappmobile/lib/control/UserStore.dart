@@ -4,23 +4,11 @@ import '../service/rest.dart';
 class UserStore {
   static Future getUser(String usr, String pwd) async {
     dynamic data = {'usr': usr, 'pwd': pwd};
-    late User _user;
+    late User user;
     try {
       var resp = await rest.postRest("/users/login", false, "", data);
-      _user = User.fromJson(resp);
-      return (_user);
-
-      /*
-        rest.getRest("/books", true, _user.token).then((respbkms) {
-          for (var a in respbkms) {
-            bkm.add(Bkms.fromJson(a));
-          }
-          print(bkm.length);
-          for (var b in bkm) {
-            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-          }
-        });
-        */
+      user = User.fromJson(resp);
+      return (user);
     } catch (e) {
       return User(
           error: e.toString(),
@@ -42,23 +30,11 @@ class UserStore {
       'pwd': pwd,
       'roleuser': 'User'
     };
-    late User _user;
+    late User user;
     try {
       var resp = await rest.postRest("/users", false, "", data);
-      _user = User.fromJson(resp);
-      return (_user);
-
-      /*
-        rest.getRest("/books", true, _user.token).then((respbkms) {
-          for (var a in respbkms) {
-            bkm.add(Bkms.fromJson(a));
-          }
-          print(bkm.length);
-          for (var b in bkm) {
-            print("Bkm :${b.descrizione} link: ${b.link} Autore: ${b.utente}");
-          }
-        });
-        */
+      user = User.fromJson(resp);
+      return (user);
     } catch (e) {
       return User(
           error: e.toString(),

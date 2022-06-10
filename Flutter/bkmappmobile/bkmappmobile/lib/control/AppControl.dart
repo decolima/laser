@@ -2,14 +2,14 @@ import '../entity/Bkms.dart';
 import '../entity/User.dart';
 
 class AppControl {
-  static late User _usr;
+  static User? _usr;
   static final _bkms = <Bkms>[];
 
   static setUser(User u) {
     _usr = u;
   }
 
-  static User getUser() {
+  static User? getUser() {
     if (_usr != null) {
       return _usr;
     } else {

@@ -13,36 +13,36 @@ class BkmsStore {
       'status': 'Nuovo',
       'motivorim': ""
     };
-    late Bkms _bkms;
+    late Bkms bkms;
     try {
       print(usr.mail);
 
       var resp = await rest.postRest("/books", true, usr.token, data);
-      _bkms = Bkms.fromJsonPost(resp);
+      bkms = Bkms.fromJsonPost(resp);
       print(resp);
-      return (_bkms);
+      return (bkms);
     } catch (e) {
       return Bkms(error: e.toString());
     }
   }
 
   static Future getBkms(User usr) async {
-    var _bkms = <Bkms>[];
+    var bkms = <Bkms>[];
     var resp = [];
 
     print(usr.firstName);
 
     try {
       resp = await rest.getRest("/books", true, usr.token);
-      resp.forEach((element) {
-        print(element);
-        _bkms.add(Bkms.fromJson(element));
-      });
+      for (var a in resp) {
+        print(a);
+        bkms.add(Bkms.fromJson(a));
+      }
 
-      _bkms.forEach((b) {
+      for (var b in bkms) {
         print("Add..${b.descrizione}");
         AppControl.addBkms(b);
-      });
+      }
       return (true);
     } catch (e) {
       print(e);
@@ -51,14 +51,14 @@ class BkmsStore {
   }
 
   static Future getSingleBkms(User usr, String id) async {
-    late Bkms _bkms;
+    late Bkms bkms;
 
     try {
       var resp = await rest.getRest("/books/$id", true, usr.token);
 
-      _bkms = Bkms.fromJson(resp);
+      bkms = Bkms.fromJson(resp);
 
-      return (_bkms);
+      return (bkms);
     } catch (e) {
       return Bkms(error: e.toString());
     }
@@ -74,11 +74,11 @@ class BkmsStore {
       'status': 'Nuovo',
       'motivorim': ""
     };
-    late Bkms _bkms;
+    late Bkms bkms;
     try {
       var resp = await rest.putRest("/books", true, usr.token, data);
-      _bkms = Bkms.fromJson(resp);
-      return (_bkms);
+      bkms = Bkms.fromJson(resp);
+      return (bkms);
     } catch (e) {
       return Bkms(error: e.toString());
     }

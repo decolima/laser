@@ -11,8 +11,6 @@ class WidgetLogin extends StatefulWidget {
 
 class _WidgetLoginState extends State<WidgetLogin> {
   TextStyle style = const TextStyle(fontFamily: "Montserrat", fontSize: 20.0);
-  //late User user;
-  //late userStore usrControl;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +52,12 @@ class _WidgetLoginState extends State<WidgetLogin> {
           var user = await UserStore.getUser(email.text, pass.text);
           if (user != null) {
             AppControl.setUser(user);
-            BkmsStore.getBkms(AppControl.getUser());
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => bookmarks()));
+            var u = AppControl.getUser();
+            if (u != null || u!.userid != 0) {
+              BkmsStore.getBkms(u);
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => bookmarks()));
+            }
           }
         },
       ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/control/UserStore.dart';
+import '../../control/UserStore.dart';
 import '../../pages/login_page.dart';
-//import 'package:untitled/pages/Rest/regis.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -11,8 +10,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool _obscureTextPassword = true;
-
-  //final regisBkmApp _api = regisBkmApp();
 
   final _focusNodeFirstName = FocusNode();
   final _focusNodeLastName = FocusNode();
@@ -29,33 +26,31 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Flex(
-          direction: Axis.vertical,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _firstNameField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _lastNameField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _emailField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _passwordField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _signUpButton(context),
-            const SizedBox(
-              height: 5.0,
-            )
-          ],
-        ),
+      body: Flex(
+        direction: Axis.vertical,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _firstNameField(),
+          const SizedBox(
+            height: 5.0,
+          ),
+          _lastNameField(),
+          const SizedBox(
+            height: 5.0,
+          ),
+          _emailField(),
+          const SizedBox(
+            height: 5.0,
+          ),
+          _passwordField(),
+          const SizedBox(
+            height: 5.0,
+          ),
+          _signUpButton(context),
+          const SizedBox(
+            height: 5.0,
+          )
+        ],
       ),
     );
   }
@@ -162,7 +157,7 @@ class _SignUpState extends State<SignUp> {
 
   Widget _signUpButton(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(0xFF00C853),
+          primary: const Color(0xFF00C853),
         ),
         child: const Text(
           'REGISTRATI',
