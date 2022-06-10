@@ -2,9 +2,10 @@ import 'package:backendrest/entity/bkms.dart';
 
 import '../entity/user.dart';
 
-class appControl {
+class AppControl {
   static late User _usr;
-  static var _bkms = <Bkms>[];
+  static final _bkms = <Bkms>[];
+  static bool logged = false;
 
   static setUser(User u) {
     _usr = u;

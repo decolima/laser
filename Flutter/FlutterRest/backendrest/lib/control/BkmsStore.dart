@@ -4,7 +4,7 @@ import '../entity/bkms.dart';
 import '../entity/user.dart';
 import '../service/rest.dart';
 
-class bkmsStore {
+class BkmsStore {
   static Future postBkms(
       User usr, String desc, String link, bool shared) async {
     dynamic data = {
@@ -38,7 +38,7 @@ class bkmsStore {
       });
 
       _bkms.forEach((b) {
-        appControl.addBkms(b);
+        AppControl.addBkms(b);
       });
       return (true);
     } catch (e) {

@@ -51,12 +51,18 @@ class _WidgetLoginState extends State<WidgetLogin> {
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
-          var user = await userStore.getUser(email.text, pass.text);
-          if (user != null) {
-            appControl.setUser(user);
-            bkmsStore.getBkms(appControl.getUser());
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => bookmarks()));
+          if (!AppControl.logged) {
+            var user = await userStore.getUser(email.text, pass.text);
+            if (user != null) {
+              AppControl.setUser(user);
+
+              //BkmsStore.getBkms(AppControl.getUser());
+
+              AppControl.logged = true;
+
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => bookmarks()));
+            }
           }
         },
       ),

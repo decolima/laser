@@ -1,8 +1,8 @@
-import 'package:backendrest/control/UserStore.dart';
-import 'package:backendrest/pages/login.dart';
+import '../control/UserStore.dart';
+import '../pages/login.dart';
 import 'package:flutter/material.dart';
-import 'control/ListUtenti.dart';
-import 'entity/user.dart';
+import '../control/ListUtenti.dart';
+import '../entity/user.dart';
 
 void main() {
   runApp(MyApp());

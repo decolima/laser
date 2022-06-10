@@ -9,13 +9,13 @@ class Listbkm extends StatefulWidget {
 
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
-    return Scaffold(body: getBkm());
+    return Scaffold(appBar: AppBar(), body: getBkm());
   }
 
   int _selectedIndex = -1;
 
   _getBkm() {
-    bkmsStore.getBkms(appControl.getUser());
+    BkmsStore.getBkms(AppControl.getUser());
   }
 
   _Listbkm() {
@@ -24,13 +24,13 @@ class _Listbkm extends State<Listbkm> {
 
   getBkm() {
     return ListView.builder(
-        itemCount: appControl.getBkms().length,
+        itemCount: AppControl.getBkms().length,
         itemBuilder: (context, index) {
           return ListTile(
             selectedColor: Colors.blue,
             selected: index == _selectedIndex,
-            title: Text(appControl.getBkms()[index].descrizione.toString()),
-            subtitle: Text(appControl.getBkms()[index].link.toString()),
+            title: Text(AppControl.getBkms()[index].descrizione.toString()),
+            subtitle: Text(AppControl.getBkms()[index].link.toString()),
             onTap: () {
               setState(() {
                 _selectedIndex = index;
