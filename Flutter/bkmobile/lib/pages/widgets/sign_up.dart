@@ -5,8 +5,6 @@ import '../../pages/login_page.dart';
 //import 'package:untitled/pages/Rest/regis.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _SignUpState();
 }
@@ -163,18 +161,21 @@ class _SignUpState extends State<SignUp> {
       );
 
   Widget _signUpButton(BuildContext context) => ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: Color(0xFF00C853),
-      ),
-      child: const Text(
-        'REGISTRATI',
-        style: TextStyle(fontSize: 20.0),
-      ),
-      onPressed: () async {
-        var user = await userStore.creaUser(firstname.text, lastname.text, email.text, pwd.text);
-        if (user != null) {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => new LoginPage()),);
-        }
-      },
-  );
+        style: ElevatedButton.styleFrom(
+          primary: Color(0xFF00C853),
+        ),
+        child: const Text(
+          'REGISTRATI',
+          style: TextStyle(fontSize: 20.0),
+        ),
+        onPressed: () async {
+          var user = await UserStore.creaUser(
+              firstname.text, lastname.text, email.text, pwd.text);
+          if (user != null) {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+          }
+        },
+      );
 }

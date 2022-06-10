@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import '../../pages/welcome_page.dart';
 
-class App extends StatelessWidget {
-  const App({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
+//class App extends StatelessWidget {
+class App extends StatefulWidget {
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+
+@override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Bookmarks App',
       home: WelcomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
+
 }
+

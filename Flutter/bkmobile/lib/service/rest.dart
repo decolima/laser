@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-const baseUrl = "http://192.168.0.125:8080/bkmapp/resources";
+const baseUrl = "http://172.20.10.9:8080/bkmapp/resources";
 
 class rest {
   static Future getRest(String path, bool auth, String token) async {

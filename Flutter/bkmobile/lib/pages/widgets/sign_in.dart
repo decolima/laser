@@ -5,12 +5,9 @@ import '../../control/UserStore.dart';
 import '../../pages/login_page.dart';
 import 'package:dio/dio.dart';
 import '../../pages/Bookmarks.dart';
-import '../../entity/user.dart';
-
+import '../../entity/User.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _SignInState();
 }
@@ -56,7 +53,8 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  final TextEditingController email = TextEditingController(text: 'andre@bkmapp.it');
+  final TextEditingController email =
+      TextEditingController(text: 'andre@bkmapp.it');
 
   Widget _emailField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
@@ -120,27 +118,26 @@ class _SignInState extends State<SignIn> {
       );
 
   Widget _signInButton() => ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: Color(0xFF00C853),
-        ),
-        child: const Text(
-          'ACCEDI',
-          style: TextStyle(fontSize: 20.0),
-        ),
-        onPressed: () async {
-          var usr = await userStore.getUser(email.text, pwd.text);
+      style: ElevatedButton.styleFrom(
+        primary: Color(0xFF00C853),
+      ),
+      child: const Text(
+        'ACCEDI',
+        style: TextStyle(fontSize: 20.0),
+      ),
+      onPressed: () async {
+        var usr = await UserStore.getUser(email.text, pwd.text);
 
-          if (usr != null) {
-            print(usr!.mail);
+        if (usr != null) {
+          print(usr!.mail);
 
-            appControl.setUser(usr);
+          AppControl.setUser(usr);
 
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const Bookmarks(),
-              ),
-            );
-          }
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const Bookmarks(),
+            ),
+          );
         }
-      );
+      });
 }

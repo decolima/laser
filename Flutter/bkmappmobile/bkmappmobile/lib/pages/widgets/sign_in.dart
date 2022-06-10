@@ -8,8 +8,6 @@ import '../../pages/Bookmarks.dart';
 import '../../entity/User.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _SignInState();
 }

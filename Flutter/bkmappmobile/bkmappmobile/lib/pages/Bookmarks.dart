@@ -160,8 +160,11 @@ class _BookmarksState extends State<Bookmarks> {
           ],
         ),
         onPressed: () async {
-          //print(AppControl.getUser().token);
+          
+          print(AppControl.getUser().token);
+          
           var bkms = await BkmsStore.getBkms(AppControl.getUser());
+          
           if (bkms != null) {
             print("Retornato tutti Bkms");
           }

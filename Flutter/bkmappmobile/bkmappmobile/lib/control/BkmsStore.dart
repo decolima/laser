@@ -30,11 +30,12 @@ class BkmsStore {
     var _bkms = <Bkms>[];
     var resp = [];
 
-    try {
-      usr.firstName;
+    print(usr.firstName);
 
+    try {
       resp = await rest.getRest("/books", true, usr.token);
       resp.forEach((element) {
+        print(element);
         _bkms.add(Bkms.fromJson(element));
       });
 

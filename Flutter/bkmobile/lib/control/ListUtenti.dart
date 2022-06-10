@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../entity/user.dart';
+import '../entity/User.dart';
 import '../service/rest.dart';
 
 class DoListUtenti extends StatefulWidget {

@@ -1,6 +1,6 @@
 {
-    "name": "bkmobile",
-    "short_name": "bkmobile",
+    "name": "bkmappmobile",
+    "short_name": "bkmappmobile",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

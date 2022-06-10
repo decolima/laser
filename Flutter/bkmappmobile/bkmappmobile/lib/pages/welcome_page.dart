@@ -3,9 +3,16 @@ import '../theme.dart';
 
 import 'login_page.dart';
 
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+//class WelcomePage extends StatelessWidget {
+//  const WelcomePage({Key? key}) : super(key: key);
+class WelcomePage extends StatefulWidget {
   @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+
+ @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
           padding: EdgeInsets.all(58.0),
@@ -70,8 +77,11 @@ class WelcomePage extends StatelessWidget {
         ),
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const LoginPage(),
+            builder: (context) => LoginPage(),
           ),
         ),
       );
+
 }
+
+

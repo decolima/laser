@@ -6,7 +6,7 @@ import '../pages/widgets/sign_up.dart';
 import '../theme.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+ 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -17,10 +17,11 @@ class _LoginPageState extends State<LoginPage> {
   Color signUp = Colors.white;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _pageController = PageController();
   }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -32,9 +33,8 @@ class _LoginPageState extends State<LoginPage> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.height,
-
             padding: const EdgeInsets.all(64.0),
-            decoration: const BoxDecoration(
+            /* decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   CustomTheme.gradientStart,
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 1.0),
               ),
-            ),
+            ),*/
             child: Column(
               children: [
                 _logoWidget(),
@@ -77,7 +77,8 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 child: TextButton(
                   style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(Colors.transparent,
+                    overlayColor: MaterialStateProperty.all(
+                      Colors.transparent,
                     ),
                   ),
                   child: Text(
@@ -92,7 +93,8 @@ class _LoginPageState extends State<LoginPage> {
               Expanded(
                 child: TextButton(
                   style: ButtonStyle(
-                    overlayColor: MaterialStateProperty.all(Colors.transparent,
+                    overlayColor: MaterialStateProperty.all(
+                      Colors.transparent,
                     ),
                   ),
                   child: Text(
@@ -108,19 +110,18 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       );
-  Widget _pageViewWidget() => Expanded(child: PageView(
-    onPageChanged: (index){
-      setState((){
-        signIn = index == 0 ? Colors.black : Colors.white;
-        signUp = index == 1 ? Colors.black : Colors.white;
-
-
-      });
-    },
-    controller: _pageController,
-    children: const [
-     SignIn(),
-     SignUp(),
-    ],
-  ));
+  Widget _pageViewWidget() => Expanded(
+          child: PageView(
+        onPageChanged: (index) {
+          setState(() {
+            signIn = index == 0 ? Colors.black : Colors.white;
+            signUp = index == 1 ? Colors.black : Colors.white;
+          });
+        },
+        controller: _pageController,
+        children: [
+          SignIn(),
+          SignUp(),
+        ],
+      ));
 }

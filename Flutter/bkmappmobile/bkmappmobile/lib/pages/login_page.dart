@@ -6,7 +6,7 @@ import '../pages/widgets/sign_up.dart';
 import '../theme.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+ 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -119,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
           });
         },
         controller: _pageController,
-        children: const [
+        children: [
           SignIn(),
           SignUp(),
         ],

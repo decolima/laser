@@ -1,7 +1,7 @@
-import '../entity/user.dart';
+import '../entity/User.dart';
 import '../service/rest.dart';
 
-class userStore {
+class UserStore {
   static Future getUser(String usr, String pwd) async {
     dynamic data = {'usr': usr, 'pwd': pwd};
     late User _user;

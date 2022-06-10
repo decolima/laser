@@ -1,10 +1,9 @@
-import 'appControl.dart';
-
-import '../entity/bkms.dart';
-import '../entity/user.dart';
+import '../entity/Bkms.dart';
+import '../entity/User.dart';
 import '../service/rest.dart';
+import 'AppControl.dart';
 
-class bkmsStore {
+class BkmsStore {
   static Future postBkms(
       User usr, String desc, String link, bool shared) async {
     dynamic data = {
@@ -31,14 +30,18 @@ class bkmsStore {
     var _bkms = <Bkms>[];
     var resp = [];
 
+    print(usr.firstName);
+
     try {
       resp = await rest.getRest("/books", true, usr.token);
       resp.forEach((element) {
+        print(element);
         _bkms.add(Bkms.fromJson(element));
       });
 
       _bkms.forEach((b) {
-        appControl.addBkms(b);
+        print("Add..${b.descrizione}");
+        AppControl.addBkms(b);
       });
       return (true);
     } catch (e) {

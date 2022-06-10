@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bkmobile">
+    package="com.example.bkmappmobile">
    <application
-        android:label="bkmobile"
+        android:label="bkmappmobile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

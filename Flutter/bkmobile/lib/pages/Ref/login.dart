@@ -1,4 +1,4 @@
-import '../../control/appControl.dart';
+import '../../control/AppControl.dart';
 import 'package:flutter/material.dart';
 import '../../control/UserStore.dart';
 import '../../control/BkmsStore.dart';
@@ -51,10 +51,10 @@ class _WidgetLoginState extends State<WidgetLogin> {
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
-          var user = await userStore.getUser(email.text, pass.text);
+          var user = await UserStore.getUser(email.text, pass.text);
           if (user != null) {
-            appControl.setUser(user);
-            bkmsStore.getBkms(appControl.getUser());
+            AppControl.setUser(user);
+            BkmsStore.getBkms(AppControl.getUser());
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => bookmarks()));
           }
