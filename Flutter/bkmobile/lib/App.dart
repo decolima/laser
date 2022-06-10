@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/pages/welcome_page.dart';
+import '../pages/welcome_page.dart';
 
 
 class App extends StatelessWidget {
@@ -7,10 +7,12 @@ class App extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) => const MaterialApp(
+  Widget build(BuildContext context) {
+    return MaterialApp(
       title: 'Bookmarks App',
-    home: WelcomePage(),
-    debugShowCheckedModeBanner: false,
+      home: WelcomePage(),
+      debugShowCheckedModeBanner: false,
     );
+  }
 
 }

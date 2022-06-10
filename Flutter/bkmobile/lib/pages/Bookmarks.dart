@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/control/AppControl.dart';
-import 'package:untitled/theme.dart';
+import '../control/AppControl.dart';
+import '../control/Listbkm.dart';
+import '../theme.dart';
 import '../control/BkmsStore.dart';
 import '../entity/bkms.dart';
 
@@ -14,31 +15,9 @@ class Bookmarks extends StatefulWidget {
 
 class _BookmarksState extends State<Bookmarks> {
 
-  _BookmarksState(){
-    _getBkms();
-  }
-
-
   bool isChecked = false;
   final TextEditingController desc = TextEditingController(text: "");
   final TextEditingController link = TextEditingController(text: "");
-  var bkms = <Bkms>[];
-
-  _getBkms() {
-    try {
-      var usr = appControl.getUser();
-      print(usr!.token);
-      //bkms = bkmsStore.getBkms(usr!) as List<Bkms>;
-/*
-      for(var e in bkms){
-        print(e.descrizione);
-      }
-*/
-    }
-    catch (e) {
-      print(e);
-    }
-  }
 
     @override
     Widget build(BuildContext context) => Scaffold(
@@ -59,15 +38,9 @@ class _BookmarksState extends State<Bookmarks> {
               const SizedBox(height: 20.0),
               Row(children: [
                 Column(children: [_newButton()],),
-                const SizedBox(width: 60.0),
-                Column(children: [_updateButton()])
+                const SizedBox(width: 50.0),
+                Column(children: [_listButton()])
               ]),
-              const SizedBox(height: 20.0),
-              Expanded(
-                child: Scaffold(
-                    body:_listBkm()
-                ),
-              )
             ],
           ),
         ),
@@ -126,7 +99,7 @@ class _BookmarksState extends State<Bookmarks> {
 
     Widget _checkCondiviso() => Row(
       children: [
-        SizedBox(width: 28.0),
+        const SizedBox(width: 28.0),
         const Text(
           'Condiviso',
           style: TextStyle(
@@ -147,13 +120,13 @@ class _BookmarksState extends State<Bookmarks> {
 
     Widget _newButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color(0xFF00C853),
+        primary: const Color(0xFF00C853),
       ),
       child: Column(
         children: [
           Row(
-            children: [
-              const Text(
+            children: const [
+              Text(
                 'NUOVO',
                 style: TextStyle(fontSize: 20.0),
               ),
@@ -161,52 +134,37 @@ class _BookmarksState extends State<Bookmarks> {
           ),
         ],
       ),
-      onPressed: () => {},
+      onPressed: () async {
+      var bkms = await bkmsStore.postBkms(appControl.getUser(), desc.text, link.text, isChecked);
+      if (bkms != null) {
+        print(bkms!.link);}
+      },
     );
 
-    Widget _updateButton() => ElevatedButton(
+    Widget _listButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color(0xFF00C853),
+        primary: const Color(0xFF00C853),
       ),
       child: Column(
         children: [
           Row(
-            children: [
-              const Text(
-                'AGGIORNA',
+            children: const [
+              Text(
+                'VEDI BKMS',
                 style: TextStyle(fontSize: 20.0),
               ),
             ],
           ),
         ],
       ),
-      onPressed: () => {},
+      onPressed: ()  {
+
+        print(appControl.getUser().token);
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => Listbkm()));
+        },
     );
 
-    Widget _containerList() => Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-          color: Colors.white,
-          child: _listBkm()
-      ),
-    );
-
-    _listBkm() {
-      return ListView.builder(
-          itemCount: bkms.length,
-          itemBuilder: (context, index) {
-            return ListTile(
-              focusColor: Colors.white30,
-              title: Text(bkms[index].descrizione.toString()),
-              subtitle: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [Text(bkms[index].link.toString()), Text(bkms[index].condiviso.toString())]),
-              /*onTap: () { Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => DetailPage(bkms)));
-              },*/
-            );
-          });
-    }
   }
 
 

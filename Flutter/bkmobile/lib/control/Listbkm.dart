@@ -1,6 +1,7 @@
-import 'package:backendrest/control/BkmsStore.dart';
-import 'package:backendrest/control/appControl.dart';
+import 'BkmsStore.dart';
+import 'appControl.dart';
 import 'package:flutter/material.dart';
+import '../theme.dart';
 
 class Listbkm extends StatefulWidget {
   @override
@@ -9,17 +10,50 @@ class Listbkm extends StatefulWidget {
 
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
-    return Scaffold(body: getBkm());
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+    extendBodyBehindAppBar: true,
+    body: SingleChildScrollView(
+    child: Container(
+    height: MediaQuery.of(context).size.height,
+    width: MediaQuery.of(context).size.height,
+
+    padding: const EdgeInsets.all(64.0),
+    decoration: const BoxDecoration(
+    gradient: LinearGradient(
+    colors: [
+    CustomTheme.gradientStart,
+    CustomTheme.gradientEnd,
+    ],
+    begin: FractionalOffset(0.0, 0.0),
+    end: FractionalOffset(1.0, 1.0),
+    ),
+    ),
+    child: Column(
+    children: [getBkm()]
+    )
+    ),
+    ),
+    );
   }
 
   int _selectedIndex = -1;
 
-  _getBkm() {
-    bkmsStore.getBkms(appControl.getUser());
+  _getBkm()  {
+    if (appControl.getUser() != null) {
+      bkmsStore.getBkms(appControl.getUser());
+    }
+    else
+    {
+      print("User non trovato");
+    }
   }
 
   _Listbkm() {
-    _getBkm();
+   // _getBkm();
   }
 
   getBkm() {

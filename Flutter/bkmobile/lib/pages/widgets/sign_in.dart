@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/control/AppControl.dart';
-import 'package:untitled/control/UserStore.dart';
-import 'package:untitled/pages/login_page.dart';
+import '../../control/AppControl.dart';
+import '../../control/UserStore.dart';
+import '../../pages/login_page.dart';
 import 'package:dio/dio.dart';
-import 'package:untitled/pages/Bookmarks.dart';
-
+import '../../pages/Bookmarks.dart';
 import '../../entity/user.dart';
-import '../Rest/login.dart';
+
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   bool _obscureTextPassword = true;
 
-  final loginBkmApp _api = loginBkmApp();
+  //final loginBkmApp _api = loginBkmApp();
 
   final _focusNodeEmail = FocusNode();
   final _focusNodePassword = FocusNode();
@@ -57,7 +56,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  final TextEditingController email = TextEditingController(text: '');
+  final TextEditingController email = TextEditingController(text: 'andre@bkmapp.it');
 
   Widget _emailField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
@@ -82,7 +81,7 @@ class _SignInState extends State<SignIn> {
         ),
       );
 
-  final TextEditingController pwd = TextEditingController(text: '');
+  final TextEditingController pwd = TextEditingController(text: 'andre');
   Widget _passwordField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
         child: TextField(
@@ -135,6 +134,7 @@ class _SignInState extends State<SignIn> {
             print(usr!.mail);
 
             appControl.setUser(usr);
+
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const Bookmarks(),

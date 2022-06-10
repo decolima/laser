@@ -33,7 +33,7 @@ class userStore {
     }
   }
 
-  static Future posUser(
+  static Future creaUser(
       String firstName, String lastName, String mail, String pwd) async {
     dynamic data = {
       'first_name': firstName,

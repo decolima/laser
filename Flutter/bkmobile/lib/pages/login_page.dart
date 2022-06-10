@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/misc/bubble_indicator_painter.dart';
-import 'package:untitled/pages/widgets/sign_in.dart';
-import 'package:untitled/pages/widgets/sign_up.dart';
+import '../misc/bubble_indicator_painter.dart';
+import '../pages/widgets/sign_in.dart';
+import '../pages/widgets/sign_up.dart';
 
 import '../theme.dart';
 

@@ -1,4 +1,4 @@
-import 'package:backendrest/control/appControl.dart';
+import 'appControl.dart';
 
 import '../entity/bkms.dart';
 import '../entity/user.dart';

@@ -1,7 +1,7 @@
-import 'package:backendrest/control/appControl.dart';
+import '../../control/appControl.dart';
 import 'package:flutter/material.dart';
-import '../control/UserStore.dart';
-import '../control/BkmsStore.dart';
+import '../../control/UserStore.dart';
+import '../../control/BkmsStore.dart';
 import 'bookmarks.dart';
 
 class WidgetLogin extends StatefulWidget {

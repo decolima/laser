@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/pages/login_page.dart';
-import 'package:untitled/pages/Rest/regis.dart';
+import 'package:untitled/control/UserStore.dart';
+import '../../pages/login_page.dart';
+//import 'package:untitled/pages/Rest/regis.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool _obscureTextPassword = true;
 
-  final regisBkmApp _api = regisBkmApp();
+  //final regisBkmApp _api = regisBkmApp();
 
   final _focusNodeFirstName = FocusNode();
   final _focusNodeLastName = FocusNode();
@@ -169,16 +170,11 @@ class _SignUpState extends State<SignUp> {
         'REGISTRATI',
         style: TextStyle(fontSize: 20.0),
       ),
-      onPressed: () => {
-            _api.regisBkm(
-                email: email.text,
-                pwd: pwd.text,
-                firstname: firstname.text,
-                lastname: lastname.text),
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => new LoginPage(),
-              ),
-            )
-          });
+      onPressed: () async {
+        var user = await userStore.creaUser(firstname.text, lastname.text, email.text, pwd.text);
+        if (user != null) {
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => new LoginPage()),);
+        }
+      },
+  );
 }

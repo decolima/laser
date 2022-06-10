@@ -1,15 +1,23 @@
+import '../entity/bkms.dart';
 import '../entity/user.dart';
 
 class appControl {
   static late User _usr;
-  static var _bkms = <Bkms>[];
+  static final _bkms = <Bkms>[];
 
   static setUser(User u) {
     _usr = u;
   }
 
   static User getUser() {
-    return _usr;
+    if(_usr != null) {
+      return _usr;
+    }
+    else
+      {
+        User u = User(userid: 0, firstName: "", lastName: "", mail: "", role: "", token: "", error: "");
+        return u;
+      }
   }
 
   static addBkms(Bkms b) {
