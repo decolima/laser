@@ -130,12 +130,10 @@ class _SignInState extends State<SignIn> {
 
         if (usr != null) {
           print(usr!.mail);
-
           AppControl.setUser(usr);
-
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const Bookmarks(),
+              builder: (context) => Bookmarks(),
             ),
           );
         }

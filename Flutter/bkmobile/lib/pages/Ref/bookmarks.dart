@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../control/AppControl.dart';
 import '../../control/BkmsStore.dart';
-import '../../control/Listbkm.dart';
+import '../widgets/Listbkm.dart';
 
 class bookmarks extends StatefulWidget {
   @override

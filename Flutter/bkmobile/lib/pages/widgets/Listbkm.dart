@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'AppControl.dart';
-import 'BkmsStore.dart';
+import '../../control/AppControl.dart';
+import '../../control/BkmsStore.dart';
 
 class Listbkm extends StatefulWidget {
   @override
@@ -30,6 +30,7 @@ class _Listbkm extends State<Listbkm> {
               });
             },
           );
-        });
+        }
+        );
   }
 }

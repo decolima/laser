@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import '../control/AppControl.dart';
-import '../control/Listbkm.dart';
+import 'widgets/Listbkm.dart';
 import '../theme.dart';
 import '../control/BkmsStore.dart';
 import '../entity/Bkms.dart';
 
 class Bookmarks extends StatefulWidget {
-  const Bookmarks({Key? key}) : super(key: key);
 
   @override
   State<Bookmarks> createState() => _BookmarksState();
@@ -21,7 +20,7 @@ class _BookmarksState extends State<Bookmarks> {
   Widget build(BuildContext context) => Scaffold(
         body: Container(
           padding: const EdgeInsets.all(58.0),
-          /*decoration: const BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [
               CustomTheme.gradientStart,
@@ -29,7 +28,7 @@ class _BookmarksState extends State<Bookmarks> {
             ],
             begin: FractionalOffset(0.0, 0.0),
             end: FractionalOffset(1.0, 1.0),
-          )),*/
+          )),
           child: Column(
             children: [
               _containerField(),
