@@ -9,7 +9,12 @@ class Listbkm extends StatefulWidget {
 
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: getBkm());
+    return Scaffold(appBar: AppBar(
+      backgroundColor: Colors.transparent,
+      shadowColor: Colors.transparent,
+    ),
+      extendBodyBehindAppBar: true,
+        body: getBkm());
   }
 
   int _selectedIndex = -1;

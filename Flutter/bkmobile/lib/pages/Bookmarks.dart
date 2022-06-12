@@ -18,6 +18,10 @@ class _BookmarksState extends State<Bookmarks> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar( backgroundColor: Colors.transparent,
+      shadowColor: Colors.transparent,
+    ),
+    extendBodyBehindAppBar: true,
         body: Container(
           padding: const EdgeInsets.all(58.0),
           decoration: const BoxDecoration(
