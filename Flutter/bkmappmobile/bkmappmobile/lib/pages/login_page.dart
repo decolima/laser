@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import '../misc/bubble_indicator_painter.dart';
 import '../pages/widgets/sign_in.dart';
 import '../pages/widgets/sign_up.dart';
-
 import '../theme.dart';
 
 class LoginPage extends StatefulWidget {
- 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -34,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.all(64.0),
-            /* decoration: const BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
                   CustomTheme.gradientStart,
@@ -43,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 begin: FractionalOffset(0.0, 0.0),
                 end: FractionalOffset(1.0, 1.0),
               ),
-            ),*/
+            ),
             child: Column(
               children: [
                 _logoWidget(),

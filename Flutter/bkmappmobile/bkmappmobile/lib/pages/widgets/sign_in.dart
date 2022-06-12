@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../control/AppControl.dart';
 import '../../control/UserStore.dart';
-import '../../pages/login_page.dart';
-import 'package:dio/dio.dart';
 import '../../pages/Bookmarks.dart';
-import '../../entity/User.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -14,8 +11,6 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   bool _obscureTextPassword = true;
-
-  //final loginBkmApp _api = loginBkmApp();
 
   final _focusNodeEmail = FocusNode();
   final _focusNodePassword = FocusNode();
@@ -119,7 +114,7 @@ class _SignInState extends State<SignIn> {
 
   Widget _signInButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color(0xFF00C853),
+        primary: const Color(0xFF00C853),
       ),
       child: const Text(
         'ACCEDI',
@@ -135,7 +130,7 @@ class _SignInState extends State<SignIn> {
 
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const Bookmarks(),
+              builder: (context) => Bookmarks(),
             ),
           );
         }
