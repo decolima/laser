@@ -33,7 +33,7 @@ class BkmsStore {
     print(usr.firstName);
 
     try {
-      resp = await rest.getRest("/books", true, usr.token);
+      resp = await rest.getRest("/books", true, usr.token, 1, 100);
       resp.forEach((element) {
         print(element);
         _bkms.add(Bkms.fromJson(element));
@@ -54,7 +54,7 @@ class BkmsStore {
     late Bkms _bkms;
 
     try {
-      var resp = await rest.getRest("/books/$id", true, usr.token);
+      var resp = await rest.getRest("/books/$id", true, usr.token, 1, 100);
 
       _bkms = Bkms.fromJson(resp);
 
@@ -65,7 +65,7 @@ class BkmsStore {
   }
 
   static Future putBkms(
-      User usr, int id, String desc, String link, bool shared) async {
+      User usr, String id, String desc, String link, bool shared) async {
     dynamic data = {
       'id': id,
       'descrizione': desc,
@@ -74,6 +74,7 @@ class BkmsStore {
       'status': 'Nuovo',
       'motivorim': ""
     };
+    print("arrivato al put ....");
     late Bkms _bkms;
     try {
       var resp = await rest.putRest("/books", true, usr.token, data);

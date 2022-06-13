@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 
-const baseUrl = "http://localhost:8080/bkmapp/resources";
+const baseUrl = "http://192.168.0.125:8080/bkmapp/resources";
 
 class rest {
-  static Future getRest(String path, bool auth, String token) async {
+  static Future getRest(String path, bool auth, String token, int page, int size) async {
     Dio dio = Dio();
-    var url = "$baseUrl$path";
+    var url = "$baseUrl$path?page=$page&size=$size";
     dio.options.headers['content-Type'] = 'application/json';
     if (auth) {
       dio.options.headers['Authorization'] = "Bearer $token";
