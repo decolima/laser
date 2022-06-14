@@ -14,6 +14,10 @@ class _BookmarksState extends State<Bookmarks> {
   final TextEditingController desc = TextEditingController(text: "");
   final TextEditingController link = TextEditingController(text: "");
 
+  bool isvNew = true;
+  bool isvTs1 = true;
+  bool isvTs2 = true;
+
   @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
@@ -29,14 +33,24 @@ class _BookmarksState extends State<Bookmarks> {
           )),
           child: Column(
             children: [
-              _containerField(),
+              Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: _containerField()),
               const SizedBox(height: 20.0),
               Row(children: [
-                Column(
-                  children: [_newButton()],
-                ),
+                Visibility(visible: isvNew, child: _newButton()),
                 const SizedBox(width: 50.0),
-                Column(children: [_listButton()])
+                Column(children: [_listButton()]),
+                const SizedBox(width: 50.0)
+              ]),
+              Row(children: [
+                Visibility(
+                    visible: isvTs1, child: Column(children: [_test1Button()])),
+                const SizedBox(width: 50.0),
+                Visibility(
+                    visible: isvTs2, child: Column(children: [_test1Button()]))
               ]),
             ],
           ),
@@ -44,21 +58,13 @@ class _BookmarksState extends State<Bookmarks> {
       );
 
   Widget _containerField() => Padding(
-        padding: const EdgeInsets.only(top: 25.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                _descriptionField(),
-                _linkField(),
-                _checkCondiviso(),
-              ],
-            ),
-          ),
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          children: [
+            _descriptionField(),
+            _linkField(),
+            _checkCondiviso(),
+          ],
         ),
       );
 
@@ -117,8 +123,9 @@ class _BookmarksState extends State<Bookmarks> {
 
   Widget _newButton() => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF00C853),
-        ),
+            primary: const Color(0xFF00C853),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0))),
         child: Column(
           children: [
             Row(
@@ -132,7 +139,9 @@ class _BookmarksState extends State<Bookmarks> {
           ],
         ),
         onPressed: () async {
-          var u = AppControl.getUser();
+          setState(() => isvTs1 = false);
+
+          /*var u = AppControl.getUser();
 
           if (u != null || u!.userid != 0) {
             var bkms =
@@ -142,7 +151,7 @@ class _BookmarksState extends State<Bookmarks> {
             }
           } else {
             print("utente non trovato");
-          }
+          }*/
         },
       );
 
@@ -167,7 +176,71 @@ class _BookmarksState extends State<Bookmarks> {
 
           if (u != null || u!.userid != 0) {
             print(AppControl.getUser()!.token);
-            var bkms = await BkmsStore.getBkms(u);
+            var bkms = await BkmsStore.getBkms(u, 1, 100);
+
+            if (bkms != null) {
+              print(bkms.toString());
+            }
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Listbkm()));
+          }
+        },
+      );
+
+  Widget _test1Button() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF00C853),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: const [
+                Text(
+                  'Test1',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ],
+            ),
+          ],
+        ),
+        onPressed: () async {
+          var u = AppControl.getUser();
+
+          if (u != null || u!.userid != 0) {
+            print(AppControl.getUser()!.token);
+            var bkms = await BkmsStore.getBkms(u, 1, 100);
+
+            if (bkms != null) {
+              print(bkms.toString());
+            }
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Listbkm()));
+          }
+        },
+      );
+
+  Widget _test2Button() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF00C853),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: const [
+                Text(
+                  'Test2',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ],
+            ),
+          ],
+        ),
+        onPressed: () async {
+          var u = AppControl.getUser();
+
+          if (u != null || u!.userid != 0) {
+            print(AppControl.getUser()!.token);
+            var bkms = await BkmsStore.getBkms(u, 1, 100);
 
             if (bkms != null) {
               print(bkms.toString());

@@ -12,7 +12,7 @@ class _DoListUtenti extends State<DoListUtenti> {
 
   _getUsers() {
     try {
-      rest.getRest("/users/allslice", false, "").then((response) {
+      rest.getRest("/users/allslice", false, "", 1, 100).then((response) {
         setState(() {
           for (var e in response) {
             users.add(User.fromJsonSlice(e));

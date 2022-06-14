@@ -12,7 +12,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import bkm.entity.Bookmarks;
 import bkm.entity.Tag;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.json.Json;
@@ -89,7 +88,9 @@ public class BookStore {
      
     public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
 
-        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
+        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where ((e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1)) "
+                + "and e.cancellato = false and e.usr.cancellato = false "
+                + "order by e.creazione desc", Bookmarks.class)
                 .setParameter("id", id)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)
