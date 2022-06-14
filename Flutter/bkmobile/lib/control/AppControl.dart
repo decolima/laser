@@ -1,20 +1,26 @@
-import 'dart:js';
-
-import 'package:flutter/material.dart';
-
 import '../entity/Bkms.dart';
 import '../entity/User.dart';
-import '../pages/login_page.dart';
+
 
 class AppControl {
-  static late User _usr;
+  static User? _usr;
   static final _bkms = <Bkms>[];
+  static int _index = -1;
+
+  static setIndex(int i){
+    _index = i;
+  }
+
+  static getIndex(){
+   return _index;
+  }
+
 
   static setUser(User u) {
     _usr = u;
   }
 
-  static User getUser() {
+  static User? getUser() {
     if (_usr != null) {
       return _usr;
     } else {

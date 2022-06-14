@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Bookmarks.dart';
 import '../../control/AppControl.dart';
 import '../../control/BkmsStore.dart';
 
@@ -32,6 +33,11 @@ class _Listbkm extends State<Listbkm> {
             onTap: () {
               setState(() {
                 _selectedIndex = index;
+
+                AppControl.setIndex(index);
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                    builder: (context) => Bookmarks()));
               });
             },
           );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/App.dart';
+import 'package:untitled/pages/widgets/sign_in.dart';
 import '../control/AppControl.dart';
 import 'widgets/Listbkm.dart';
 import '../theme.dart';
@@ -6,22 +8,33 @@ import '../control/BkmsStore.dart';
 import '../entity/Bkms.dart';
 
 class Bookmarks extends StatefulWidget {
-
   @override
   State<Bookmarks> createState() => _BookmarksState();
 }
 
 class _BookmarksState extends State<Bookmarks> {
+
+  @override
+  void initState() {
+    super.initState();
+    if (AppControl.getIndex() != -1) {
+      desc.text =
+          AppControl.getBkms()[AppControl.getIndex()].descrizione.toString();
+      link.text = AppControl.getBkms()[AppControl.getIndex()].link.toString();
+    }
+  }
+
   bool isChecked = false;
   final TextEditingController desc = TextEditingController(text: "");
   final TextEditingController link = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar( backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
-    ),
-    extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
+        ),
+        extendBodyBehindAppBar: true,
         body: Container(
           padding: const EdgeInsets.all(58.0),
           decoration: const BoxDecoration(
@@ -44,6 +57,21 @@ class _BookmarksState extends State<Bookmarks> {
                 const SizedBox(width: 50.0),
                 Column(children: [_listButton()])
               ]),
+              const SizedBox(height: 20.0),
+              Row(
+                children: [
+                  Column(
+                    children: [_updateButton()],
+                  ),
+                  const SizedBox(width: 50.0),
+                  Column(
+                    children: [Visibility(
+                        child:_deleteButton(),
+                        visible: false)
+                      ],
+                  )
+                ],
+              )
             ],
           ),
         ),
@@ -138,10 +166,15 @@ class _BookmarksState extends State<Bookmarks> {
           ],
         ),
         onPressed: () async {
-          var bkms = await BkmsStore.postBkms(
-              AppControl.getUser(), desc.text, link.text, isChecked);
-          if (bkms != null) {
-            print(bkms!.link);
+          var u = AppControl.getUser();
+          if (u != null || u!.userid != 0) {
+            await BkmsStore.postBkms(u, desc.text, link.text, isChecked);
+            desc.text = "";
+            link.text = "";
+            _showDlgNewBkm();
+          } else {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SignIn()));
           }
         },
       );
@@ -163,16 +196,172 @@ class _BookmarksState extends State<Bookmarks> {
           ],
         ),
         onPressed: () async {
-          
-          print(AppControl.getUser().token);
-          
-          var bkms = await BkmsStore.getBkms(AppControl.getUser());
-          
-          if (bkms != null) {
-            print("Retornato tutti Bkms");
+          var u = AppControl.getUser();
+          var bkms;
+          if (u != null || u!.userid != 0) {
+            print(AppControl.getBkms().length);
+            AppControl.clearBkms();
+            print(AppControl.getBkms().length);
+            bkms = await BkmsStore.getBkms(u);
+
+
+
+          } else {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SignIn()));
           }
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Listbkm()));
+          if (bkms == null) {
+            _showDialogBkm();
+          } else {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Listbkm()));
+          }
         },
       );
+
+  Widget _updateButton() => ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: const Color(0xFF00C853),
+      ),
+      child: Column(
+        children: [
+          Row(
+            children: const [
+              Text(
+                'AGGIORNA',
+                style: TextStyle(fontSize: 20.0),
+              ),
+            ],
+          ),
+        ],
+      ),
+      onPressed: () async {
+        var u = AppControl.getUser();
+        var bkms;
+
+        if (u != null || u!.userid != 0) {
+
+          int index = AppControl.getIndex();
+          var i = AppControl.getBkms()[index].idbkm.toString();
+          bkms = await BkmsStore.putBkms(u,i, desc.text, link.text, isChecked);
+
+        } else {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => SignIn()));
+        }
+        if (bkms == null) {
+          _showDialogBkm();
+        } else {
+          AppControl.clearBkms();
+          bkms = await BkmsStore.getBkms(u);
+          AppControl.setIndex(-1);
+          desc.text = "";
+          link.text = "";
+          _showDlgAggBkm;
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Listbkm()));
+        }
+      });
+
+  Widget _deleteButton() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xFF00C853),
+        ),
+
+        child: Column(
+          children: [
+            Row(
+              children: const [
+                Text(
+                  'ELIMINA',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ],
+            ),
+          ],
+        ),
+        onPressed: () {},
+      );
+
+  Future<void> _showDialogBkm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Mi dispiace'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Non sono presenti Bookmarks per te'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showDlgAggBkm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Complimenti'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Bookmark aggiornato con successo !!!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showDlgNewBkm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Complimenti'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Bookmark creato con successo !!!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 }
