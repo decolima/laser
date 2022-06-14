@@ -167,7 +167,7 @@ class _BookmarksState extends State<Bookmarks> {
 
           if (u != null || u!.userid != 0) {
             print(AppControl.getUser()!.token);
-            var bkms = await BkmsStore.getBkms(u);
+            var bkms = await BkmsStore.getBkms(u, 1, 100);
 
             if (bkms != null) {
               print(bkms.toString());

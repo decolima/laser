@@ -89,7 +89,7 @@ public class BookStore {
      
     public List<JsonObject> findAllByUserJson(Long id, int page, int size) {
 
-        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where (e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
+        List<Bookmarks> books = em.createQuery("select e from Bookmarks e where ((e.usr.id = :id) OR (e.usr.id <> :id and e.condiviso = 1)) and e.cancellato = false and e.usr.cancellato = false", Bookmarks.class)
                 .setParameter("id", id)
                 .setFirstResult((page - 1) * size)
                 .setMaxResults(size)

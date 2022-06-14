@@ -176,7 +176,7 @@ btncancellaBook.addEventListener("click", a => {
                 console.log(response);
             } else {
                 console.log("Risposta OK per cancellare Book");
-                return response.json();
+                return response;
             }
             
         });

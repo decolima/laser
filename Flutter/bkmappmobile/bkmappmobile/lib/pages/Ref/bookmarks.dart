@@ -12,7 +12,7 @@ class _bookmarksState extends State<bookmarks> {
   _bookmarksState() {
     var u = AppControl.getUser();
     if (u != null || u!.userid != 0) {
-      BkmsStore.getBkms(u);
+      BkmsStore.getBkms(u, 1, 100);
       print(AppControl.getBkms().length);
     }
   }

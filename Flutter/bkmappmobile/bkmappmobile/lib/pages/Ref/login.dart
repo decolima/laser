@@ -16,6 +16,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
   Widget build(BuildContext context) {
     final TextEditingController email =
         TextEditingController(text: 'andre@bkmapp.it');
+
     final TextEditingController pass = TextEditingController(text: 'andre');
 
     final emailField = TextField(
@@ -54,7 +55,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
             AppControl.setUser(user);
             var u = AppControl.getUser();
             if (u != null || u!.userid != 0) {
-              BkmsStore.getBkms(u);
+              BkmsStore.getBkms(u, 1, 100);
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => bookmarks()));
             }

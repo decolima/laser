@@ -26,14 +26,14 @@ class BkmsStore {
     }
   }
 
-  static Future getBkms(User usr) async {
+  static Future getBkms(User usr, int page, int size) async {
     var bkms = <Bkms>[];
     var resp = [];
 
     print(usr.firstName);
 
     try {
-      resp = await rest.getRest("/books", true, usr.token);
+      resp = await rest.getRest("/books", true, usr.token, page, size);
       for (var a in resp) {
         print(a);
         bkms.add(Bkms.fromJson(a));
@@ -54,7 +54,7 @@ class BkmsStore {
     late Bkms bkms;
 
     try {
-      var resp = await rest.getRest("/books/$id", true, usr.token);
+      var resp = await rest.getRest("/books/$id", true, usr.token, 1, 100);
 
       bkms = Bkms.fromJson(resp);
 
