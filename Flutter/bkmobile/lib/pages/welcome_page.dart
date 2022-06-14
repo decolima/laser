@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../theme.dart';
-
 import 'login_page.dart';
 
 //class WelcomePage extends StatelessWidget {
@@ -17,14 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
         body: Container(
           padding: const EdgeInsets.all(58.0),
           decoration: const BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
-                CustomTheme.gradientStart,
-                CustomTheme.gradientEnd,
-              ],
-              begin: FractionalOffset(0.0, 0.0),
-              end: FractionalOffset(1.0, 1.0),
-            ),
+          color: Color.fromRGBO(225, 237, 249, 1.0)
           ),
           child: Column(
             children: [_welcomeWidget(), _signInButton(context)],
@@ -45,17 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 'Bookmarks App',
                 style: TextStyle(
                   fontSize: 50,
-                  color: Color(0xFF004D40),
-                  shadows: [
-                    Shadow(
-                        color: Color(0xFF00C583),
-                        offset: Offset(1, 4),
-                        blurRadius: 1),
-                    Shadow(
-                        color: Colors.lightGreenAccent,
-                        offset: Offset(2, 1),
-                        blurRadius: 2)
-                  ],
+                  color: Color.fromRGBO(139, 0, 0, 1),
                 ),
               ),
             ),
@@ -64,7 +45,9 @@ class _WelcomePageState extends State<WelcomePage> {
       );
   Widget _signInButton(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF00C853),
+          primary: Colors.teal,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30)),
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 48.0),

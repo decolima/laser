@@ -3,10 +3,7 @@ import '../misc/bubble_indicator_painter.dart';
 import '../pages/widgets/sign_in.dart';
 import '../pages/widgets/sign_up.dart';
 
-import '../theme.dart';
-
 class LoginPage extends StatefulWidget {
- 
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -24,30 +21,20 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-        ),
+        appBar: AppBar(backgroundColor: Colors.black),
         extendBodyBehindAppBar: true,
         body: SingleChildScrollView(
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.all(64.0),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  CustomTheme.gradientStart,
-                  CustomTheme.gradientEnd,
-                ],
-                begin: FractionalOffset(0.0, 0.0),
-                end: FractionalOffset(1.0, 1.0),
-              ),
-            ),
+            decoration:
+                const BoxDecoration(color: Color.fromRGBO(225, 237, 249, 1.0)),
             child: Column(
               children: [
                 _logoWidget(),
                 selectorWidget(),
+                const SizedBox(height: 13.0),
                 _pageViewWidget(),
               ],
             ),
@@ -55,13 +42,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
   Widget _logoWidget() => const Padding(
-        padding: EdgeInsets.only(top: 58.0),
+        padding: EdgeInsets.only(top: 50.0),
         child: Image(
             image: AssetImage('assets/images/login_logo.png'), height: 105.0),
       );
+
   Widget selectorWidget() => Container(
         decoration: const BoxDecoration(
-          color: Color(0x552B2B2B),
+          color: Colors.black,
           borderRadius: BorderRadius.all(
             Radius.circular(25.0),
           ),
@@ -112,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
       );
   Widget _pageViewWidget() => Expanded(
           child: PageView(
-        onPageChanged: (index) {
+          onPageChanged: (index) {
           setState(() {
             signIn = index == 0 ? Colors.black : Colors.white;
             signUp = index == 1 ? Colors.black : Colors.white;

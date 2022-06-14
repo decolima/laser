@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../Bookmarks.dart';
 import '../../control/AppControl.dart';
-import '../../control/BkmsStore.dart';
+
 
 class Listbkm extends StatefulWidget {
   @override
@@ -11,8 +11,7 @@ class Listbkm extends StatefulWidget {
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      shadowColor: Colors.transparent,
+      backgroundColor: Colors.black
     ),
       extendBodyBehindAppBar: true,
         body: getBkm());
@@ -26,7 +25,7 @@ class _Listbkm extends State<Listbkm> {
         itemCount: AppControl.getBkms().length,
         itemBuilder: (context, index) {
           return ListTile(
-            selectedColor: Colors.blue,
+            selectedColor: Colors.black,
             selected: index == _selectedIndex,
             title: Text(AppControl.getBkms()[index].descrizione.toString()),
             subtitle: Text(AppControl.getBkms()[index].link.toString()),

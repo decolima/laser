@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/App.dart';
+import 'package:untitled/pages/welcome_page.dart';
 import 'package:untitled/pages/widgets/sign_in.dart';
 import '../control/AppControl.dart';
+import '../entity/User.dart';
 import 'widgets/Listbkm.dart';
-import '../theme.dart';
 import '../control/BkmsStore.dart';
-import '../entity/Bkms.dart';
 
 class Bookmarks extends StatefulWidget {
   @override
@@ -13,7 +13,6 @@ class Bookmarks extends StatefulWidget {
 }
 
 class _BookmarksState extends State<Bookmarks> {
-
   @override
   void initState() {
     super.initState();
@@ -21,78 +20,104 @@ class _BookmarksState extends State<Bookmarks> {
       desc.text =
           AppControl.getBkms()[AppControl.getIndex()].descrizione.toString();
       link.text = AppControl.getBkms()[AppControl.getIndex()].link.toString();
+
+      isVNew = false;
+      isVUpt = true;
+      isVDel = true;
+      isVClear = true;
+    } else {
+      isVNew = true;
+      isVUpt = false;
+      isVDel = false;
+      isVClear = false;
     }
   }
 
   bool isChecked = false;
+  bool isVNew = true;
+  bool isVUpt = true;
+  bool isVDel = true;
+  bool isVClear = true;
   final TextEditingController desc = TextEditingController(text: "");
   final TextEditingController link = TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.logout),
+                tooltip: 'Logout',
+                onPressed: () {
+                  User u = User(
+                      userid: 0,
+                      firstName: "",
+                      lastName: "",
+                      mail: "",
+                      role: "",
+                      token: "",
+                      error: "");
+
+                  AppControl.setUser(u);
+                  AppControl.clearBkms();
+                  AppControl.setIndex(-1);
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => WelcomePage()));
+                })
+          ],
         ),
         extendBodyBehindAppBar: true,
         body: Container(
-          padding: const EdgeInsets.all(58.0),
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              CustomTheme.gradientStart,
-              CustomTheme.gradientEnd,
-            ],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(1.0, 1.0),
-          )),
-          child: Column(
-            children: [
-              _containerField(),
-              const SizedBox(height: 20.0),
-              Row(children: [
-                Column(
-                  children: [_newButton()],
-                ),
-                const SizedBox(width: 50.0),
-                Column(children: [_listButton()])
-              ]),
-              const SizedBox(height: 20.0),
-              Row(
-                children: [
-                  Column(
-                    children: [_updateButton()],
+            padding: const EdgeInsets.all(58.0),
+            decoration:
+                const BoxDecoration(color: Color.fromRGBO(225, 237, 249, 1.0)),
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0),
+                Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    child: _containerField()),
+                const SizedBox(height: 20.0),
+                Row(children: [
+                  _listButton(),
+                  const SizedBox(width: 50.0),
+                  Visibility(
+                    visible: isVNew,
+                    child: _newButton(),
+                  ),
+                  Visibility(
+                    visible: isVClear,
+                    child: _clearButton(),
+                  ),
+                ]),
+                const SizedBox(height: 20.0),
+                Row(children: [
+                  Visibility(
+                    visible: isVUpt,
+                    child: _updateButton(),
                   ),
                   const SizedBox(width: 50.0),
-                  Column(
-                    children: [Visibility(
-                        child:_deleteButton(),
-                        visible: false)
-                      ],
-                  )
-                ],
-              )
-            ],
-          ),
-        ),
+                  Visibility(
+                    visible: isVDel,
+                    child: _deleteButton(),
+                  ),
+                ])
+              ],
+            )),
       );
 
   Widget _containerField() => Padding(
-        padding: const EdgeInsets.only(top: 25.0),
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
-          child: Container(
-            color: Colors.white,
-            child: Column(
-              children: [
-                _descriptionField(),
-                _linkField(),
-                _checkCondiviso(),
-              ],
-            ),
-          ),
+        padding: const EdgeInsets.only(top: 15.0),
+        child: Column(
+          children: [
+            _descriptionField(),
+            _linkField(),
+            _checkCondiviso(),
+          ],
         ),
       );
 
@@ -151,7 +176,9 @@ class _BookmarksState extends State<Bookmarks> {
 
   Widget _newButton() => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF00C853),
+          primary: Colors.teal,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
         child: Column(
           children: [
@@ -181,7 +208,9 @@ class _BookmarksState extends State<Bookmarks> {
 
   Widget _listButton() => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF00C853),
+          primary: Colors.teal,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
         child: Column(
           children: [
@@ -203,9 +232,6 @@ class _BookmarksState extends State<Bookmarks> {
             AppControl.clearBkms();
             print(AppControl.getBkms().length);
             bkms = await BkmsStore.getBkms(u);
-
-
-
           } else {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => SignIn()));
@@ -221,7 +247,8 @@ class _BookmarksState extends State<Bookmarks> {
 
   Widget _updateButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: const Color(0xFF00C853),
+        primary: Colors.teal,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       child: Column(
         children: [
@@ -240,11 +267,9 @@ class _BookmarksState extends State<Bookmarks> {
         var bkms;
 
         if (u != null || u!.userid != 0) {
-
           int index = AppControl.getIndex();
           var i = AppControl.getBkms()[index].idbkm.toString();
-          bkms = await BkmsStore.putBkms(u,i, desc.text, link.text, isChecked);
-
+          bkms = await BkmsStore.putBkms(u, i, desc.text, link.text, isChecked);
         } else {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => SignIn()));
@@ -265,9 +290,10 @@ class _BookmarksState extends State<Bookmarks> {
 
   Widget _deleteButton() => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: const Color(0xFF00C853),
+          primary: Colors.teal,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
-
         child: Column(
           children: [
             Row(
@@ -280,7 +306,57 @@ class _BookmarksState extends State<Bookmarks> {
             ),
           ],
         ),
-        onPressed: () {},
+        onPressed: () async {
+          var u = AppControl.getUser();
+          var bkms;
+          if (u != null || u!.userid != 0) {
+            int index = AppControl.getIndex();
+            var i = AppControl.getBkms()[index].idbkm.toString();
+            bkms =
+                await BkmsStore.delBkms(u, i);
+          } else {
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => SignIn()));
+          }
+
+          if (bkms == null) {
+            _showDialogErrorDel();
+          } else {
+            AppControl.clearBkms();
+            bkms = await BkmsStore.getBkms(u);
+            AppControl.setIndex(-1);
+            desc.text = "";
+            link.text = "";
+            _showDlgDelBkm();
+          }
+        },
+      );
+
+  Widget _clearButton() => ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: Colors.teal,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: const [
+                Text(
+                  'PULISCI',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+              ],
+            ),
+          ],
+        ),
+        onPressed: () {
+          desc.text = "";
+          link.text = "";
+          AppControl.setIndex(-1);
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Bookmarks()));
+        },
       );
 
   Future<void> _showDialogBkm() async {
@@ -363,5 +439,59 @@ class _BookmarksState extends State<Bookmarks> {
       },
     );
   }
+  Future<void> _showDialogErrorDel() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Mi dispiace'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('Non è possibile eliminare il bookmark selezionato'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showDlgDelBkm() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Ottimo'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: const <Widget>[
+                Text('il tuo bookmark è stato cancellato con successo!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
 }

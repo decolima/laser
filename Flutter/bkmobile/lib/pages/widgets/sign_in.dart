@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:untitled/pages/widgets/button.dart';
 import '../../control/AppControl.dart';
 import '../../control/UserStore.dart';
 import '../../pages/login_page.dart';
@@ -30,23 +31,18 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 25.0),
+      padding: const EdgeInsets.only(top: 15.0),
       child: Card(
         elevation: 2.0,
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         child: Container(
           padding: const EdgeInsets.only(top: 8.0, bottom: 4.0),
           width: 500.0,
           child: Column(
-            children: [
-              _emailField(),
-              const Divider(height: 0.0),
-              _passwordField(),
-              _signInButton()
-            ],
+            children: [_emailField(), _passwordField(), _signInButton()],
           ),
         ),
       ),
@@ -70,8 +66,8 @@ class _SignInState extends State<SignIn> {
             border: InputBorder.none,
             hintText: 'Indirizzo Email',
             hintStyle: TextStyle(fontSize: 17.0),
-            icon: Icon(FontAwesomeIcons.envelope,
-                color: Colors.black, size: 22.0),
+            icon:
+                Icon(FontAwesomeIcons.envelope, color: Colors.teal, size: 22.0),
           ),
           onSubmitted: (_) {
             _focusNodePassword.requestFocus();
@@ -95,7 +91,7 @@ class _SignInState extends State<SignIn> {
             hintText: 'Password',
             hintStyle: const TextStyle(fontSize: 17.0),
             icon: const Icon(FontAwesomeIcons.key,
-                color: Colors.black, size: 22.0),
+                color: Colors.teal, size: 22.0),
             suffixIcon: GestureDetector(
               onTap: () {
                 setState(() {
@@ -107,7 +103,7 @@ class _SignInState extends State<SignIn> {
                       ? FontAwesomeIcons.eye
                       : FontAwesomeIcons.eyeSlash,
                   size: 15.0,
-                  color: Colors.black),
+                  color: Colors.teal),
             ),
           ),
           onSubmitted: (_) {
@@ -116,10 +112,26 @@ class _SignInState extends State<SignIn> {
           textInputAction: TextInputAction.go,
         ),
       );
+  Widget _signInButton() => Bkmbutton(
+        text: "accedi",
+        onPressed: () async {
+          var usr = await UserStore.getUser(email.text, pwd.text);
 
-  Widget _signInButton() => ElevatedButton(
+          if (usr != null) {
+            print(usr!.mail);
+            AppControl.setUser(usr);
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Bookmarks(),
+              ),
+            );
+          }
+        },
+      );
+  /* Widget _signInButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Color(0xFF00C853),
+        primary: Colors.teal,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       ),
       child: const Text(
         'ACCEDI',
@@ -137,5 +149,5 @@ class _SignInState extends State<SignIn> {
             ),
           );
         }
-      });
+      }); */
 }

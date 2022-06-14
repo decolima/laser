@@ -12,8 +12,6 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   bool _obscureTextPassword = true;
 
-  //final regisBkmApp _api = regisBkmApp();
-
   final _focusNodeFirstName = FocusNode();
   final _focusNodeLastName = FocusNode();
   final _focusNodeEmail = FocusNode();
@@ -29,36 +27,26 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Flex(
-          direction: Axis.vertical,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _firstNameField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _lastNameField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _emailField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _passwordField(),
-            const SizedBox(
-              height: 5.0,
-            ),
-            _signUpButton(context),
-            const SizedBox(
-              height: 5.0,
-            )
-          ],
-        ),
-      ),
+      body: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: _containerField()),
     );
   }
+
+  Widget _containerField() => Padding(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          children: [
+            _firstNameField(),
+            _lastNameField(),
+            _emailField(),
+            _passwordField(),
+            _signUpButton(context)
+          ],
+        ),
+      );
 
   final TextEditingController firstname = TextEditingController(text: '');
   Widget _firstNameField() => Padding(
@@ -150,7 +138,7 @@ class _SignUpState extends State<SignUp> {
                       ? FontAwesomeIcons.eye
                       : FontAwesomeIcons.eyeSlash,
                   size: 15.0,
-                  color: Colors.black),
+                  color: Colors.teal),
             ),
           ),
           onSubmitted: (_) {
@@ -162,7 +150,9 @@ class _SignUpState extends State<SignUp> {
 
   Widget _signUpButton(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Color(0xFF00C853),
+          primary: Colors.teal,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
         child: const Text(
           'REGISTRATI',

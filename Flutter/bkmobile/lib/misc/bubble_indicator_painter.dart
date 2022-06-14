@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
 
 class BubbleIndicatorPainter extends CustomPainter {
   final Paint painter;
@@ -39,7 +38,6 @@ class BubbleIndicatorPainter extends CustomPainter {
     final pageOffset = pos.extentBefore / fullExtent;
 
     canvas.translate(size.width * pageOffset, 0.0);
-    canvas.drawShadow(path, CustomTheme.gradientStart, 3.0, true);
 
     canvas.drawPath(path, painter);
   }

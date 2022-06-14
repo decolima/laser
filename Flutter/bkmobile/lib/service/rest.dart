@@ -22,6 +22,7 @@ class rest {
       String path, bool auth, String token, dynamic data) async {
     Dio dio = Dio();
     var url = "$baseUrl$path";
+    dio.options.headers['accept'] = 'application/json';
     dio.options.headers['content-Type'] = 'application/json';
     if (auth) {
       dio.options.headers['Authorization'] = "Bearer $token";
@@ -38,6 +39,7 @@ class rest {
       String path, bool auth, String token, dynamic data) async {
     Dio dio = Dio();
     var url = "$baseUrl$path";
+    dio.options.headers['accept'] = 'application/json';
     dio.options.headers['content-Type'] = 'application/json';
     if (auth) {
       dio.options.headers['Authorization'] = "Bearer $token";
@@ -54,6 +56,7 @@ class rest {
       String path, bool auth, String token, dynamic data) async {
     Dio dio = Dio();
     var url = "$baseUrl$path";
+    dio.options.headers['accept'] = 'application/json';
     dio.options.headers['content-Type'] = 'application/json';
     if (auth) {
       dio.options.headers['Authorization'] = "Bearer $token";
