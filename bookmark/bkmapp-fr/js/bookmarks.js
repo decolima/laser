@@ -1,4 +1,4 @@
-import { doBkms, searchBkm, searchBkmById, updateBkms } from "../js/boundary/bookstore.js"
+import { doBkms, searchBkm, searchBkmById, updateBkms, deleteBkms } from "../js/boundary/bookstore.js"
 let body = document.getElementsByTagName("body")[0];
 let btnCreaBkms = document.querySelector("#btnCreaBkms");
 let btnNewBkms = document.querySelector("#btnNewBkms");
@@ -46,7 +46,7 @@ let CreaBkm = () => {
 function loadBkms() {
 
     try {
-        searchBkm()
+            searchBkm()
             .then(bkmsdata => {
                 console.log(bkmsdata);
                 let table = "<table class='bkm-table'>";
@@ -63,29 +63,29 @@ function loadBkms() {
 
                 for (let i = 0; i < bkmsdata.length; i++) {
                     row = "<table class='bkm-table' id=table><tr class = 'bkm-table-body'>";
-                    row += "<td id= tdesc/" + i + ">" + bkmsdata[i].descrizione + "</td>";
-                    row += "<td id= tlink/" + i + ">" + bkmsdata[i].link + "</td>";
+                    row += `<td>${bkmsdata[i].descrizione}</td>`;
+                    row += `<td>${bkmsdata[i].link}</td>`;
                     let date = bkmsdata[i].dtcreazione.substring(2, 10);
                     let time = bkmsdata[i].dtcreazione.substring(12, 19);
-                    row += "<td>" + date + " " + time + "</td>";
-                    row += "<td>" + bkmsdata[i].utente + "</td>";
-                    row += "<td>" + bkmsdata[i].condiviso + "</td>";
+                    row += `<td> ${date} ${time}</td>`;
+                    row += `<td>${bkmsdata[i].utente}</td>`;
+                    row += `<td>${bkmsdata[i].condiviso}</td>`;
 
                     let statusbkm = bkmsdata[i].status;
                     row += "</tr> </table>";
                     if (statusbkm === "Vietato") {
-                        row += "<div class= 'detail-container-denied'> <details>";
+                        row += `<div class= 'detail-container-denied'> <details>`;
                     } else {
-                        row += "<div class= 'detail-container-approved'> <details>";
+                        row += `<div class= 'detail-container-approved'> <details>`;
                     }
-                    row += "<div class='bkm-detail'>";
-                    row += "<p> Id: " + bkmsdata[i].idbkm + "</p>";
-                    row += "<p> Status: " + bkmsdata[i].status + "</p>";
-                    row += "<p> Motivo: " + bkmsdata[i].motivorim + "</p>";
+                    row += `<div class='bkm-detail'>`;
+                    row += `<p> Id: ${bkmsdata[i].idbkm}</p>`;
+                    row += `<p> Status: ${bkmsdata[i].status} </p>`;
+                    row += `<p> Motivo: ${bkmsdata[i].motivorim}</p>`;
                     row += `<div class='btns-conf-del'><input class='btnUpdate' id='${bkmsdata[i].idbkm}' type='button' value='Aggiorna'>`;
-                    row += `<input type='button' class='btnDel' id='${i}' value='Elimina'></div>`;
-                    row += "</div>"
-                    row += "</details> </div>";
+                    row += `<input type='button' class='btnDel' id='${bkmsdata[i].idbkm}' value='Elimina'></div>`;
+                    row += `</div>`
+                    row += `</details> </div>`;
 
                     table += row;
                 }
@@ -185,9 +185,16 @@ const prepareBkm = () => {
     btnNewBkms.disabled = true;
 }
 
-/* $(document).on("click", ".btnDel", function () {
-    loadBkms();
-}); */
+$(document).on("click", ".btnDel", function () {
+    try{
+        console.log(this.id)
+        const deleted = deleteBkms(this.id);
+        console.log(deleted);
+        }
+    catch (e){
+        console.log(e);
+    }
+});
 
 
 

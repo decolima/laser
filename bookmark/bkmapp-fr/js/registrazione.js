@@ -1,4 +1,4 @@
-import {doRegistration } from "../js/boundary/userstore.js"
+import {doRegistration } from "./boundary/userstore.js"
 
 let btnCrea = document.querySelector("#btnCrea");
 

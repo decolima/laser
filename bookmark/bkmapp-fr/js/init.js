@@ -9,7 +9,7 @@ let page = url.substring(url.lastIndexOf("/")+1);
 //regione di diclarazione di listener
 body.addEventListener("load", init(), false);
 
-ahref_logout.addEventListener("click", v => {
+ahref_logout.addEventListener("click", () => {
     logout();
 });
 
