@@ -81,7 +81,7 @@ public class JWTManager {
 
     private JSONObject generateJWT(User usr) {
         long currentTimeInSecs = (System.currentTimeMillis() / 1000);
-        long expirationTime = currentTimeInSecs + 1000;
+        long expirationTime = currentTimeInSecs + 1800000;
 
         JSONObject jwt = new JSONObject();
         jwt.put("iss", ISS);
