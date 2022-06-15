@@ -14,6 +14,7 @@ import bkm.security.JWTManager;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.annotation.security.DenyAll;
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -90,6 +91,46 @@ public class BooksResources {
 
     
     @GET
+    @Path("/validare")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(description = "Restituisce tutti BookMark di uno uttenti")
+    @APIResponses({
+        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
+    })
+    @RolesAllowed("Admin")
+    public List<JsonObject> validation(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
+        System.out.println(token);
+        User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));     
+        System.out.println("Cerca bkms per " + usr.toString());
+        return storebook.findAllForValidating(page,size);
+    }
+    
+    @GET
+    @Path("/new")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(description = "Restituisce tutti BookMark di uno uttenti")
+    @APIResponses({
+        @APIResponse(responseCode = "200", description = "Elenco ritornato con successo"),
+        @APIResponse(responseCode = "404", description = "Elenco non trovato")
+    })
+    @PermitAll
+    public Response allnew(@DefaultValue("1") @QueryParam("page") int page, @DefaultValue("10") @QueryParam("size") int size) {
+        //System.out.println(token);
+        //User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
+        System.out.println("Cerca bkms per " + 1);
+        
+   //     return storebook.findAllByUserJson(Long.getLong("1"), 1,1000);
+        return Response.status(Response.Status.OK)
+                .header("intPage", 10)
+                .header("intReg", 1000)
+              //  .(storebook.findAllByUserJson(Long.getLong("1"), 1,1000))
+                .build();
+    }
+    
+    
+    
+    @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(description = "Restituisce tutti BookMarks di un utente")
@@ -101,15 +142,11 @@ public class BooksResources {
     public List<JsonObject>  findbkm(@PathParam("id") Long id) {
         
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("user non trovato. id=" + token.getName()));
-        
         Bookmarks bkm = storebook.find(id).orElseThrow(() -> new NotFoundException("Bkm non trovato. id=" + id.toString()));
-        
         if(bkm.getUsr() != usr){    
             new NotFoundException("Bookmark non trovato. id=" + id.toString());
         }
-        
         System.out.println("Cerca bkms per valutazione " + usr.toString());
-       
         return storebook.findBkmsJson(id);
     }
         
@@ -158,12 +195,10 @@ public class BooksResources {
         }
  
         if((!entity.getStatus().equals(bkms.getStatus())) && usr.getRoleuser().equals(UserRoles.Admin) && entity.getStatus().equals(StatusBkms.Vietato)){    
-    
-            entity.setCondiviso(false);
-            
+            entity.setCondiviso(false);   
         }
         
-        if(!usr.equals(bkms.getUsr()) && usr.getRoleuser() != UserRoles.Admin){
+        if(!usr.equals(bkms.getUsr()) || usr.getRoleuser() != UserRoles.Admin){
             new NotFoundException("Bookmark non trovato. id=" + entity.getDescrizione());
         }
         
@@ -223,8 +258,12 @@ public class BooksResources {
     public Response cancellaBook(JsonObject jbook){
         
         System.out.println(jbook);
-        
+        User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("User non trovato. id=" + token.getName()));
         Bookmarks found = storebook.find(Long.parseLong(jbook.getString("idBook"))).orElseThrow(() -> new NotFoundException());
+        
+        if(!usr.equals(found.getUsr()) || usr.getRoleuser() != UserRoles.Admin){
+            new NotFoundException("Bookmark non trovato. id=" + found.getId());
+        }
         
         storebook.delete(found.getId());
         

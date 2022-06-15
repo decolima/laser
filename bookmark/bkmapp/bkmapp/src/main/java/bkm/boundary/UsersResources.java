@@ -123,11 +123,18 @@ public class UsersResources {
     })
     @PermitAll
     public Response create(@Valid User entity) {
+        
+        if(storeuser.findUserbyLogin(entity.getEmail()).isPresent()){
+            
+           return Response.status(Response.Status.PRECONDITION_FAILED).build();
+        }
+        
         User saved = storeuser.save(entity);
+        
         return Response.status(Response.Status.CREATED)
                 .entity(saved)
                 .build();
-    }
+}
     
     
     @POST
