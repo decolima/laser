@@ -25,7 +25,7 @@ function registration() {
  
     //console.log(role);
     try {
-        let response = doRegistration(usr, pwd, fname, lname, role)
+        doRegistration(usr, pwd, fname, lname, role)
             .then(data => {
                 console.log(data);
             })
