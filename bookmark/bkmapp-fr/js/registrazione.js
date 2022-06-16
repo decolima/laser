@@ -1,4 +1,4 @@
-import {doRegistration } from "../js/boundary/userstore.js"
+import {doRegistration } from "./boundary/userstore.js"
 
 let btnCrea = document.querySelector("#btnCrea");
 
@@ -25,7 +25,7 @@ function registration() {
  
     //console.log(role);
     try {
-        let response = doRegistration(usr, pwd, fname, lname, role)
+        doRegistration(usr, pwd, fname, lname, role)
             .then(data => {
                 console.log(data);
             })

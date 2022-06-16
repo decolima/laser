@@ -1,7 +1,7 @@
 import RestException from "./exceptioncall.js";
 import { readToken } from "./tokenmanager.js";
 
-const postJsonData = async (url, data, reqAuth = true) => {
+const postJsonData = async (url, data, reqAuth) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
@@ -23,7 +23,7 @@ const postJsonData = async (url, data, reqAuth = true) => {
     return resp.json();
 }
 
-const getJsonData = async (url, reqAuth = true) => {
+const getJsonData = async (url, reqAuth) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
@@ -44,7 +44,7 @@ const getJsonData = async (url, reqAuth = true) => {
 }
 
 
-const putJsonData = async (url, data, reqAuth = true) => {
+const putJsonData = async (url, data, reqAuth) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
@@ -65,8 +65,9 @@ const putJsonData = async (url, data, reqAuth = true) => {
     return resp.json();
 }
 
-const delJsonData = async (url, reqAuth = true) => {
+const delJsonData = async (url, data, reqAuth) => {
     const headers = new Headers();
+    headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {
         headers.append('Authorization', `Bearer ${readToken()}`);
@@ -75,17 +76,18 @@ const delJsonData = async (url, reqAuth = true) => {
         method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached,
-        headers: headers
+        headers: headers,
+        body: JSON.stringify(data)
     }).catch(error => {
         throw new RestException(undefined,error);
     })
     if (!resp.ok) {
         throw new RestException(resp,undefined);
     }
-    return resp.json();
+    return resp;
 }
 
-const patchJsonData = async (url, reqAuth = true) => {
+const patchJsonData = async (url, reqAuth) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     if (reqAuth === true) {

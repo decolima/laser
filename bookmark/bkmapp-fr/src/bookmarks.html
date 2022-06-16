@@ -12,11 +12,20 @@
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/bookmarks.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../js/navbar.js"></script>
     <script src="../js/init.js" type="module"></script>
-    <script src="../js/bookmarks.js" type="module"></script>
-    <!-- <script src="../js/btn.js" type="module"></script>  -->
+    <script src="../js/javascript.js" type="module"></script>
+    <script type="module">import {ShowMore,Update,Delete, Create, searchByName,sortTable,Editable} from "../js/javascript.js";
+     window.ShowMore = ShowMore;
+     window.Update = Update;
+     window.Delete = Delete;
+     window.Create = Create;
+     window.searchByName = searchByName;
+     window.sortTable = sortTable;
+     window.Editable = Editable;
+    </script>
 </head>
 
 <body>
@@ -35,41 +44,46 @@
     </nav>
     <div id="page">
         <div id="presentazione" class="container">
-            <h2 class="titolo1" style="text-transform: capitalize;">Area per dire qualcosa su bookmarks</h2>
-            <h2 class="titolo1">AREA PRIVATA</h2>
-            <p style="text-align: center;">Servizi disponibili solo a utenti riconosciuti</p>
+            <h1 class="titolo1" style="text-transform: capitalize;">GESTISCI I TUOI BOOKMARKS</h1>
         </div>
 
 
         <div class="wrapper">
             <div>
                 <form class="form-container">
-                    <h2 class="heading">Crea o Modifica Bookmarks</h2>
-                    <input type="text" id="descrizione" placeholder="Inserisci la descrizione del bookmark..." /> <br>
+                    <h2 class="heading">Crea Bookmarks</h2>
+                    <input type="text" id="descrizione" placeholder="Ins.la descrizione del bookmark...(max 250)" /> <br>
                     <input type="text" id="link" placeholder="Inserisci il link." /> <br>
                     <div class="form-check" id="divcheck-shared">
-                        <label for="condiviso" class="labelcheck">Visibile per tutti ?</label>
+                        <label for="condiviso" class="labelcheck">Condivisibile ?</label>
                         <input type="checkbox" class="check" id="condiviso" name="condiviso">
                     </div>
                     <div class="btn-bkms" style="display: flex;">
-                        <input type="button" id="btnCreaBkms" value="Crea Bookmark">
-                        <input type="button" id="btnNewBkms" value="Nuovo Bookmark" disabled>
+                        <input type="button" id="btnCreaBkms" value="Crea Bookmark" onclick="Create()">
                     </div>
 
                 </form>
             </div>
         </div>
-        <div class="table-container">
-            <div>
-                <h2>Lista Bookmarks</h2>
-                <div id="divbkms">
-                </div>
-            </div>
-        </div>
-
     </div>
-
-
+    
+            <input type="text" id="myInput" onkeyup="searchByName()" placeholder="Cerca per link..." title="Type in a link">
+            <div class="table-container">
+                <table class="myTable" id="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th onclick="sortTable(1,this)">DESCRIZIONE<span class="desc">&#10225;</span></th>
+                            <th onclick="sortTable(2,this)">LINK<span class="desc">&#10225;</span></th>
+                            <th onclick="sortTable(3,this)">AUTORE<span class="desc">&#10225;</span></th>
+                            <th>CONDIVISO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyTable">
+                    </tbody>
+                </table>
+            </div>
     <footer>
         <div class="footer-container">
             <h3>Footer Bkmapp</h3>

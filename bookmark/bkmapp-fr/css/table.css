@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+}
+
+.show.off{
+    display: none;
+}
+
+.show{
+    display: block;
+    gap: 0.5em;
+}
+
+.table-container{
+    overflow-x: scroll;
+    margin-bottom: 2em;
+}
+
+.myTable{
+    width: 100%;
+    border-spacing: 0;
+}
+[contenteditable="true"]:focus{
+    padding: 0;
+    color: #ffff;
+    background-color: rgba(4, 157, 191, 0.467);
+}
+
+.myTable thead > tr{
+    color: #ffff;
+    background-color: rgba(0, 0, 0, 0.947);
+    height: 3em;
+}
+.myTable thead th{
+    padding: 0 1em;
+}
+
+.myTable tbody{
+    text-align: center;
+}
+
+.myTable td{  
+    border: 1px rgba(0, 0, 0, 0.433) solid;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    padding: 0 0.2em;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+}
+
+tbody td:not(:first-child){  
+    background-color: white;
+}
+
+
+.btn-container >input[type='image']{
+    display: inline;
+}
+
+.btn-delete{
+    width: 45px;
+    height: 45px;
+}
+.btn-delete:hover{
+    width: 45px;
+    height: 45px;
+    background-color: rgb(5, 217, 217);
+    border-radius: 2em;    
+}
+
+.btn-update{
+    width: 45px;
+    height: 45px; 
+}
+.btn-update:hover{
+    width: 45px;
+    height: 45px;
+    background-color: rgb(5, 217, 217);
+    border-radius: 2em;    
+}
+
+.btn-info{
+    display: inline;
+    width: 3em;
+    padding: 0;
+    border-radius: 3em;
+    color: #ffff;
+    cursor: pointer;
+}
+.btn-info:hover{
+    background: rgb(5, 217, 217);
+}
+
+.shared-check{
+    display: inline-block;
+    width: 40px;
+}
+
+.show{
+    text-align: left;
+    padding: 0 0.5em;
+    background-color: #ffffff70;
+    border: 1px rgba(0, 0, 0, 0.433) solid;
+    margin-bottom: 0.5em;
+    border-radius: 0.7em;
+}
+
+span{
+    font-weight: 700;
+}
+
+#myInput{
+    width: 420px;
+    border-radius: 1.5em;
+    margin-top: 5em;
+    margin-bottom: 1em;
+    border: 1px solid black;
+}
+
+.additional-info{
+    display: none;
+}
+
+.additional-info.on{
+    display: block;
+}
+
+.denied{
+    background-color: rgba(255, 0, 0, 0.403);
+}
+
+.approved{
+    background-color: rgba(5, 193, 5, 0.381);
+}
+
+
