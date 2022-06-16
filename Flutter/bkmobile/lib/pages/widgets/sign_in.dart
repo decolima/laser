@@ -50,7 +50,7 @@ class _SignInState extends State<SignIn> {
   }
 
   final TextEditingController email =
-      TextEditingController(text: 'andre@bkmapp.it');
+      TextEditingController(text: '');
 
   Widget _emailField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
@@ -75,7 +75,7 @@ class _SignInState extends State<SignIn> {
         ),
       );
 
-  final TextEditingController pwd = TextEditingController(text: 'andre');
+  final TextEditingController pwd = TextEditingController(text: '');
   Widget _passwordField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),
         child: TextField(
@@ -112,23 +112,8 @@ class _SignInState extends State<SignIn> {
           textInputAction: TextInputAction.go,
         ),
       );
-  Widget _signInButton() => Bkmbutton(
-        text: "accedi",
-        onPressed: () async {
-          var usr = await UserStore.getUser(email.text, pwd.text);
 
-          if (usr != null) {
-            print(usr!.mail);
-            AppControl.setUser(usr);
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => Bookmarks(),
-              ),
-            );
-          }
-        },
-      );
-  /* Widget _signInButton() => ElevatedButton(
+  Widget _signInButton() => ElevatedButton(
       style: ElevatedButton.styleFrom(
         primary: Colors.teal,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -149,5 +134,5 @@ class _SignInState extends State<SignIn> {
             ),
           );
         }
-      }); */
+      });
 }
