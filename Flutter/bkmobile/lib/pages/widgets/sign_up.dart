@@ -27,12 +27,11 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: _containerField()),
-    );
+        body: ClipRRect(
+      borderRadius: BorderRadius.circular(20.0),
+      clipBehavior: Clip.hardEdge,
+      child: _containerField(),
+    ));
   }
 
   Widget _containerField() => Padding(

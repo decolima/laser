@@ -312,8 +312,7 @@ class _BookmarksState extends State<Bookmarks> {
           if (u != null || u!.userid != 0) {
             int index = AppControl.getIndex();
             var i = AppControl.getBkms()[index].idbkm.toString();
-            bkms =
-                await BkmsStore.delBkms(u, i);
+            bkms = await BkmsStore.delBkms(u, i);
           } else {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => SignIn()));
@@ -439,6 +438,7 @@ class _BookmarksState extends State<Bookmarks> {
       },
     );
   }
+
   Future<void> _showDialogErrorDel() async {
     return showDialog<void>(
       context: context,
@@ -492,6 +492,4 @@ class _BookmarksState extends State<Bookmarks> {
       },
     );
   }
-
-
 }
