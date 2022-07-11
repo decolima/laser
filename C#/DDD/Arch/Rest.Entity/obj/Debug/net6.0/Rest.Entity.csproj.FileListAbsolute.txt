@@ -1,0 +1,12 @@
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/bin/Debug/net6.0/Rest.Entity.deps.json
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/bin/Debug/net6.0/Rest.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/bin/Debug/net6.0/Rest.Entity.pdb
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.csproj.AssemblyReference.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.AssemblyInfoInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.AssemblyInfo.cs
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.csproj.CoreCompileInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/refint/Rest.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/Rest.Entity.pdb
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Entity/obj/Debug/net6.0/ref/Rest.Entity.dll

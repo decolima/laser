@@ -1,0 +1,12 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+.idea/.idea.JokesApp/.idea/vcs.xml
+.idea/.idea.JokesApp/.idea/indexLayout.xml
+.idea/.idea.JokesApp/.idea/encodings.xml
+.idea/.idea.JokesApp/.idea/dataSources.xml
+JokesApp/.DS_Store
+.idea/.DS_Store
+.DS_Store

@@ -1,0 +1,11 @@
+c:/_aspncore/Livraria/Livraria/bin/Debug/netcoreapp1.1/Livraria.deps.json
+c:/_aspncore/Livraria/Livraria/bin/Debug/netcoreapp1.1/Livraria.runtimeconfig.json
+c:/_aspncore/Livraria/Livraria/bin/Debug/netcoreapp1.1/Livraria.runtimeconfig.dev.json
+c:/_aspncore/Livraria/Livraria/bin/Debug/netcoreapp1.1/Livraria.dll
+c:/_aspncore/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.csprojResolveAssemblyReference.cache
+c:/_aspncore/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.AssemblyInfo.cs
+c:/_aspncore/Livraria/Livraria/bin/Debug/netcoreapp1.1/Livraria.pdb
+c:/_aspncore/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.dll
+c:/_aspncore/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.pdb
+/Users/andrelima/Documents/Laser/laser/C#/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.dll
+/Users/andrelima/Documents/Laser/laser/C#/Livraria/Livraria/obj/Debug/netcoreapp1.1/Livraria.pdb
