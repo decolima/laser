@@ -4,6 +4,8 @@ import '../pages/widgets/sign_in.dart';
 import '../pages/widgets/sign_up.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _LoginPageState();
 }
@@ -56,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         width: 300.0,
         height: 50.0,
-        margin: const EdgeInsets.only(top: 40.0),
+        margin: const EdgeInsets.only(top: 32.0),
         child: CustomPaint(
           painter: BubbleIndicatorPainter(pageController: _pageController),
           child: Row(
@@ -100,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
       );
   Widget _pageViewWidget() => Expanded(
           child: PageView(
-          onPageChanged: (index) {
+        onPageChanged: (index) {
           setState(() {
             signIn = index == 0 ? Colors.black : Colors.white;
             signUp = index == 1 ? Colors.black : Colors.white;

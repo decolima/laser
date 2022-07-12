@@ -85,11 +85,8 @@ class BkmsStore {
     }
   }
 
-  static Future delBkms(
-      User usr, String id) async {
-    dynamic data = {
-      'idBook': id
-    };
+  static Future delBkms(User usr, String id) async {
+    dynamic data = {'idBook': id};
     try {
       var resp = await rest.delRest("/books", true, usr.token, data);
       return (resp);
@@ -97,5 +94,4 @@ class BkmsStore {
       return Bkms(error: e.toString());
     }
   }
-
 }

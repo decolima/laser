@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-
 class BubbleIndicatorPainter extends CustomPainter {
   final Paint painter;
   final double dxTarget;
@@ -12,8 +11,8 @@ class BubbleIndicatorPainter extends CustomPainter {
   final PageController pageController;
 
   BubbleIndicatorPainter({
-    this.dxTarget = 115,
-    this.dxEntry = 25,
+    this.dxTarget = 90,
+    this.dxEntry = 30,
     this.radius = 21,
     this.dy = 25,
     required this.pageController,

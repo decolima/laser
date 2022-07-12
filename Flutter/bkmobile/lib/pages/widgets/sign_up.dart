@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:untitled/control/UserStore.dart';
 import '../../pages/login_page.dart';
-//import 'package:untitled/pages/Rest/regis.dart';
 
 class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _SignUpState();
 }

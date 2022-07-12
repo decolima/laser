@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/App.dart';
 import 'package:untitled/pages/welcome_page.dart';
 import 'package:untitled/pages/widgets/sign_in.dart';
 import '../control/AppControl.dart';
@@ -8,6 +7,8 @@ import 'widgets/Listbkm.dart';
 import '../control/BkmsStore.dart';
 
 class Bookmarks extends StatefulWidget {
+  const Bookmarks({Key? key}) : super(key: key);
+
   @override
   State<Bookmarks> createState() => _BookmarksState();
 }
@@ -70,6 +71,7 @@ class _BookmarksState extends State<Bookmarks> {
         ),
         extendBodyBehindAppBar: true,
         body: Container(
+          margin: EdgeInsets.only(top: 32.0),
             padding: const EdgeInsets.all(58.0),
             decoration:
                 const BoxDecoration(color: Color.fromRGBO(225, 237, 249, 1.0)),
@@ -272,7 +274,7 @@ class _BookmarksState extends State<Bookmarks> {
           bkms = await BkmsStore.putBkms(u, i, desc.text, link.text, isChecked);
         } else {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => SignIn()));
+              .push(MaterialPageRoute(builder: (context) => const SignIn()));
         }
         if (bkms == null) {
           _showDialogBkm();
@@ -282,9 +284,9 @@ class _BookmarksState extends State<Bookmarks> {
           AppControl.setIndex(-1);
           desc.text = "";
           link.text = "";
-          _showDlgAggBkm;
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Listbkm()));
+              .push(MaterialPageRoute(builder: (context) => Bookmarks()));
+          _showDlgAggBkm;
         }
       });
 
@@ -326,6 +328,8 @@ class _BookmarksState extends State<Bookmarks> {
             AppControl.setIndex(-1);
             desc.text = "";
             link.text = "";
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Bookmarks()));
             _showDlgDelBkm();
           }
         },

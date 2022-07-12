@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:untitled/pages/widgets/button.dart';
 import '../../control/AppControl.dart';
 import '../../control/UserStore.dart';
-import '../../pages/login_page.dart';
-import 'package:dio/dio.dart';
 import '../../pages/Bookmarks.dart';
-import '../../entity/User.dart';
 
 class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
   bool _obscureTextPassword = true;
-
-  //final loginBkmApp _api = loginBkmApp();
 
   final _focusNodeEmail = FocusNode();
   final _focusNodePassword = FocusNode();
@@ -49,8 +45,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  final TextEditingController email =
-      TextEditingController(text: '');
+  final TextEditingController email = TextEditingController(text: '');
 
   Widget _emailField() => Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 24.0),

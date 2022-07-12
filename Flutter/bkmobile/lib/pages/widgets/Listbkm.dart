@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import '../Bookmarks.dart';
 import '../../control/AppControl.dart';
 
-
 class Listbkm extends StatefulWidget {
+  const Listbkm({Key? key}) : super(key: key);
+
   @override
   State<Listbkm> createState() => _Listbkm();
 }
 
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(
-      backgroundColor: Colors.black
-    ),
-      extendBodyBehindAppBar: true,
+    return Scaffold(
+        appBar: AppBar(backgroundColor: Colors.black),
+        extendBodyBehindAppBar: true,
         body: getBkm());
   }
 
@@ -34,13 +34,11 @@ class _Listbkm extends State<Listbkm> {
                 _selectedIndex = index;
 
                 AppControl.setIndex(index);
-                Navigator.of(context).push(
-                    MaterialPageRoute(
-                    builder: (context) => Bookmarks()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => Bookmarks()));
               });
             },
           );
-        }
-        );
+        });
   }
 }

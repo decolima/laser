@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 
-//class WelcomePage extends StatelessWidget {
-//  const WelcomePage({Key? key}) : super(key: key);
 class WelcomePage extends StatefulWidget {
+  const WelcomePage({Key? key}) : super(key: key);
+
   @override
   State<WelcomePage> createState() => _WelcomePageState();
 }
 
 class _WelcomePageState extends State<WelcomePage> {
-
- @override
+  @override
   Widget build(BuildContext context) => Scaffold(
         body: Container(
           padding: const EdgeInsets.all(58.0),
-          decoration: const BoxDecoration(
-          color: Color.fromRGBO(225, 237, 249, 1.0)
-          ),
+          decoration:
+              const BoxDecoration(color: Color.fromRGBO(225, 237, 249, 1.0)),
           child: Column(
             children: [_welcomeWidget(), _signInButton(context)],
           ),
@@ -46,8 +44,8 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget _signInButton(BuildContext context) => ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: Colors.teal,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         ),
         child: const Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 48.0),
@@ -64,7 +62,4 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
       );
-
 }
-
-

@@ -1,20 +1,18 @@
 import '../entity/Bkms.dart';
 import '../entity/User.dart';
 
-
 class AppControl {
   static User? _usr;
   static final _bkms = <Bkms>[];
   static int _index = -1;
 
-  static setIndex(int i){
+  static setIndex(int i) {
     _index = i;
   }
 
-  static getIndex(){
-   return _index;
+  static getIndex() {
+    return _index;
   }
-
 
   static setUser(User u) {
     _usr = u;
