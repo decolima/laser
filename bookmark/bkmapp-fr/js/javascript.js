@@ -34,8 +34,8 @@ function createTable() {
             <td onclick="Editable(this)">${bkm.link}</td>
             <td id='${bkm.mail}'>${bkm.utente}</td>
             <td><input class="shared-check" id=${bkm.idbkm} type="checkbox" ${bkm.condiviso ? 'checked' : 'unchecked'}>${bkm.condiviso ? 'sì' : 'no'}</td>
-            <td class='btn-container'><input class='btn-update'id=${i} onclick='Update(this.id)' type="image" src="../img/edit.png" value="Edit">
-            <input class='btn-delete' id=${bkm.idbkm} onclick='Delete(this)' type="image" src="../img/delete.png" value="Delete" name=${bkm.mail}>
+            <td class='btn-container' ><input class='btn-update'id=${i} onclick='Update(this.id)' type="image" src="../img/edit.png" value="Edit" style="display:${(bkm.mail === user || role) ? 'inline' : 'none'}">
+            <input class='btn-delete' id=${bkm.idbkm} onclick='Delete(this)' type="image" src="../img/delete.png" value="Delete" name=${bkm.mail} style="display:${(bkm.mail === user || role) ? 'inline' : 'none'}">
             </td>
             </tr>`
           i++;
@@ -49,6 +49,7 @@ function createTable() {
 }
 
 /* inizio funzione bottoni */
+
 
 export const ShowMore = (id) => {
   let details = document.querySelector(`div[id = "${id}"]`);
