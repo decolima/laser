@@ -1,7 +1,7 @@
 class Consegna {
   int? id = 0;
   String? idamazon = "";
-  String? peso = "";
+  double? pesopaco = 0;
   String? dimensione = "";
   String? indirizzo = "";
   String? stconsegna = "";
@@ -12,7 +12,7 @@ class Consegna {
   Consegna(
       {this.id,
       this.idamazon,
-      this.peso,
+      this.pesopaco,
       this.dimensione,
       this.indirizzo,
       this.stconsegna,
@@ -23,7 +23,7 @@ class Consegna {
   Consegna.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     idamazon = json['idamazon'];
-    peso = json['peso'];
+    pesopaco = json['pesopaco'];
     dimensione = json['dimensione'];
     indirizzo = json['indirizzo'];
     stconsegna = json['stconsegna'];
@@ -35,7 +35,7 @@ class Consegna {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['idamazon'] = idamazon;
-    data['peso'] = peso;
+    data['pesopaco'] = pesopaco;
     data['dimensione'] = dimensione;
     data['indirizzo'] = indirizzo;
     data['stconsegna'] = stconsegna;

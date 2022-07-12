@@ -1,9 +1,6 @@
 import 'package:amz/ListConsegna.dart';
-
 import '../../control/AppControl.dart';
 import 'package:flutter/material.dart';
-import '../../control/UserStore.dart';
-import 'control/ConsegnaStore.dart';
 
 class WidgetLogin extends StatefulWidget {
   @override
@@ -51,16 +48,12 @@ class _WidgetLoginState extends State<WidgetLogin> {
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
-          var user = await UserStore.getUser(email.text, pass.text);
-          if (user != null) {
-            AppControl.setUser(user);
-            var u = AppControl.getUser();
-            if (u != null || u!.userid != 0) {
-              await ConsegnaStore.getConsegna(u, 1, 100);
-              print(AppControl.getConsegna().length.toString());
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => DoListConsegna()));
-            }
+          await AppControl.LoginUser(email.text, pass.text);
+          if (AppControl.getUser()!.firstName != null) {
+            await AppControl.CaricaConsegna();
+            print(AppControl.getConsegna().length.toString());
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => DoListConsegna()));
           }
         },
       ),

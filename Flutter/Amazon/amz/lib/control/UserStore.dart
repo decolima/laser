@@ -1,3 +1,5 @@
+import 'package:amz/control/AppControl.dart';
+
 import '../entity/User.dart';
 import '../service/rest.dart';
 
@@ -8,16 +10,10 @@ class UserStore {
     try {
       var resp = await rest.postRest("/users/login", false, "", data);
       user = User.fromJson(resp);
+      AppControl.setUser(user);
       return (user);
     } catch (e) {
-      return User(
-          error: e.toString(),
-          firstName: "",
-          lastName: "",
-          mail: "",
-          role: "",
-          token: "",
-          userid: 0);
+      return User();
     }
   }
 
@@ -36,14 +32,7 @@ class UserStore {
       user = User.fromJson(resp);
       return (user);
     } catch (e) {
-      return User(
-          error: e.toString(),
-          firstName: "",
-          lastName: "",
-          mail: "",
-          role: "",
-          token: "",
-          userid: 0);
+      return User();
     }
   }
 }

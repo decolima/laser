@@ -9,5 +9,5 @@ package entity.constant;
  * @author andrelima
  */
 public enum StatusConsegna {
-    Nuova, InConsegna, Consegnata, Cancellata, Restituita
+    Nuova, InConsegna, Consegnata, Cancellata, Restituita, Reprovare
 }

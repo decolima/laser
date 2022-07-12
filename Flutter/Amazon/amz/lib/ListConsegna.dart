@@ -1,5 +1,9 @@
+import 'package:amz/DettagliConsegna.dart';
 import 'package:amz/control/AppControl.dart';
+import 'package:amz/entity/User.dart';
 import 'package:flutter/material.dart';
+
+import 'login.dart';
 
 class DoListConsegna extends StatefulWidget {
   @override
@@ -28,6 +32,18 @@ class _DoListConsegna extends State<DoListConsegna> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Lista di Consegne"),
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () {
+                  User u = User();
+                  AppControl.setUser(u);
+                  AppControl.clearConsegna();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => WidgetLogin()));
+                })
+          ],
         ),
         body: getUtenti());
   }
@@ -41,12 +57,15 @@ class _DoListConsegna extends State<DoListConsegna> {
           return ListTile(
             selectedColor: Colors.blue,
             selected: index == _selectedIndex,
-            title: Text(AppControl.getConsegna()[index].idamazon.toString()),
-            subtitle:
-                Text(AppControl.getConsegna()[index].indirizzo.toString()),
+            title: Text(AppControl.getConsegna()[index].indirizzo.toString()),
+            subtitle: Text(
+                "${AppControl.getConsegna()[index].idamazon} - ${AppControl.getConsegna()[index].dimensione} - ${AppControl.getConsegna()[index].pesopaco}"),
             onTap: () {
               setState(() {
                 _selectedIndex = index;
+                AppControl.setIndex(index);
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DettagliConsegna()));
               });
             },
           );

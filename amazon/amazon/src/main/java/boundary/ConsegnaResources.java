@@ -85,6 +85,23 @@ public class ConsegnaResources {
 }
     
     
+    @GET
+    @Path("do")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(description = "Permette l'aggiornamento di una consegna")
+    @APIResponses({
+        @APIResponse(responseCode = "201", description = "Consegna aggirnata con successo"),
+        @APIResponse(responseCode = "404", description = "Aggiornamento fallito")
+    })
+    @RolesAllowed({"Admin","User"})
+    public List<Consegna> listDoConsegna() {
+                
+        return storeconsegna.doConsegna();
+        
+        
+}
+    
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -114,21 +131,22 @@ public class ConsegnaResources {
         @APIResponse(responseCode = "404", description = "Aggiornamento fallito")
     })
     @RolesAllowed({"Admin","User"})
-    public Response aggiornaConsegna(@Valid ConsegnaDto consegna) {
+    public Response aggiornaConsegna(@Valid ConsegnaDto cs) {
         
         System.out.println(token);
         
+        System.out.println(cs.idconsegna.toString());
+        
         if(!storeuser.findUserbyLogin(token.getName()).isPresent()){
             
-           return Response.status(Response.Status.PRECONDITION_FAILED).build();
+            return Response.status(Response.Status.PRECONDITION_FAILED).build();
         }
         
         User usr = storeuser.findUserbyLogin(token.getName()).orElseThrow(() -> new NotFoundException("User non trovato. id=" + token.getName()));
        
-        Consegna cng = storeconsegna.find(consegna.idconsegna).orElseThrow(() -> new NotFoundException("Consegna non trovata. id=" + consegna.idconsegna));
+        Consegna cng = storeconsegna.find(cs.idconsegna).orElseThrow(() -> new NotFoundException("Consegna non trovata. id=" + cs.idconsegna));
         
-        
-        storeconsegna.aggiornaConsegna(cng, usr, consegna.st);
+        storeconsegna.aggiornaConsegna(cng, usr, cs.st);
         
         return Response.status(Response.Status.ACCEPTED)
                 .build();

@@ -4,22 +4,6 @@ import '../service/rest.dart';
 import 'AppControl.dart';
 
 class ConsegnaStore {
-  static Future postAggConsegna(User usr, String id, String st) async {
-    dynamic data = {'idconsegna': id, 'st': st};
-    late Consegna cnsg;
-    try {
-      print(usr.mail);
-
-      var resp =
-          await rest.postRest("/consegna/aggiorna", true, usr.token!, data);
-      cnsg = Consegna.fromJson(resp);
-      print(resp);
-      return (cnsg);
-    } catch (e) {
-      return Consegna(error: e.toString());
-    }
-  }
-
   static Future getConsegna(User usr, int page, int size) async {
     var cnsg = <Consegna>[];
     var resp = [];
@@ -27,7 +11,7 @@ class ConsegnaStore {
     //print(usr.firstName);
 
     try {
-      resp = await rest.getRest("/consegna", true, usr.token!, page, size);
+      resp = await rest.getRest("/consegna/do", true, usr.token!, page, size);
       for (var a in resp) {
         //print(a);
         cnsg.add(Consegna.fromJson(a));
@@ -59,19 +43,12 @@ class ConsegnaStore {
   }
   */
 
-  static Future putConsegna(
-      User usr, int id, String desc, String link, bool shared) async {
-    dynamic data = {
-      'id': id,
-      'descrizione': desc,
-      'link': link,
-      'condiviso': shared,
-      'status': 'Nuovo',
-      'motivorim': ""
-    };
+  static Future postConsegna(User usr, int id, String st) async {
+    dynamic data = {'idconsegna': id, 'st': st};
     late Consegna cnsg;
     try {
-      var resp = await rest.putRest("/books", true, usr.token!, data);
+      var resp =
+          await rest.postRest("/consegna/aggiorna", true, usr.token!, data);
       cnsg = Consegna.fromJson(resp);
       return (cnsg);
     } catch (e) {

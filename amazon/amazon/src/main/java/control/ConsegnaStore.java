@@ -29,6 +29,15 @@ public class ConsegnaStore extends BaseStore<Consegna>{
         return em.createQuery(query,Consegna.class).getResultList();
 
     }
+    
+    public List<Consegna> doConsegna() {
+
+        String query = "";
+        query = "select e from Consegna e where e.cancellato = false and stconsegna in ('Nuova','Reprovare')";
+
+        return em.createQuery(query,Consegna.class).getResultList();
+
+    }
 
      public Optional<Consegna> find(Long id){
         
@@ -45,6 +54,8 @@ public class ConsegnaStore extends BaseStore<Consegna>{
         found.setUsr(usr);
         
         found.setStconsegna(st);
+        
+        System.out.println(found);
 
         if(st == StatusConsegna.Consegnata)
         {
