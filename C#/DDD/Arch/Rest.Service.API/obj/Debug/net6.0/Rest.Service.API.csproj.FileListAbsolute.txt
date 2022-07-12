@@ -1,0 +1,9 @@
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.csproj.AssemblyReference.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.AssemblyInfoInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.AssemblyInfo.cs
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.csproj.CoreCompileInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.MvcApplicationPartsAssemblyInfo.cs
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.MvcApplicationPartsAssemblyInfo.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.RazorAssemblyInfo.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Service.API/obj/Debug/net6.0/Rest.Service.API.RazorAssemblyInfo.cs

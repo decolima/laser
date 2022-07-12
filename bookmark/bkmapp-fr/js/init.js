@@ -42,14 +42,15 @@ export function init() {/*
                 admincheck.classList.remove("off");
             }
         }
-    }/* if (!usr){
-        if(page = "index.html") return;
-        if(page = "registration.html") return;
-        else{
-        window.location.replace("login.html");
-        }
-        console.log(page);
-     } */
+    }if (document.URL.includes("user.html")){
+        const name = sessionStorage.getItem("first_name");
+        const lastname = sessionStorage.getItem("last_name");
+        const rolename = sessionStorage.getItem("role");
+        document.querySelector("#name").innerHTML = name;
+        document.querySelector("#surname").innerHTML = lastname;
+        document.querySelector("#email").innerHTML = usr;
+        document.querySelector("#role").innerHTML = rolename;
+     }
 }
 
 export default { init };

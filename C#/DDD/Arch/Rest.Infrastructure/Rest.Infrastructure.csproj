@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Data\" />
+    <None Remove="CrossCutting\" />
+    <None Remove="Microsoft.EntityFrameworkCore" />
+    <None Remove="Data\Repository\" />
+    <None Remove="CrossCutting\Map\" />
+    <None Remove="CrossCutting\Interfaces\" />
+    <None Remove="CrossCutting\IOC\" />
+    <None Remove="Autofac" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="CrossCutting\" />
+    <Folder Include="Data\Repository\" />
+    <Folder Include="CrossCutting\Mapper\" />
+    <Folder Include="CrossCutting\Interfaces\" />
+    <Folder Include="CrossCutting\IOC\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6" />
+    <PackageReference Include="Autofac" Version="6.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rest.Core.Entity\Rest.Core.Entity.csproj" />
+    <ProjectReference Include="..\Rest.Application\Rest.Application.csproj" />
+    <ProjectReference Include="..\Rest.Service.Entity\Rest.Service.Entity.csproj" />
+  </ItemGroup>
+</Project>

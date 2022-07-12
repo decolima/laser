@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{25A7CA1D-E67D-4BB6-8363-0521627E650D}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Services.Rest.Service.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Rest.Infrastructure/Data/Repository/RepositoryBase.cs">
+    <Files>
+      <File FileName="Rest.Core.Entity/Interfaces/Repositorys/IRepositoryBase.cs" Line="15" Column="33" />
+      <File FileName="Rest.Core.Entity/Interfaces/Repositorys/IRepositoryCliente.cs" Line="1" Column="1" />
+      <File FileName="Rest.Core.Entity/Interfaces/Repositorys/IRepositoryProduto.cs" Line="1" Column="1" />
+      <File FileName="Rest.Infrastructure/Data/Repository/RepositoryBase.cs" Line="31" Column="14" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Arch" expanded="True">
+            <Node name="EntityCore" expanded="True">
+              <Node name="Rest.Core.Entity" expanded="True" />
+            </Node>
+            <Node name="Infrastructure" expanded="True">
+              <Node name="Rest.Infrastructure" expanded="True">
+                <Node name="Data" expanded="True">
+                  <Node name="Repository" expanded="True">
+                    <Node name="RepositoryBase.cs" selected="True" />
+                  </Node>
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

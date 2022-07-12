@@ -1,0 +1,15 @@
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/bin/Debug/net6.0/Rest.Core.Entity.deps.json
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/bin/Debug/net6.0/Rest.Core.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/bin/Debug/net6.0/Rest.Core.Entity.pdb
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/bin/Debug/net6.0/Rest.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/bin/Debug/net6.0/Rest.Entity.pdb
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.csproj.AssemblyReference.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.AssemblyInfoInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.AssemblyInfo.cs
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.csproj.CoreCompileInputs.cache
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.csproj.CopyComplete
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/refint/Rest.Core.Entity.dll
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/Rest.Core.Entity.pdb
+/Users/andrelima/Documents/Laser/laser/C#/DDD/Arch/Rest.Core.Entity/obj/Debug/net6.0/ref/Rest.Core.Entity.dll

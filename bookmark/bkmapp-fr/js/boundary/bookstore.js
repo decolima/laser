@@ -2,13 +2,14 @@ import { postJsonData, getJsonData, putJsonData, delJsonData } from "../service/
 import configData from "../service/config.js";
 
 const url = `${configData.baseurl}/books?page=1&size=1000`
+const url2 = `${configData.baseurl}/books`
 
 const searchBkm = () => {
     return getJsonData(url, true)
 }
 
 const searchBkmById  = (id) => {
-    const fullurl = `${url}/${id}`;
+    const fullurl = `${url2}/${id}`;
     return getJsonData(fullurl, true)
 }
 
