@@ -27,7 +27,7 @@ function createTable() {
             <span>Data creazione:</span> <p>${date} ${time}</p>
             <div class='additional-info'><span class='moreInfo'>Id: </span><p>${bkm.idbkm}</p></div>
             <div><span class='moreInfo'>Status:</span> <p id='status[${i}]' onclick='Editable(this)'>${bkm.status}</p></div>
-            <div class='additional-info'><span class='moreInfo'>Motivo Rim:</span> <p id='motiv[${i}]' onclick='Editable(this)'>${bkm.motivorim}</p></div>
+            <div><span class='moreInfo'>Motivo Rim:</span> <p id='motiv[${i}]' onclick='Editable(this)'>${bkm.motivorim}</p></div>
             </div>
             </td>
             <td onclick="Editable(this)">${bkm.descrizione}</td>
