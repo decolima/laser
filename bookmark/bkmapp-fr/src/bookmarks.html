@@ -17,9 +17,10 @@
     <script src="../js/navbar.js"></script>
     <script src="../js/init.js" type="module"></script>
     <script src="../js/javascript.js" type="module"></script>
-    <script type="module">import {ShowMore,Update,Delete, Create, searchByName,sortTable,Editable} from "../js/javascript.js";
+    <script type="module">import {ShowMore,Update,ConfirmDelete, Delete, Create, searchByName,sortTable,Editable} from "../js/javascript.js";
      window.ShowMore = ShowMore;
      window.Update = Update;
+     window.ConfirmDelete = ConfirmDelete;
      window.Delete = Delete;
      window.Create = Create;
      window.searchByName = searchByName;
@@ -59,7 +60,7 @@
                         <input type="checkbox" class="check" id="condiviso" name="condiviso">
                     </div>
                     <div class="btn-bkms" style="display: flex;">
-                        <input type="button" id="btnCreaBkms" value="Crea Bookmark" onclick="Create()">
+                        <input type="button" id="btnCreaBkms" value="Crea Link" onclick="Create()">
                     </div>
 
                 </form>

@@ -35,7 +35,7 @@ function createTable() {
             <td id='${bkm.mail}'>${bkm.utente}</td>
             <td><input class="shared-check" id=${bkm.idbkm} type="checkbox" ${bkm.condiviso ? 'checked' : 'unchecked'}>${bkm.condiviso ? 'sì' : 'no'}</td>
             <td class='btn-container' ><input class='btn-update'id=${i} onclick='Update(this.id)' type="image" src="../img/edit.png" value="Edit" style="display:${(bkm.mail === user || role) ? 'inline' : 'none'}">
-            <input class='btn-delete' id=${bkm.idbkm} onclick='Delete(this)' type="image" src="../img/delete.png" value="Delete" name=${bkm.mail} style="display:${(bkm.mail === user || role) ? 'inline' : 'none'}">
+            <input class='btn-delete' id=${bkm.idbkm} onclick='ConfirmDelete(this)' type="image" src="../img/delete.png" value="Delete" name=${bkm.mail} style="display:${(bkm.mail === user || role) ? 'inline' : 'none'}">
             </td>
             </tr>`
           i++;
@@ -88,9 +88,20 @@ export const Update = (i) => {
           bkmMotiv
         )).then(() => {
           createTable()
+          window.alert("Link modificato con successo")
         });
   } catch (e) {
+    window.alert("Il link non è stato modificato")
     console.log(e);
+  }
+}
+
+export const ConfirmDelete = (elem) =>{
+  let text = "Sei sicuro di voler eliminare il link?";
+  if (confirm(text) == true) {
+    Delete(elem)
+  } else {
+    return;
   }
 }
 
@@ -119,6 +130,7 @@ export const Create = () => {
     doBkms(bkmDesc.value, bkmLink.value, shared, "Nuovo", "n.d.")
       .then(() => {
         createTable();
+        window.alert("Nuovo Link creato")
       })
     bkmDesc.value = "";
     bkmLink.value = "";
