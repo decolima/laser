@@ -51,7 +51,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           await AppControl.LoginUser(email.text, pass.text);
           if (AppControl.getUser()!.firstName != null) {
             await AppControl.CaricaConsegna();
-            print(AppControl.getConsegna().length.toString());
+            //print(AppControl.getConsegna().length.toString());
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => DoListConsegna()));
           }
@@ -67,6 +67,10 @@ class _WidgetLoginState extends State<WidgetLogin> {
         padding: const EdgeInsets.all(40.0),
         child: Column(
           children: [
+            const Image(
+                image: AssetImage('assets/delivery.png'),
+                height: 350,
+                width: 350),
             const SizedBox(
               height: 40.0,
             ),

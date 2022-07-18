@@ -31,7 +31,7 @@ class _DoListConsegna extends State<DoListConsegna> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Lista di Consegne"),
+          title: const Text("...: To Deliver :..."),
           automaticallyImplyLeading: false,
           actions: [
             IconButton(

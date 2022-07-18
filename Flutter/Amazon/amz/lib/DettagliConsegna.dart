@@ -28,6 +28,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
     final IdAmazonField = TextField(
       controller: idamz,
       style: style,
+      enabled: false,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "",
@@ -38,6 +39,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
     final DimensioneField = TextField(
       controller: dim,
       style: style,
+      enabled: false,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "",
@@ -48,6 +50,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
     final PesoField = TextField(
       controller: pes,
       style: style,
+      enabled: false,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "",
@@ -58,6 +61,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
     final IndirizzoField = TextField(
       controller: ind,
       style: style,
+      enabled: false,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "",
@@ -70,7 +74,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
       padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
       child: ElevatedButton(
         child: const Text(
-          "Consegnata",
+          "Delivered",
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
@@ -86,7 +90,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
       padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
       child: ElevatedButton(
         child: const Text(
-          "Restituita",
+          "Retorned",
           textAlign: TextAlign.center,
         ),
         onPressed: () async {
@@ -99,7 +103,7 @@ class _DettagliConsegna extends State<DettagliConsegna> {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Lista di Consegne"),
+          title: const Text("..: Order Details :.."),
           actions: [
             IconButton(
                 icon: const Icon(Icons.logout),
@@ -120,19 +124,40 @@ class _DettagliConsegna extends State<DettagliConsegna> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 40.0,
+                  height: 20.0,
+                  child: Text(
+                    "Seller ID",
+                  ),
                 ),
                 IdAmazonField,
                 const SizedBox(
-                  height: 40.0,
+                  height: 10.0,
+                ),
+                const SizedBox(
+                  height: 20.0,
+                  child: Text(
+                    "Sizes",
+                  ),
                 ),
                 DimensioneField,
                 const SizedBox(
-                  height: 40.0,
+                  height: 10.0,
+                ),
+                const SizedBox(
+                  height: 20.0,
+                  child: Text(
+                    "Weight",
+                  ),
                 ),
                 PesoField,
                 const SizedBox(
-                  height: 40.0,
+                  height: 10.0,
+                ),
+                const SizedBox(
+                  height: 20.0,
+                  child: Text(
+                    "Address",
+                  ),
                 ),
                 IndirizzoField,
                 const SizedBox(
