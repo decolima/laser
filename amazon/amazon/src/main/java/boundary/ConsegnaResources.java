@@ -82,7 +82,7 @@ public class ConsegnaResources {
         return storeconsegna.all();
         
         
-}
+    }
     
     
     @GET
@@ -100,7 +100,7 @@ public class ConsegnaResources {
         return storeconsegna.doConsegna();
         
         
-}
+    }
     
     
     @POST
@@ -118,7 +118,7 @@ public class ConsegnaResources {
         return storeconsegna.save(entity);
         
         
-}
+    }
     
     
     @POST
@@ -150,6 +150,6 @@ public class ConsegnaResources {
         
         return Response.status(Response.Status.ACCEPTED)
                 .build();
-}
+    }
     
 }
