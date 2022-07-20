@@ -31,9 +31,9 @@ class _WelcomePageState extends State<WelcomePage> {
             Padding(
               padding: EdgeInsets.only(top: 50.0),
               child: Text(
-                'Bookmarks App',
+                'LinkTogether App',
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 40,
                   color: Color.fromRGBO(139, 0, 0, 1),
                 ),
               ),

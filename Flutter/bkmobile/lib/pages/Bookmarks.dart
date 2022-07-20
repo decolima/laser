@@ -219,7 +219,7 @@ class _BookmarksState extends State<Bookmarks> {
             Row(
               children: const [
                 Text(
-                  'VEDI BKMS',
+                  'VEDI LINKS',
                   style: TextStyle(fontSize: 20.0),
                 ),
               ],
@@ -372,7 +372,7 @@ class _BookmarksState extends State<Bookmarks> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Non sono presenti Bookmarks per te'),
+                Text('Non sono presenti links per te'),
               ],
             ),
           ),
@@ -399,7 +399,7 @@ class _BookmarksState extends State<Bookmarks> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Bookmark aggiornato con successo !!!'),
+                Text('Link aggiornato con successo !!!'),
               ],
             ),
           ),
@@ -426,7 +426,7 @@ class _BookmarksState extends State<Bookmarks> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Bookmark creato con successo !!!'),
+                Text('Link creato con successo !!!'),
               ],
             ),
           ),
@@ -453,7 +453,7 @@ class _BookmarksState extends State<Bookmarks> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('Non è possibile eliminare il bookmark selezionato'),
+                Text('Non è possibile eliminare il link selezionato'),
               ],
             ),
           ),
@@ -480,7 +480,7 @@ class _BookmarksState extends State<Bookmarks> {
           content: SingleChildScrollView(
             child: ListBody(
               children: const <Widget>[
-                Text('il tuo bookmark è stato cancellato con successo!'),
+                Text('il tuo link è stato cancellato con successo!'),
               ],
             ),
           ),
