@@ -57,9 +57,8 @@ class AppControl {
     return await SegnaLibroStore.getBkms(_usr!);
   }
 
-  static Future AggSegnaLibro(String desc, String link, bool shared) async {
-    await SegnaLibroStore.putBkms(
-        _usr!, _bkms[_index].idbkm!, desc, link, shared);
+  static Future CreaSegnaLibro(String desc, String link, bool shared) async {
+    await SegnaLibroStore.postBkms(_usr!, desc, link, shared);
     await CaricaSegnaLibro();
     return true;
   }

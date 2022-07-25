@@ -21,6 +21,8 @@ class _detaglislState extends State<detaglisl> {
 
     final TextEditingController link = TextEditingController(text: '');
 
+    final TextEditingController tags = TextEditingController(text: '');
+
     final descField = TextField(
       controller: desc,
       obscureText: false,
@@ -34,11 +36,22 @@ class _detaglislState extends State<detaglisl> {
 
     final linkField = TextField(
       controller: link,
-      obscureText: true,
+      obscureText: false,
       style: style,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Link SegnaLibro",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+    );
+
+    final tagField = TextField(
+      controller: tags,
+      obscureText: false,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "Tags # Tags # Tags",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
@@ -92,8 +105,7 @@ class _detaglislState extends State<detaglisl> {
           ),
           onPressed: () async {
             if (AppControl.getUser()!.firstName != null) {
-              await AppControl.AggSegnaLibro(desc.text, link.text, isChecked);
-              await AppControl.CaricaSegnaLibro();
+              await AppControl.CreaSegnaLibro(desc.text, link.text, isChecked);
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Listbkm()));
             }
@@ -111,7 +123,6 @@ class _detaglislState extends State<detaglisl> {
           onPressed: () async {
             if (AppControl.getUser()!.firstName != null) {
               await AppControl.AggSegnaLibro(desc.text, link.text, isChecked);
-              await AppControl.CaricaSegnaLibro();
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Listbkm()));
             }
@@ -123,18 +134,37 @@ class _detaglislState extends State<detaglisl> {
       padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
       child: ElevatedButton(
           child: const Text(
-            "Canc: SL",
+            "Canc. SL",
             textAlign: TextAlign.center,
           ),
           onPressed: () async {
             if (AppControl.getUser()!.firstName != null) {
               await AppControl.delSegnaLibro();
-              await AppControl.CaricaSegnaLibro();
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Listbkm()));
             }
           }),
     );
+
+    @override
+    void initState() {
+      super.initState();
+      if (AppControl.getIndex() != -1) {
+        desc.text =
+            AppControl.getBkms()[AppControl.getIndex()].descrizione.toString();
+        link.text = AppControl.getBkms()[AppControl.getIndex()].link.toString();
+
+        /*isVNew = false;
+      isVUpt = true;
+      isVDel = true;
+      isVClear = true;*/
+      } /*else {
+      isVNew = true;
+      isVUpt = false;
+      isVDel = false;
+      isVClear = false;
+    }*/
+    }
 
     return Scaffold(
         appBar: AppBar(
@@ -170,6 +200,10 @@ class _detaglislState extends State<detaglisl> {
                 const SizedBox(
                   height: 40.0,
                 ),
+                tagField,
+                const SizedBox(
+                  height: 40.0,
+                ),
                 _checkCondiviso,
                 const SizedBox(
                   height: 40.0,
@@ -188,9 +222,9 @@ class _detaglislState extends State<detaglisl> {
                 Row(
                   children: [
                     const SizedBox(width: 100.0),
-                    buttonSegnaLibri,
+                    buttonAgg,
                     const SizedBox(width: 70.0),
-                    buttonCrea
+                    buttonDel
                   ],
                 ),
               ],

@@ -15,7 +15,7 @@ class _Listbkm extends State<Listbkm> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("...: Lista di SegnaLibri :..."),
-          automaticallyImplyLeading: false,
+          //automaticallyImplyLeading: false,
           actions: [
             IconButton(
                 icon: const Icon(Icons.logout),
