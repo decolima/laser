@@ -70,7 +70,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
         onPressed: () async {
           await AppControl.LoginUser(email.text, pass.text);
           if (AppControl.getUser()!.firstName != null) {
-            //await AppControl.CaricaConsegna();
+            await AppControl.CaricaSegnaLibro();
             //print(AppControl.getConsegna().length.toString());
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => Listbkm()));
@@ -102,7 +102,14 @@ class _WidgetLoginState extends State<WidgetLogin> {
             const SizedBox(
               height: 40.0,
             ),
-            buttonLogin,
+            Row(
+              children: [
+                const SizedBox(width: 100.0),
+                buttonLogin,
+                const SizedBox(width: 70.0),
+                buttonRegis
+              ],
+            ),
           ],
         ),
       )),

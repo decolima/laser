@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../control/AppControl.dart';
+import 'entity/User.dart';
+import 'login.dart';
 
 class Listbkm extends StatefulWidget {
   const Listbkm({Key? key}) : super(key: key);
@@ -11,8 +13,21 @@ class Listbkm extends StatefulWidget {
 class _Listbkm extends State<Listbkm> {
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.black),
-        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          title: const Text("...: Lista di SegnaLibri :..."),
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                icon: const Icon(Icons.logout),
+                onPressed: () {
+                  User u = User();
+                  AppControl.setUser(u);
+                  AppControl.clearBkms();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => WidgetLogin()));
+                })
+          ],
+        ),
         body: getBkm());
   }
 
@@ -33,8 +48,7 @@ class _Listbkm extends State<Listbkm> {
                 _selectedIndex = index;
 
                 AppControl.setIndex(index);
-                //Navigator.of(context)
-                //.push(MaterialPageRoute(builder: (context) => Bookmarks()));
+                //Navigator.of(context).pop();
               });
             },
           );
