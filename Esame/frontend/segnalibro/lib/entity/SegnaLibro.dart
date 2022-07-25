@@ -1,4 +1,4 @@
-class Bkms {
+class SegnaLibro {
   String? idbkm = "";
   String? descrizione = "";
   String? link = "";
@@ -15,7 +15,7 @@ class Bkms {
   String? version = "";
   String? error;
 
-  Bkms(
+  SegnaLibro(
       {this.idbkm,
       this.descrizione,
       this.link,
@@ -30,7 +30,7 @@ class Bkms {
       this.mail,
       this.error});
 
-  Bkms.fromJson(Map<String, dynamic> json) {
+  SegnaLibro.fromJson(Map<String, dynamic> json) {
     idbkm = json['idbkm'];
     descrizione = json['descrizione'];
     link = json['link'];
@@ -41,7 +41,7 @@ class Bkms {
     mail = json['mail'];
   }
 
-  Bkms.fromJsonPost(Map<String, dynamic> json) {
+  SegnaLibro.fromJsonPost(Map<String, dynamic> json) {
     idbkm = json['id'];
     descrizione = json['descrizione'];
     link = json['link'];

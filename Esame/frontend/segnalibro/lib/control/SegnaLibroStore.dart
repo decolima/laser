@@ -1,4 +1,4 @@
-import '../entity/Bkms.dart';
+import '../entity/SegnaLibro.dart';
 import '../entity/User.dart';
 import '../service/rest.dart';
 import 'AppControl.dart';
@@ -10,24 +10,23 @@ class SegnaLibroStore {
       'descrizione': desc,
       'link': link,
       'condiviso': shared,
-      'status': 'Nuovo',
-      'motivorim': ""
+      'status': 'Nuovo'
     };
-    late Bkms _bkms;
+    late SegnaLibro _bkms;
     try {
       print(usr.mail);
 
       var resp = await rest.postRest("/segnalibro", true, usr.token!, data);
-      _bkms = Bkms.fromJsonPost(resp);
+      _bkms = SegnaLibro.fromJsonPost(resp);
       print(resp);
       return (_bkms);
     } catch (e) {
-      return Bkms(error: e.toString());
+      return SegnaLibro(error: e.toString());
     }
   }
 
   static Future getBkms(User usr) async {
-    var _bkms = <Bkms>[];
+    var _bkms = <SegnaLibro>[];
     var resp = [];
 
     print(usr.firstName);
@@ -36,7 +35,7 @@ class SegnaLibroStore {
       resp = await rest.getRest("/segnalibro", true, usr.token!, 1, 100);
       resp.forEach((element) {
         print(element);
-        _bkms.add(Bkms.fromJson(element));
+        _bkms.add(SegnaLibro.fromJson(element));
       });
 
       _bkms.forEach((b) {
@@ -46,22 +45,22 @@ class SegnaLibroStore {
       return (true);
     } catch (e) {
       print(e);
-      return Bkms(error: e.toString());
+      return SegnaLibro(error: e.toString());
     }
   }
 
   static Future getSingleBkms(User usr, String id) async {
-    late Bkms _bkms;
+    late SegnaLibro _bkms;
 
     try {
       var resp =
           await rest.getRest("/segnalibro/$id", true, usr.token!, 1, 100);
 
-      _bkms = Bkms.fromJson(resp);
+      _bkms = SegnaLibro.fromJson(resp);
 
       return (_bkms);
     } catch (e) {
-      return Bkms(error: e.toString());
+      return SegnaLibro(error: e.toString());
     }
   }
 
@@ -75,13 +74,13 @@ class SegnaLibroStore {
       'status': 'Nuovo'
     };
     print("arrivato al put ....");
-    late Bkms _bkms;
+    late SegnaLibro _bkms;
     try {
       var resp = await rest.putRest("/segnalibro", true, usr.token!, data);
-      _bkms = Bkms.fromJson(resp);
+      _bkms = SegnaLibro.fromJson(resp);
       return (_bkms);
     } catch (e) {
-      return Bkms(error: e.toString());
+      return SegnaLibro(error: e.toString());
     }
   }
 
@@ -91,7 +90,20 @@ class SegnaLibroStore {
       var resp = await rest.delRest("/segnalibro", true, usr.token!, data);
       return (resp);
     } catch (e) {
-      return Bkms(error: e.toString());
+      return SegnaLibro(error: e.toString());
+    }
+  }
+
+  static Future patchBkms(User usr, String id, String tags) async {
+    dynamic data = {'idBook': id, 'Tags': tags};
+    print("arrivato al put ....");
+    late SegnaLibro _bkms;
+    try {
+      var resp = await rest.patchRest("/segnalibro", true, usr.token!, data);
+      _bkms = SegnaLibro.fromJson(resp);
+      return (_bkms);
+    } catch (e) {
+      return SegnaLibro(error: e.toString());
     }
   }
 }

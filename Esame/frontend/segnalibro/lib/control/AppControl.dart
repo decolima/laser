@@ -1,14 +1,14 @@
-import '../entity/Bkms.dart';
-import '../entity/Consegna.dart';
+import 'package:segnalibro/control/SegnaLibroStore.dart';
+
+import '../entity/SegnaLibro.dart';
 import '../entity/User.dart';
-import 'ConsegnaStore.dart';
 import 'UserStore.dart';
+import 'SegnaLibroStore.dart';
 
 class AppControl {
   static User? _usr;
-  static final _cnsg = <Consegna>[];
   static int _index = -1;
-  static final _bkms = <Bkms>[];
+  static final _bkms = <SegnaLibro>[];
 
   static setUser(User u) {
     _usr = u;
@@ -27,16 +27,9 @@ class AppControl {
     return await UserStore.getUser(email, pass);
   }
 
-  static addConsegna(Consegna c) {
-    _cnsg.add(c);
-  }
-
-  static List<Consegna> getConsegna() {
-    return _cnsg;
-  }
-
-  static clearConsegna() {
-    _cnsg.clear();
+  static Future<User?> CreaUser(
+      String nome, String cognome, String email, String pass) async {
+    return await UserStore.creaUser(nome, cognome, email, pass);
   }
 
   static setIndex(int i) {
@@ -47,26 +40,39 @@ class AppControl {
     return _index;
   }
 
-  static Future CaricaConsegna() async {
-    clearConsegna();
-    return await ConsegnaStore.getConsegna(_usr!, 1, 100);
-  }
-
-  static Future AggConsegna(String st) async {
-    await ConsegnaStore.postConsegna(_usr!, _cnsg[_index].id!, st);
-    await CaricaConsegna();
-    return true;
-  }
-
-  static addBkms(Bkms b) {
+  static addBkms(SegnaLibro b) {
     _bkms.add(b);
   }
 
-  static List<Bkms> getBkms() {
+  static List<SegnaLibro> getBkms() {
     return _bkms;
   }
 
   static clearBkms() {
     _bkms.clear();
+  }
+
+  static Future CaricaSegnaLibro() async {
+    clearBkms();
+    return await SegnaLibroStore.getBkms(_usr!);
+  }
+
+  static Future AggSegnaLibro(String desc, String link, bool shared) async {
+    await SegnaLibroStore.putBkms(
+        _usr!, _bkms[_index].idbkm!, desc, link, shared);
+    await CaricaSegnaLibro();
+    return true;
+  }
+
+  static Future AggEtichetta(String tags) async {
+    await SegnaLibroStore.patchBkms(_usr!, _bkms[_index].idbkm!, tags);
+    await CaricaSegnaLibro();
+    return true;
+  }
+
+  static Future delSegnaLibro() async {
+    await SegnaLibroStore.delBkms(_usr!, _bkms[_index].idbkm!);
+    await CaricaSegnaLibro();
+    return true;
   }
 }

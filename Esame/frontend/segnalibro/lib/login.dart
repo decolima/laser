@@ -1,5 +1,6 @@
 import '../../control/AppControl.dart';
 import 'package:flutter/material.dart';
+import 'listsegnalibro.dart';
 
 class WidgetLogin extends StatefulWidget {
   @override
@@ -49,10 +50,30 @@ class _WidgetLoginState extends State<WidgetLogin> {
         onPressed: () async {
           await AppControl.LoginUser(email.text, pass.text);
           if (AppControl.getUser()!.firstName != null) {
-            await AppControl.CaricaConsegna();
+            //await AppControl.CaricaConsegna();
             //print(AppControl.getConsegna().length.toString());
-            //Navigator.of(context).push(
-            //    MaterialPageRoute(builder: (context) => DoListConsegna()));
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Listbkm()));
+          }
+        },
+      ),
+    );
+
+    final buttonRegis = ButtonTheme(
+      minWidth: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
+      child: ElevatedButton(
+        child: const Text(
+          "Login",
+          textAlign: TextAlign.center,
+        ),
+        onPressed: () async {
+          await AppControl.LoginUser(email.text, pass.text);
+          if (AppControl.getUser()!.firstName != null) {
+            //await AppControl.CaricaConsegna();
+            //print(AppControl.getConsegna().length.toString());
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => Listbkm()));
           }
         },
       ),
