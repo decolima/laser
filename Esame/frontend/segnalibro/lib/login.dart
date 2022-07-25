@@ -1,6 +1,7 @@
 import '../../control/AppControl.dart';
 import 'package:flutter/material.dart';
 import 'listsegnalibro.dart';
+import 'registrazione.dart';
 
 class WidgetLogin extends StatefulWidget {
   @override
@@ -50,10 +51,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
         onPressed: () async {
           await AppControl.LoginUser(email.text, pass.text);
           if (AppControl.getUser()!.firstName != null) {
-            //await AppControl.CaricaConsegna();
-            //print(AppControl.getConsegna().length.toString());
+            await AppControl.CaricaSegnaLibro();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Listbkm()));
+                .push(MaterialPageRoute(builder: (context) => const Listbkm()));
           }
         },
       ),
@@ -63,20 +63,14 @@ class _WidgetLoginState extends State<WidgetLogin> {
       minWidth: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
       child: ElevatedButton(
-        child: const Text(
-          "Login",
-          textAlign: TextAlign.center,
-        ),
-        onPressed: () async {
-          await AppControl.LoginUser(email.text, pass.text);
-          if (AppControl.getUser()!.firstName != null) {
-            await AppControl.CaricaSegnaLibro();
-            //print(AppControl.getConsegna().length.toString());
+          child: const Text(
+            "Registrazione",
+            textAlign: TextAlign.center,
+          ),
+          onPressed: () async {
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => Listbkm()));
-          }
-        },
-      ),
+                .push(MaterialPageRoute(builder: (context) => WidgetRegis()));
+          }),
     );
 
     return Scaffold(
@@ -88,7 +82,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
         child: Column(
           children: [
             const Image(
-                image: AssetImage('assets/segnalibro:lg.png'),
+                image: AssetImage('assets/segnalibro_lg.png'),
                 height: 350,
                 width: 350),
             const SizedBox(

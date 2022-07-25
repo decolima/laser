@@ -87,37 +87,42 @@ class _WidgetRegisState extends State<WidgetRegis> {
     );
 
     return Scaffold(
-        body: Center(
-      child: SingleChildScrollView(
-          child: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20.0,
-            ),
-            nomeField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            cognomeField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            emailField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            passwordField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            buttonCrea,
-          ],
+        appBar: AppBar(
+          title: const Text("...: Creazione di un nuovo Utente :...",
+              textAlign: TextAlign.center),
+          //automaticallyImplyLeading: false,
         ),
-      )),
-    ));
+        body: Center(
+          child: SingleChildScrollView(
+              child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20.0,
+                ),
+                nomeField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                cognomeField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                emailField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                passwordField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                buttonCrea,
+              ],
+            ),
+          )),
+        ));
   }
 
   Future<void> _showDialogOk() async {
