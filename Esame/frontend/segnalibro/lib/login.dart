@@ -1,5 +1,6 @@
 import '../../control/AppControl.dart';
 import 'package:flutter/material.dart';
+import 'detagli.dart';
 import 'listsegnalibro.dart';
 import 'registrazione.dart';
 
@@ -53,7 +54,7 @@ class _WidgetLoginState extends State<WidgetLogin> {
           if (AppControl.getUser()!.firstName != null) {
             await AppControl.CaricaSegnaLibro();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => const Listbkm()));
+                .push(MaterialPageRoute(builder: (context) => detaglisl()));
           }
         },
       ),
@@ -74,39 +75,44 @@ class _WidgetLoginState extends State<WidgetLogin> {
     );
 
     return Scaffold(
+        appBar: AppBar(
+          title: const Text("...: App Segna Libro di André Nunes de Lima :...",
+              textAlign: TextAlign.center),
+          //automaticallyImplyLeading: false,
+        ),
         body: Center(
-      child: SingleChildScrollView(
-          child: Container(
-        color: Colors.white,
-        padding: const EdgeInsets.all(40.0),
-        child: Column(
-          children: [
-            const Image(
-                image: AssetImage('assets/segnalibro_lg.png'),
-                height: 350,
-                width: 350),
-            const SizedBox(
-              height: 40.0,
-            ),
-            emailField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            passwordField,
-            const SizedBox(
-              height: 40.0,
-            ),
-            Row(
+          child: SingleChildScrollView(
+              child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(40.0),
+            child: Column(
               children: [
-                const SizedBox(width: 100.0),
-                buttonLogin,
-                const SizedBox(width: 70.0),
-                buttonRegis
+                const Image(
+                    image: AssetImage('assets/segnalibro_lg.png'),
+                    height: 350,
+                    width: 350),
+                const SizedBox(
+                  height: 40.0,
+                ),
+                emailField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                passwordField,
+                const SizedBox(
+                  height: 40.0,
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 100.0),
+                    buttonLogin,
+                    const SizedBox(width: 70.0),
+                    buttonRegis
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
-      )),
-    ));
+          )),
+        ));
   }
 }

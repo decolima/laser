@@ -64,6 +64,13 @@ class AppControl {
     return true;
   }
 
+  static Future AggSegnaLibro(String desc, String link, bool shared) async {
+    await SegnaLibroStore.putBkms(
+        _usr!, _bkms[_index].idbkm!, desc, link, shared);
+    await CaricaSegnaLibro();
+    return true;
+  }
+
   static Future AggEtichetta(String tags) async {
     await SegnaLibroStore.patchBkms(_usr!, _bkms[_index].idbkm!, tags);
     await CaricaSegnaLibro();
