@@ -6,9 +6,23 @@ import 'UserStore.dart';
 import 'SegnaLibroStore.dart';
 
 class AppControl {
+  static SegnaLibro? _lastbkms;
   static User? _usr;
   static int _index = -1;
   static final _bkms = <SegnaLibro>[];
+
+  static setLastBkms(SegnaLibro s) {
+    _lastbkms = s;
+  }
+
+  static SegnaLibro? getLastBkms() {
+    if (_lastbkms != null) {
+      return _lastbkms;
+    } else {
+      SegnaLibro s = SegnaLibro();
+      return s;
+    }
+  }
 
   static setUser(User u) {
     _usr = u;
@@ -57,22 +71,44 @@ class AppControl {
     return await SegnaLibroStore.getBkms(_usr!);
   }
 
-  static Future CreaSegnaLibro(String desc, String link, bool shared) async {
-    await SegnaLibroStore.postBkms(_usr!, desc, link, shared);
+  static Future CreaSegnaLibro(
+      String desc, String link, bool shared, String tags) async {
+    _lastbkms = await SegnaLibroStore.postBkms(_usr!, desc, link, shared);
+
+    if (tags.length > 0) {
+      await AggEtichetta(true, tags);
+    }
+
     await CaricaSegnaLibro();
     return true;
   }
 
-  static Future AggSegnaLibro(String desc, String link, bool shared) async {
-    await SegnaLibroStore.putBkms(
+  static Future AggSegnaLibro(
+      String desc, String link, bool shared, String tags) async {
+    _lastbkms = await SegnaLibroStore.putBkms(
         _usr!, _bkms[_index].idbkm!, desc, link, shared);
+
+    if (tags.length > 0) {
+      await AggEtichetta(false, tags);
+    }
+
     await CaricaSegnaLibro();
     return true;
   }
 
-  static Future AggEtichetta(String tags) async {
-    await SegnaLibroStore.patchBkms(_usr!, _bkms[_index].idbkm!, tags);
+  static Future AggEtichetta(bool newsl, String tags) async {
+    String _i = "";
+
+    if (newsl) {
+      _i = getLastBkms()!.idbkm!;
+    } else {
+      _i = _bkms[_index].idbkm!;
+    }
+
+    await SegnaLibroStore.patchBkms(_usr!, _i, tags);
+
     await CaricaSegnaLibro();
+
     return true;
   }
 

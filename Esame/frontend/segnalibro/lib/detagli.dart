@@ -17,11 +17,17 @@ class _detaglislState extends State<detaglisl> {
   Widget build(BuildContext context) {
     bool isChecked = false;
 
-    final TextEditingController desc = TextEditingController(text: '');
+    final TextEditingController desc = TextEditingController(
+        text:
+            AppControl.getBkms()[AppControl.getIndex()].descrizione.toString());
 
-    final TextEditingController link = TextEditingController(text: '');
+    final TextEditingController condiviso = TextEditingController(text: '');
 
-    final TextEditingController tags = TextEditingController(text: '');
+    final TextEditingController link = TextEditingController(
+        text: AppControl.getBkms()[AppControl.getIndex()].link.toString());
+
+    final TextEditingController tags = TextEditingController(
+        text: AppControl.getBkms()[AppControl.getIndex()].tags.toString());
 
     final descField = TextField(
       controller: desc,
@@ -56,25 +62,15 @@ class _detaglislState extends State<detaglisl> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
-    final _checkCondiviso = Row(
-      children: [
-        const SizedBox(width: 28.0),
-        const Text(
-          'Condiviso',
-          style: TextStyle(
-            fontSize: 18.0,
-          ),
-        ),
-        Checkbox(
-          checkColor: Colors.white,
-          value: isChecked,
-          onChanged: (bool? value) {
-            setState(() {
-              isChecked = value!;
-            });
-          },
-        ),
-      ],
+    final condivisoField = TextField(
+      controller: condiviso,
+      obscureText: false,
+      style: style,
+      decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          hintText: "1 COndiviso - 0 Particolare",
+          border:
+              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
     final buttonSegnaLibri = ButtonTheme(
@@ -104,8 +100,12 @@ class _detaglislState extends State<detaglisl> {
             textAlign: TextAlign.center,
           ),
           onPressed: () async {
+            bool cond = false;
             if (AppControl.getUser()!.firstName != null) {
-              await AppControl.CreaSegnaLibro(desc.text, link.text, isChecked);
+              if (condiviso.text == "1") cond = true;
+
+              await AppControl.CreaSegnaLibro(
+                  desc.text, link.text, cond, tags.text);
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Listbkm()));
             }
@@ -122,7 +122,8 @@ class _detaglislState extends State<detaglisl> {
           ),
           onPressed: () async {
             if (AppControl.getUser()!.firstName != null) {
-              await AppControl.AggSegnaLibro(desc.text, link.text, isChecked);
+              await AppControl.AggSegnaLibro(
+                  desc.text, link.text, isChecked, tags.text);
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Listbkm()));
             }
@@ -146,29 +147,24 @@ class _detaglislState extends State<detaglisl> {
           }),
     );
 
-    @override
-    void initState() {
-      super.initState();
-      if (AppControl.getIndex() != -1) {
-        desc.text =
-            AppControl.getBkms()[AppControl.getIndex()].descrizione.toString();
-        link.text = AppControl.getBkms()[AppControl.getIndex()].link.toString();
-
-        /*isVNew = false;
-      isVUpt = true;
-      isVDel = true;
-      isVClear = true;*/
-      } /*else {
-      isVNew = true;
-      isVUpt = false;
-      isVDel = false;
-      isVClear = false;
-    }*/
-    }
+    final buttonClear = ButtonTheme(
+      minWidth: MediaQuery.of(context).size.width,
+      padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 20.0),
+      child: ElevatedButton(
+          child: const Text(
+            "Crea SL",
+            textAlign: TextAlign.center,
+          ),
+          onPressed: () {
+            desc.text = "";
+            link.text = "";
+            tags.text = "";
+          }),
+    );
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("...: Gestisce il SegnaLibri :..."),
+          title: const Text("...: Gestisce il SegnaLibro :..."),
           //automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -204,7 +200,7 @@ class _detaglislState extends State<detaglisl> {
                 const SizedBox(
                   height: 40.0,
                 ),
-                _checkCondiviso,
+                condivisoField,
                 const SizedBox(
                   height: 40.0,
                 ),
@@ -226,6 +222,12 @@ class _detaglislState extends State<detaglisl> {
                     const SizedBox(width: 70.0),
                     buttonDel
                   ],
+                ),
+                const SizedBox(
+                  height: 40.0,
+                ),
+                Row(
+                  children: [const SizedBox(width: 100.0), buttonClear],
                 ),
               ],
             ),

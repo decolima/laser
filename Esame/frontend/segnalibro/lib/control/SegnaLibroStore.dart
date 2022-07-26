@@ -17,8 +17,9 @@ class SegnaLibroStore {
       print(usr.mail);
 
       var resp = await rest.postRest("/segnalibro", true, usr.token!, data);
-      _bkms = SegnaLibro.fromJsonPost(resp);
       print(resp);
+      _bkms = SegnaLibro.fromJsonPost2(resp);
+      print(_bkms);
       return (_bkms);
     } catch (e) {
       return SegnaLibro(error: e.toString());

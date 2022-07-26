@@ -56,6 +56,16 @@ class SegnaLibro {
     mail = json['mail'];
   }
 
+  SegnaLibro.fromJsonPost2(Map<String, dynamic> json) {
+    idbkm = json['id'];
+    descrizione = json['descrizione'];
+    link = json['link'];
+    condiviso = json['condiviso'];
+    creazione = json['creazione'];
+    status = json['status'];
+    aggiornamento = json['aggiornamento'];
+  }
+
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
 

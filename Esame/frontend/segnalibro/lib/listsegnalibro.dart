@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:segnalibro/detagli.dart';
 import '../../control/AppControl.dart';
 import 'entity/User.dart';
 import 'login.dart';
@@ -34,12 +35,11 @@ class _Listbkm extends State<Listbkm> {
   int _selectedIndex = -1;
 
   getBkm() {
-    print(AppControl.getBkms().length);
     return ListView.builder(
         itemCount: AppControl.getBkms().length,
         itemBuilder: (context, index) {
           return ListTile(
-            selectedColor: Colors.black,
+            selectedColor: Colors.blue,
             selected: index == _selectedIndex,
             title: Text(AppControl.getBkms()[index].descrizione.toString()),
             subtitle: Text(AppControl.getBkms()[index].link.toString()),
@@ -48,7 +48,8 @@ class _Listbkm extends State<Listbkm> {
                 _selectedIndex = index;
 
                 AppControl.setIndex(index);
-                //Navigator.of(context).pop();
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => detaglisl()));
               });
             },
           );

@@ -52,8 +52,9 @@ class _WidgetLoginState extends State<WidgetLogin> {
         onPressed: () async {
           await AppControl.LoginUser(email.text, pass.text);
           if (AppControl.getUser()!.firstName != null) {
+            await AppControl.CaricaSegnaLibro();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => detaglisl()));
+                .push(MaterialPageRoute(builder: (context) => const Listbkm()));
           }
         },
       ),
