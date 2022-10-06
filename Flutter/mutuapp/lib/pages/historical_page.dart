@@ -16,32 +16,89 @@ class _HistoricalPageState extends State<HistoricalPage> {
   @override
   void initState() {
     super.initState();
-    print("Passa por InitState");
     carica();
   }
 
   carica() {
-    print("fatto la carica");
-
-    if (MutuaControl.getMutua().isNotEmpty) {
-      Mutua n = Mutua.create();
-      n = MutuaControl.getMutuaStatus(Status.NEW);
-
-      if (n.start != null) {
-        dt_start_new.text = n.start.toString();
-        dt_end_new.text = n.end.toString();
-        protocolNumber_new.text = n.protocolNumber.toString();
+    //controllo di mutua in status NEW
+    if (MutuaControl.getMutua()
+        .where((e) => e.status == Status.NEW)
+        .isNotEmpty) {
+      if (MutuaControl.getMutuaStatus(Status.NEW).start != null) {
+        dt_start_new.text =
+            MutuaControl.getMutuaStatus(Status.NEW).start.toString();
+        dt_end_new.text =
+            MutuaControl.getMutuaStatus(Status.NEW).end.toString();
+        protocolNumber_new.text =
+            MutuaControl.getMutuaStatus(Status.NEW).protocolNumber.toString();
       } else {
-        print("non c'è una new");
+        dt_start_new.text = "";
+        dt_end_new.text = "";
+        protocolNumber_new.text = "";
       }
+    } else {
+      dt_start_new.text = "";
+      dt_end_new.text = "";
+      protocolNumber_new.text = "";
+    }
+
+    //Controllo di Mutua in Status InProgress
+    if (MutuaControl.getMutua()
+        .where((e) => e.status == Status.INPROGRESS)
+        .isNotEmpty) {
+      if (MutuaControl.getMutuaStatus(Status.INPROGRESS).start != null) {
+        dt_start_progress.text =
+            MutuaControl.getMutuaStatus(Status.INPROGRESS).start.toString();
+        dt_end_progress.text =
+            MutuaControl.getMutuaStatus(Status.INPROGRESS).end.toString();
+        protocolNumber_progress.text =
+            MutuaControl.getMutuaStatus(Status.INPROGRESS)
+                .protocolNumber
+                .toString();
+      } else {
+        dt_start_progress.text = "";
+        dt_end_progress.text = "";
+        protocolNumber_progress.text = "";
+      }
+    } else {
+      dt_start_progress.text = "";
+      dt_end_progress.text = "";
+      protocolNumber_progress.text = "";
+    }
+
+    //Controllo di mutua in status Closed
+    if (MutuaControl.getMutua()
+        .where((e) => e.status == Status.CLOSED)
+        .isNotEmpty) {
+      listClosed();
     }
   }
 
-  bool b = false;
+  listClosed() {
+    return ListView.builder(
+        itemCount: MutuaControl.getMutuaFiltred(Status.CLOSED).length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            selectedColor: Colors.blue,
+            title: Text(MutuaControl.getMutuaFiltred(Status.CLOSED)[index]
+                .protocolNumber
+                .toString()),
+            subtitle: Text(
+                "${MutuaControl.getMutuaFiltred(Status.CLOSED)[index].start.toString()} - ${MutuaControl.getMutuaFiltred(Status.CLOSED)[index].start.toString()} - ${MutuaControl.getMutuaFiltred(Status.CLOSED)[index].reason.toString()}"),
+            onTap: () {},
+          );
+        });
+  }
 
   final TextEditingController dt_start_new = TextEditingController(text: "");
   final TextEditingController dt_end_new = TextEditingController(text: "");
   final TextEditingController protocolNumber_new =
+      TextEditingController(text: "");
+
+  final TextEditingController dt_start_progress =
+      TextEditingController(text: "");
+  final TextEditingController dt_end_progress = TextEditingController(text: "");
+  final TextEditingController protocolNumber_progress =
       TextEditingController(text: "");
 
   @override
@@ -75,15 +132,59 @@ class _HistoricalPageState extends State<HistoricalPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
                           TextButton(
-                            child: const Text('Ok Status'),
+                            child: const Text('Status InProgress'),
+                            onPressed: () {
+                              if (MutuaControl.getMutuaStatus(Status.NEW)
+                                      .protocolNumber !=
+                                  null) {
+                                MutuaControl.aggMutua(
+                                    MutuaControl.getMutuaStatus(Status.NEW),
+                                    Status.INPROGRESS);
+                              }
+                              carica();
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          TextButton(
+                            child: const Text('Informa Malatia'),
                             onPressed: () {
                               carica();
                             },
                           ),
                           const SizedBox(width: 8),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(40.0),
+              child: Center(
+                child: Card(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      TextField(controller: dt_start_progress),
+                      TextField(controller: dt_end_progress),
+                      TextField(controller: protocolNumber_progress),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
                           TextButton(
                             child: const Text('Cambia Status'),
                             onPressed: () {
+                              if (MutuaControl.getMutuaStatus(Status.INPROGRESS)
+                                      .protocolNumber !=
+                                  null) {
+                                MutuaControl.aggMutua(
+                                    MutuaControl.getMutuaStatus(
+                                        Status.INPROGRESS),
+                                    Status.CLOSED);
+                              }
                               carica();
                             },
                           ),
@@ -100,53 +201,7 @@ class _HistoricalPageState extends State<HistoricalPage> {
             child: Padding(
               padding: const EdgeInsets.all(40.0),
               child: Center(
-                child: Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      TextField(),
-                      TextField(),
-                      TextField(),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          TextButton(
-                            child: const Text('Ok'),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Center(
-                child: Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const ListTile(
-                        title: Text('Closed'),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          TextButton(
-                            child: const Text('Ok'),
-                            onPressed: () {},
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                child: Card(),
               ),
             ),
           ),

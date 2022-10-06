@@ -123,21 +123,11 @@ class _MutuaPageState extends State<MutuaPage> {
                           _selectedDateStart, _selectedDateEnd, "protocolo123");
                       MutuaControl.addMutua(m);
 
-                      m = m.copyWith(status: Status.INPROGRESS);
-
-                      MutuaControl.addMutua(m);
-
-                      m = m.copyWith(status: Status.CLOSED);
-
-                      MutuaControl.addMutua(m);
-
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const HistoricalPage()),
                       );
-
-                      //Navigator.pop(context);
                     },
                     child: Text("INVIA"),
                     backgroundColor: Colors.red[800],

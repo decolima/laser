@@ -29,7 +29,15 @@ class MutuaControl {
   }
 
   static Mutua aggMutua(Mutua m, Status st) {
+    //aggiorna status dell'oggeto
     m = m.copyWith(status: st);
+    //cerca lo stesso oggetto sulla lista principale per aggirnare
+    for (var x in mutua) {
+      if (x.id == m.id) {
+        mutua.remove(x);
+        addMutua(m);
+      }
+    }
     return m;
   }
 
@@ -46,6 +54,10 @@ class MutuaControl {
   }
 
   static Mutua getMutuaStatus(Status st) {
-    return getMutuaFiltred(st)[0];
+    try {
+      return getMutuaFiltred(st)[0];
+    } catch (e) {
+      return Mutua.create();
+    }
   }
 }
