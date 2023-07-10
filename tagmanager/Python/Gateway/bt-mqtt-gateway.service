@@ -1,0 +1,12 @@
+[Unit]
+Description=Bluetooth MQTT gateway
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/user/Gateway
+ExecStart=/home/user/Gateway/service.sh
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

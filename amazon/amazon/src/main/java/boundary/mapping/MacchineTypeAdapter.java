@@ -7,13 +7,10 @@ package boundary.mapping;
 import control.MacchineStore;
 import entity.Macchine;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.json.bind.adapter.JsonbAdapter;
 import javax.ws.rs.NotFoundException;
-import static javax.ws.rs.client.Entity.json;
 
 /**
  *

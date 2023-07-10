@@ -1,0 +1,7 @@
+go 1.20
+
+use (
+	./paho.mqtt.golang
+	./paho.mqtt.golang/cmd/docker/publisher
+	./paho.mqtt.golang/cmd/docker/subscriber
+)

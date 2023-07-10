@@ -1,0 +1,34 @@
+mqtt:
+  host: 192.168.0.123
+  port: 1883
+  username: controller
+  password: controller
+  topic_prefix: IOT/1oF00001/raspberry-btt-gateway
+  client_id: controller
+  availability_topic: status
+  global_topic_prefix: IOT/1oF00001/raspberry-btt-gateway
+manager:
+  config_topic:
+    topic_prefix: maintenance
+    command: null
+  topic_subscription:
+    update_all:
+      topic: status
+      payload: online
+  command_timeout: 35
+  workers:
+    blescanmulti:
+      args:
+        devices:
+          climatizzatore: D3:F3:2B:F3:16:17
+          generatore: D2:EE:F8:BA:12:DB
+          batteria: CF:4A:3F:61:D0:41
+          Psc: DD:18:30:2A:05:4F
+        topic_prefix: TAG
+        available_payload: in
+        unavailable_payload: out
+        available_timeout: 0
+        unavailable_timeout: 0
+        scan_timeout: 10
+        scan_passive: true
+      update_interval: 60

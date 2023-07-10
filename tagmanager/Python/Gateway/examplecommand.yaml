@@ -1,0 +1,6 @@
+  - send one of the following commands as json mqtt message on global_topic_prefix/maintenance/
+  - command add              name = device_name            mac = device_macaddr
+  - command = remove         name = device_name
+  - command = set_gateway    name = global_topic_prefix 
+  - command = scan
+  - command = reload

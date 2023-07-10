@@ -1,0 +1,37 @@
+mqtt:
+  host: web.laser-group.com
+  #host: 192.168.188.36
+  port: 1883
+  username: mqtt
+  password: Laser123$
+  #ca_cert: /etc/ssl/certs/ca-certificates.crt # Uncomment to enable MQTT TLS, update path to appropriate location.
+  #ca_verify: False              # Verify TLS certificate chain and host, disable for testing with self-signed certificates, default to True
+  topic_prefix: IOT/1OF00001/raspberry-btt-gateway        # All messages will have that prefix added, remove if you dont need this.
+  client_id: bt-mqtt-gateway
+  availability_topic: status
+
+manager:
+  topic_subscription:
+    update_all:
+      topic: status
+      payload: online
+  command_timeout: 35           # Timeout for worker operations. Can be removed if the default of 35 seconds is sufficient.
+  workers:
+    blescanmulti:
+      args:
+        devices:
+          climatizzatore: D3:F3:2B:F3:16:17
+          generatore: D2:EE:F8:BA:12:DB
+          batteria: CF:4A:3F:61:D0:41
+          Psc: DD:18:30:2A:05:4F
+        topic_prefix: TAG
+        topic_subcription: mainteince
+        available_payload: in
+        unavailable_payload: out
+        available_timeout: 0
+        unavailable_timeout: 0
+        scan_timeout: 10
+        scan_passive: true
+      update_interval: 60
+
+
